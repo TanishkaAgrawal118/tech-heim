@@ -3,6 +3,7 @@ import './App.css';
 import LandingPage from './components/LandingPages';
 import DataTable from './components/TableTask/Table';
 import FAQ from './components/FAQ';
+import Contact from './components/Contact';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
     <Routes>
       <Route path='/' element={<LandingPage/>}></Route>
       <Route path='/FAQ' element={<FAQ/>}></Route>
+      <Route path='/contact' element={<Contact/>}></Route>
     </Routes>
    </BrowserRouter>
    </>
