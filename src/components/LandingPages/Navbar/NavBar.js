@@ -6,18 +6,20 @@ import profile from "../../../assets/profile.svg";
 import "./style.css";
 import Modal from "../../Modals/modal";
 import Sidebar from "../SideBar/Sidebar";
-import ProductDropdown from "../../Products/ProductsDrodown";
+import ProductDropdown from "../../Products/ProductsDropdown";
+import { Link, useNavigate } from "react-router";
 
 const NavBar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light px-4"
-        style={{ overflowX: "hidden" }}
+        className="navbar navbar-expand-lg navbar-light px-5"
+        style={{ overflowX: "hidden",position:"relative" }}
       >
         <a className="navbar-brand d-none d-lg-block" href="#">
           <img
@@ -35,60 +37,50 @@ const NavBar = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+
+        <div id="navbarNav" className="nav-content">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <Link className="nav-link active" to="/">
                 Home
-              </a>
+              </Link>
             </li>
-            <li className="nav-item">
-              <a
-              style={{cursor:"pointer"}}
-                className="nav-link"
-                href="#"
-              >
+            {/* <li
+              className="nav-item"
+              onMouseEnter={() => {
+                setIsProductDropdown(true);
+                console.log("entered")
+              }}
+            >
+              <a style={{ cursor: "pointer" }} className="nav-link" href="#">
                 Products
               </a>
-              {isProductDropdown && <ProductDropdown />}
+            </li> */}
+             <li
+              className="nav-item"
+            >
+              <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
+                Products
+              </Link>
             </li>
             <li className="nav-item">
-              <a
-                className="nav-link"
-                href="#"
-              >
+              <Link className="nav-link" to="#">
                 Blog
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/FAQ">
                 FAQ
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="/contact">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
-
-          <div className="search-container d-lg-none">
-            <input
-              type="text"
-              placeholder="What can we help you to find ?"
-              className="search-input"
-            />
-          </div>
-
-          <div className="d-flex align-items-center">
-            <a href="#" className="text-dark me-3">
-              <i className="bi bi-search" style={{ fontSize: "1.2rem" }}></i>
-            </a>
-            <a href="#" className="text-dark me-3">
-              <i className="bi bi-cart" style={{ fontSize: "1.2rem" }}></i>
-            </a>
-          </div>
         </div>
+        
         <p className="d-block d-lg-none tech-heim">Tech Heim</p>
         <div className="d-flex navbar-images">
           <img
@@ -103,6 +95,8 @@ const NavBar = () => {
       </nav>
 
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
+
+      {isProductDropdown && <ProductDropdown setIsProductDropdown={setIsProductDropdown}/>}
 
       <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)}>
         <div className="search-modal">
