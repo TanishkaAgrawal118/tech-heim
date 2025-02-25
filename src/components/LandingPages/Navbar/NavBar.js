@@ -7,11 +7,20 @@ import "./style.css";
 import Modal from "../../Modals/modal";
 import Sidebar from "../SideBar/Sidebar";
 import ProductDropdown from "../../Products/ProductsDropdown";
+import { useNavigate } from "react-router";
 
 const NavBar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
+  const navigate = useNavigate();
+
+  const handleFAQ = () => {
+    navigate('/FAQ');
+  }
+  const handleHome = () =>{
+    navigate('/');
+  }
   return (
     <>
       <nav
@@ -38,7 +47,7 @@ const NavBar = () => {
         <div id="navbarNav" className="nav-content">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#">
+              <a className="nav-link active" href="#" onClick={handleHome}>
                 Home
               </a>
             </li>
@@ -60,7 +69,7 @@ const NavBar = () => {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <a className="nav-link" href="#" onClick={handleFAQ}>
                 FAQ
               </a>
             </li>
