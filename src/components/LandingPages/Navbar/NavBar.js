@@ -7,7 +7,7 @@ import "./style.css";
 import Modal from "../../Modals/modal";
 import Sidebar from "../SideBar/Sidebar";
 import ProductDropdown from "../../Products/ProductsDropdown";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const NavBar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -15,12 +15,6 @@ const NavBar = () => {
   const [isProductDropdown, setIsProductDropdown] = useState(false);
   const navigate = useNavigate();
 
-  const handleFAQ = () => {
-    navigate('/FAQ');
-  }
-  const handleHome = () =>{
-    navigate('/');
-  }
   return (
     <>
       <nav
@@ -47,11 +41,11 @@ const NavBar = () => {
         <div id="navbarNav" className="nav-content">
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
-              <a className="nav-link active" href="#" onClick={handleHome}>
+              <Link className="nav-link active" to="/">
                 Home
-              </a>
+              </Link>
             </li>
-            <li
+            {/* <li
               className="nav-item"
               onMouseEnter={() => {
                 setIsProductDropdown(true);
@@ -61,22 +55,28 @@ const NavBar = () => {
               <a style={{ cursor: "pointer" }} className="nav-link" href="#">
                 Products
               </a>
-            
+            </li> */}
+             <li
+              className="nav-item"
+            >
+              <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
+                Products
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Blog
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#" onClick={handleFAQ}>
+              <Link className="nav-link" to="/FAQ">
                 FAQ
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
+              <Link className="nav-link" to="#">
                 Contact Us
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
