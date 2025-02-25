@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* overflow: hidden; */
+}
+.hero h1 {
+  font-weight: 700;
+  font-size: 4vmax;
+  color: #021736;
+  margin-bottom: 2rem;
+}
+.hero p {
+  font-size: 1.5vmax;
+  font-weight: 500;
+}
+
+.hero-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-left button{
+  background-color: #F45E0C;
+  font-size: 1rem;
+  color: white;
+  margin: 5rem 5rem 1rem 0rem;
+  width: 17vmax;
+  height: 3vmax;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+.hero-right img {
+  height: 34vmax;
+  width: 53vmax;
+  object-fit: cover;
+  padding: 10px;
+}
+
+@media (max-width: 995px){
+
+  .hero-left{
+    margin:0px -100px 0px 0px;
+  }
+  .hero p{
+    font-size: 2vmax;
+  }
+  .hero-left button{
+    width: 16vmax;
+    height: 3vmax;
+    border-radius: 0.1rem;
+  }
+  .hero-right img {
+    height: 36vmax;
+    width: 52vmax;
+    margin: 18px -14px 0px -3px;
+  }
+}
+
+@media (max-width: 770px){ 
+  .hero-left button{
+    width: 19vmax;
+    height: 4.2vmax;
+    margin: 2rem 5rem 1rem 0rem;
+    border-radius: 0.4rem;   
+    font-size: 0.7rem;
+  }
+    .hero-right img {
+    height: 27vmax;
+    width: 37vmax;
+    margin: -2px -14px 0px -3px;
+  }
+}
+@media(max-width: 490px){
+  .hero-right img {
+    height: 16vmax;
+    max-width: 22vmax;
+    margin: 0px -33px -4px -23px;
+  }
+  .hero h1{
+    font-size: 3vmax;
+    margin-bottom: 10px;
+  }
+  .hero p{
+    font-size: 0.7rem;
+  }
+  .hero-left button {
+    width: 12vmax;
+    height: 2.2vmax;
+    margin: 2rem 7rem 0rem 0rem;
+    border-radius: 0.4rem;
+    font-size: 0.6rem;
+  }
+}
+
+.light-effect {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244, 94, 12, 0.6) 0%, rgba(244, 94, 12, 0) 70%);
+  filter: blur(50px);
+  top: 20%;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}

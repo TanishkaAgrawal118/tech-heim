@@ -1,0 +1,336 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+p {
+  margin: 0rem !important;
+}
+.banner-left {
+  justify-content: space-between;
+  max-width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap;
+  padding: 2.18rem;
+  display: flex;
+  border-radius: 15px;
+  margin-top: 2rem;
+  background: linear-gradient(
+    286.99deg,
+    #b0e9c9 1.99%,
+    #1fb6cf 48.52%,
+    #1975b9 98.92%
+  );
+}
+.banner-countdown span {
+  border-radius: 10px;
+}
+.banner-title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: -3rem 1rem 3rem 1rem;
+}
+.series-text {
+  color: white;
+}
+
+.banner-left h2 {
+  margin-bottom: 4rem;
+}
+.banner-countdown {
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0rem 0rem 3rem -1rem;
+}
+.countdown {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  text-align: center;
+}
+
+.iphone {
+  margin: 0rem 0rem -19rem 0rem;
+  height: 15rem;
+  width: 22rem;
+}
+.banner-content p {
+  margin: 10px;
+  font-size: 1rem;
+}
+.banner-left button {
+  margin: 5rem 1rem 0rem 1rem;
+  align-items: center;
+  padding: 9px;
+  justify-content: center;
+}
+.ellipse1 {
+  height: 6rem;
+  width: 9rem;
+  margin: 0rem 13rem -4rem -6rem;
+}
+.ellipse2 {
+  height: 9rem;
+  width: 8rem;
+  margin: -16rem 2rem -4rem 14rem;
+}
+.ellipse3 {
+  height: 163px;
+  width: 147px;
+  margin: -78px -3rem -4rem 17rem;
+}
+
+/* Banner Right */
+.banner-right {
+  flex-wrap: wrap;
+  height: 27.6rem;
+  width: 26rem;
+  background-color: #005690;
+  justify-content: space-between;
+  overflow: hidden;
+  flex-wrap: wrap;
+  display: flex;
+  border-radius: 15px;
+  margin-top: 2rem;
+}
+.banner-device {
+  height: 8rem;
+  width: 53%;
+  max-width: 13rem;
+  margin: -1rem 0rem 0rem 12rem;
+}
+.banner-right h3 {
+  color: #fcc870;
+  margin: auto;
+  font-size: 1.5rem;
+}
+.banner-right p {
+  color: #005690;
+  margin: 4rem 0rem 0rem 2rem;
+  font-weight: 600;
+}
+.banner-ellipse4 {
+  margin: -5rem 0rem 0rem 0rem !important;
+}
+.banner-ellipse5 {
+  margin: 1rem -12rem -22rem -1rem !important;
+}
+@media(max-width: 1399px){
+  .banner-left{
+    padding-bottom: 0px;
+  }
+  .ellipse3 {
+    margin: -47px -4rem -3rem 11rem;
+  }
+}
+
+@media (max-width: 1238px) {
+  .banner-left button{
+    margin:9px 0 15px -92px !important;
+  }
+  .banner-left{
+    width: 90%;
+    padding: 1rem;
+  }
+   .banner-right {
+    height: 29.6rem;
+    width: 24rem;
+    margin: 2rem 1rem 1rem -4rem !important;
+  }
+  .banner-right p {
+    margin: 2rem 0rem 0rem 2rem !important;
+  }
+  .banner-countdown {
+    margin: 8px 46px 64px -103px !important;
+    font-size: 0.7rem;
+  }
+  .banner-content h3 {
+    margin: 10px -29px 34px -117px !important;
+    font-size: 1.1rem !important;
+  }
+  .banner-content p {
+    font-size: 0.9rem !important;
+    margin: 0rem 6rem 4rem -7.5rem !important;
+  }
+  .iphone {
+    height: 12rem;
+    width: 17rem;
+  }
+  .ellipse3 {
+    height: 9rem !important;
+    width: 8rem !important;
+    margin: -8rem -9rem -8rem 11rem !important;
+  }
+
+  .banner-title {
+    margin-bottom: 0;
+  }
+  .banner-content h3 {
+    margin: 5px 0px 32px -123px;
+    font-size: 1.2rem;
+  }
+
+}
+
+@media (max-width: 991px) {
+  .banner-title{
+    font-size: 1rem;
+  font-weight: 600;
+  margin: -3rem 0rem 2rem 0rem !important;
+  }
+  .banner-content h3 {
+    margin: 60px 0px 78px -39px !important;
+    font-size: 1.1rem !important;
+  }
+  .iphone {
+    height: 16rem !important;
+    width: 18rem !important;
+    margin: 6rem 0rem -3rem -1rem !important;
+}
+.banner-content p {
+  font-size: 1rem !important;
+  margin: 0rem 0rem 0rem -2.2rem !important
+}
+  .banner-countdown {
+    font-size: 0.8rem !important;
+    margin: 0.5rem 0rem 1rem -4rem !important;
+  }
+  .banner-right {
+    height: 27.6rem;
+    width: 39rem !important;
+    margin-left: 0.1rem !important;
+  }
+  .banner-ellipse4 {
+    margin: -3rem 0rem 0rem 0rem !important;
+  }
+  .banner-ellipse5 {
+    margin: 5rem 5rem -23rem 0rem !important;
+    height: 28rem !important;
+    width: 42rem;
+  }
+}
+
+
+@media (max-width: 770px){
+  .banner-countdown {
+    font-size: 0.8rem !important;
+    margin: 0rem 5rem 1rem -12rem !important; 
+  }  
+  .banner-content h3 {
+    margin: 38px 0 23px -165px !important;
+  }
+  .banner-content p {
+    font-size: 1rem !important;
+    margin: -1rem 10rem -2rem -14rem !important;
+  }
+  .banner-content p {
+    font-size: 1rem !important;
+    margin: 0rem 7rem 0rem -10.2rem !important;
+  }
+  .iphone {
+    height: 10rem !important;
+    width: 13rem !important;
+    margin: 4rem 0rem -5rem -1rem !important;
+  }
+    .banner-left {
+      width: 37rem !important;
+      padding: 2rem;
+      padding-bottom: 2rem;
+      height: 23rem !important;
+    }
+    .banner-right {
+      height: 28.6rem;
+      width: 32.7rem;
+    }
+    .banner-device {
+      margin: -15rem 2rem 0rem 19rem;
+    }
+    .ellipse3{
+      margin: 0px !important;
+    }
+}
+
+@media (max-width: 767px){
+  .banner-right{
+    width: 32rem !important;
+  }
+  
+}
+
+@media (max-width: 517px){
+  .banner-countdown {
+    font-size: 0.5rem !important;
+    margin: -1rem 17rem 1rem -17rem !important;
+  }
+  .banner-title {
+    font-size: 0.8rem !important;
+  }
+  .banner-content h3 {
+    margin: 37px 0px 78px -261px !important;
+    font-size: 0.7rem !important;
+  } 
+  .banner-content p {
+    font-size: 0.6rem !important;
+    margin: -3rem 16rem 0rem -16.5rem !important;
+  }
+  .iphone {
+    height: 7rem !important;
+    width: 9rem !important;
+    margin: -13rem 0rem -21rem -2rem !important;
+  }
+  .banner-left{
+    padding:3rem 17rem 3rem 3rem!important;
+    height: 17rem !important;
+  }
+  .banner-right {
+    height: 19.6rem;
+    width: 20rem !important;
+  }
+  .banner-ellipse5 {
+    margin: 2rem 5rem -23rem -4rem !important;
+    height: 23rem !important;
+    width: 40rem;
+  }
+.banner-device {
+  margin: 0rem -2rem -2rem -4rem !important;
+  height: 10rem !important;
+  width: 10rem !important;
+}
+.ellipse3{
+  margin: 0px !important;
+}
+}
+
+
+/* Modal */
+.done-img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #eaf7ea;
+  margin: 0 auto 15px;
+}
+
+/* Checkmark image */
+.complete-modal{
+  height: 13rem !important;
+  width: 20rem !important;
+
+}
+.done-img img {
+  width: 50%;
+  height: 50%;
+
+}
+.done-content{
+  text-align: center;
+}
+.done-content p{
+  color:grey;
+  font-size: 0.9rem;
+  margin-bottom: 40px;
+}
