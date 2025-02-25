@@ -18,7 +18,7 @@ const NavBar = () => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light px-4"
+        className="navbar navbar-expand-lg navbar-light px-5"
         style={{ overflowX: "hidden",position:"relative" }}
       >
         <a className="navbar-brand d-none d-lg-block" href="#">
@@ -74,7 +74,7 @@ const NavBar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className="nav-link" to="/contact">
                 Contact Us
               </Link>
             </li>
