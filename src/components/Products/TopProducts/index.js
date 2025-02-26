@@ -10,6 +10,7 @@ const TopProduct = () => {
                 {dropdownProduct.map((item) => (
                     <div key={item.title} className='products'>
                         <img  src={item.icon} alt={item.title}/>
+                        <h5>{item.title}</h5>
                     </div>
                 ))}
             </div>
