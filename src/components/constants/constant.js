@@ -195,3 +195,15 @@ export const MenuItems = [
   { title: "FAQ" },
   { title: "Contact us" },
 ];
+
+export const dropdownProduct = [
+  { title: "Mobile Phones", icon: sidebarMobile },
+  { title: "Laptops & Computers", icon: sidebarLaptop },
+  { title: "Tablets & E-reader", icon: sidebarTablet  },
+  { title: "Wearables", icon: sidebarWatch },
+  { title: "Audio", icon: sidebarAudio},
+  { title: "Cameras", icon: sidebarCamera },
+  { title: "Gaming", icon: sidebarGames },
+  { title: "Networking", icon: sidebarNetwork},
+  { title: "Accessories", icon: sidebarAccessory },
+]
