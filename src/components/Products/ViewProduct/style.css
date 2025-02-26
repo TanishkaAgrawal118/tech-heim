@@ -8,6 +8,7 @@
 }
 
 .product-cards {
+  position: relative;
   width: 13rem;
   height: 19rem;
   padding: 15px;
@@ -77,6 +78,17 @@
   justify-content: space-between;
   width: 100%;
   gap: 10px;
+}
+.discount-badge {
+  position: absolute;
+  background: #ffd0cb;
+  color: #ff6f61;
+  padding: 1px 5px;
+  border-radius: 0 5px 5px 0;
+  font-size: 0.8rem;
+  position: absolute;
+  top: 10px;
+  left: 0;
 }
 
 @media (max-width: 1224px) {
