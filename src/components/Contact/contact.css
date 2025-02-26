@@ -12,12 +12,14 @@
   color: #666;
   gap: 5px;
 }
+
 .navigation a {
   text-decoration: none;
   cursor: pointer;
 }
+
 .navigation .active {
-  color: blue;
+  color: #0c68f4;
 }
 
 .contact-info {
@@ -36,12 +38,14 @@
   height: 3rem;
   margin: 10px;
 }
+
 .contact-item h3 {
   font-size: 1.5rem;
 }
+
 .contact-form {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   width: 100%;
   max-width: 90%;
@@ -53,34 +57,48 @@
 .contact-message {
   padding: 0 20px 20px 0;
   max-width: 55%;
-  height: 265px;
+  flex: 1;
+  min-height: 265px;
 }
+
+.contact-message h2 {
+  font-size: 1.8rem;
+}
+
 .contact-message p {
   text-align: justify;
   color: grey;
   font-size: 1.2rem;
 }
-.contact-form form {
-  padding: 10px;
+
+.contact-form1 {
   flex: 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.contact-form input,
-.contact-form textarea {
+.contact-form1 form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-form1 input,
+.contact-form1 textarea {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
-.contact-form textarea {
-  min-height: 100px;
+.contact-form1 textarea {
+  min-height: 120px;
+  resize: vertical;
 }
 
-.contact-form button {
+.contact-form1 button {
   width: 10rem;
   margin: auto;
   background-color: blue;
@@ -89,9 +107,10 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 1rem;
 }
 
-.contact-form button:hover {
+.contact-form1 button:hover {
   background-color: darkblue;
 }
 
@@ -99,20 +118,25 @@
   .contact-container {
     padding: 0 0 20px 0;
   }
+
   .contact-message {
     max-width: 61%;
   }
 }
+
 @media (max-width: 856px) {
   .contact-form {
     flex-direction: column;
+    align-items: center;
   }
+
   .contact-item img {
     width: 10rem;
     height: 2rem;
   }
-  .contact-form input,
-  .contact-form textarea {
+
+  .contact-form1 input,
+  .contact-form1 textarea {
     width: 22rem;
   }
 }
@@ -122,43 +146,200 @@
     width: 3rem;
     height: 2rem;
   }
+
   .contact-item h3 {
     font-size: 1.2rem;
   }
+
   p {
     margin: 0rem !important;
     font-size: 0.8rem;
   }
+
+  .contact-message {
+    max-width: 71%;
+  }
+
+  .contact-form1 input,
+  .contact-form1 textarea {
+    width: 100%;
+  }
 }
+
 @media (max-width: 360px) {
   .contact-message p {
     text-align: justify;
     color: grey;
     font-size: 1rem;
   }
-  .contact-form input,
-  .contact-form textarea {
+
+  .contact-form1 input,
+  .contact-form1 textarea {
     margin-top: 20px;
     width: 13rem;
   }
+
   .contact-item img {
     width: 1.4rem;
     height: 1.4rem;
   }
+
   .contact-item h3 {
     font-size: 1rem;
   }
+
   p {
     margin: 0rem !important;
     font-size: 0.7rem;
   }
+
   .contact-message {
     max-width: 71%;
   }
+
   .contact-info {
     display: flex;
     justify-content: center;
     gap: 40px;
     margin-bottom: 51px;
   }
+}
+
+/* Login/Sign-Up Modal */
+.login-modal {
+  padding: 10px;
+}
+.modal-tabs {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 5px 0 -10px 0;
+}
+.modal-tabs button {
+  cursor: pointer;
+  border: none;
+  background-color: white;
+}
+.modal-tabs button.active {
+  color: #007bff;
+  font-weight: bold;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login form {
+  width: 25rem;
+  height: auto;
+}
+.login h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 0.5rem;
+}
+.remember-forgot label {
+  display: flex;
+  gap: 10px;
+  margin: 5px 0 10px 0;
+}
+.cross-img {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.login-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-input input {
+  display: flex;
+  flex-direction: column;
+  max-width: 22rem;
+  width: 83%;
+  padding: 7px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-btn {
+  width: 92%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.login-info {
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0 0 2rem;
+}
+.login-info link {
+  display: flex;
+  flex-direction: flex-end;
+}
+.social-login {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.google-btn,
+.facebook-btn {
+  border-radius: 5px;
+  cursor: pointer;
+  background: white;
+  color: #0c68f4;
+  border: 1px solid #0c68f4;
+  padding: 8px;
+  width: 10rem;
+  margin-bottom: 20px;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 87%;
+  margin: 12px auto;
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 2px solid #999999;
+  margin: 0 10px;
+}
+.divider p {
+  font-size: 14px;
+  white-space: nowrap;
+  margin: 0;
+}
+.login-bottom p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.toggle-tab {
+  color: #0c68f4;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+  text-decoration: none;
+}
+
+.toggle-tab:hover {
+  color: #0056b3;
+  text-decoration: underline;
 }

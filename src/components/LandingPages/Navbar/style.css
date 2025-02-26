@@ -36,6 +36,17 @@
   text-align: center;
 }
 
+.login-signup-btn {
+  background-color: #0C68F4;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  text-decoration: none;
+  margin: 3px;
+}
+.login-signup-btn:hover {
+  background-color: #003D99;
+}
 
 @media (max-width: 992px) {
   .navbar-nav.mx-auto {
