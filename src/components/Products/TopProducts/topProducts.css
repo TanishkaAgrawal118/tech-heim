@@ -9,3 +9,9 @@
     width: 5rem;
     cursor: pointer;
 }
+@media (max-width: 800px){
+    .topProducts img {
+        height: 2rem;
+        width: 4rem;
+    }
+}

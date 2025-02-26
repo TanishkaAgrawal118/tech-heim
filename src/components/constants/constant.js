@@ -302,25 +302,27 @@ export const products = [
     stock: 5,
     image: laptop3,
     description: "High-performance MacBook Pro with M2 chip and Liquid Retina display."
-  },
-  {
-    id: 10,
-    name: "iPhone 13 Pro Max",
-    price: 1099.99,
-    discount: "15%",
-    rating: 4.9,
-    stock: 30,
-    image: laptop1,
-    description: "Apple's flagship smartphone with ProMotion display and triple-lens camera."
-  },
-  {
-    id: 11,
-    name: "AirPods Pro (2nd Gen)",
-    price: 249.99,
-    discount: "20%",
-    rating: 4.8,
-    stock: 50,
-    image: laptop,
-    description: "Noise-canceling AirPods Pro with improved sound quality."
   }
 ];
+
+export const BRANDS = ["Asus", "Acer", "Apple", "Dell"];
+
+export const RAM_OPTIONS = ["32 GB", "16 GB", "12 GB", "8 GB"];
+
+export const SCREEN_SIZES = [
+  '13" - 13.9"',
+  '14" - 14.9"',
+  '15" - 15.9"',
+  '16" - 16.9"',
+];
+
+export const PROCESSORS = [
+  "Intel Core i5",
+  "Intel Core i7",
+  "Intel Core i9",
+  "AMD Ryzen 9",
+];
+
+export const GPU_BRANDS = ["NVIDIA", "Intel", "AMD", "Apple"];
+
+export const DRIVE_SIZES = ["512GB", "256GB", "64GB", "128GB"];
