@@ -14,3 +14,7 @@
 .navigation .active {
   color: #0c68f4;
 }
+.product-filter-section{
+  display: flex;
+  justify-content: space-between;
+}
