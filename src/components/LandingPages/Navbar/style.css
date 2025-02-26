@@ -27,7 +27,21 @@
   margin-top: -59px;
   margin: auto !important;
 }
+
+.nav-content{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+
 @media (max-width: 992px) {
+  .navbar-nav.mx-auto {
+    gap: 45px;
+    display: none;
+}
   .navbar-brand {
     display: none !important;
   }

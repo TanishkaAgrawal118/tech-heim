@@ -1,0 +1,88 @@
+.product-dropdown {
+    display: flex;
+    width: 800px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    top: 100%; 
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+  }
+  
+  .dropdown-sidebar {
+    width: 200px;
+    background: #f8f9fa;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+  }
+  
+  .sidebar-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  
+  .sidebar-item.active,
+  .sidebar-item:hover {
+    background: #e9ecef;
+    font-weight: bold;
+  }
+  
+  .category-icon {
+    margin-right: 10px;
+    font-size: 18px;
+  }
+  
+  .dropdown-content {
+    flex: 1;
+    padding: 15px;
+  }
+  
+  .subcategories {
+    margin-bottom: 15px;
+  }
+  
+  .sub-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .sub-icon {
+    margin-right: 8px;
+    font-size: 16px;
+  }
+  
+  .view-all {
+    display: block;
+    color: #007bff;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  .featured-products {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .product-dropdown-card {
+    text-align: center;
+    width: 150px;
+  }
+  
+  .product-dropdown-card img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+  
+  .product-dropdown-card p {
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  

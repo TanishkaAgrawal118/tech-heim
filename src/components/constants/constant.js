@@ -195,3 +195,38 @@ export const MenuItems = [
   { title: "FAQ" },
   { title: "Contact us" },
 ];
+
+export const dropdownProduct = [
+  { title: "Mobile Phones", icon: sidebarMobile },
+  { title: "Laptops & Computers", icon: sidebarLaptop },
+  { title: "Tablets & E-reader", icon: sidebarTablet  },
+  { title: "Wearables", icon: sidebarWatch },
+  { title: "Audio", icon: sidebarAudio},
+  { title: "Cameras", icon: sidebarCamera },
+  { title: "Gaming", icon: sidebarGames },
+  { title: "Networking", icon: sidebarNetwork},
+  { title: "Accessories", icon: sidebarAccessory },
+]
+
+export const faqs = [
+  {
+    question: "Can I purchase products from Tech Heim using installment payments?",
+    answer: "Yes, Tech Heim offers the option to purchase products using both cash and installment payments. This allows you to choose the payment method that suits your needs and budget.",
+  },
+  {
+    question: "How can I engage with the magazine content on Tech Heim?",
+    answer: "You can actively engage with the magazine content by leaving comments and participating in the question-and-answer section. Feel free to share your thoughts, ask questions, and interact with fellow tech enthusiasts in the community.",
+  },
+  {
+    question: "Does Tech Heim offer a warranty on its products?",
+    answer: "Yes, Tech Heim provides a warranty on all eligible products. The specific warranty details may vary depending on the manufacturer and product category. Please refer to the product description or contact our customer support for more information.",
+  },
+  {
+    question: "Is Tech Heim a secure platform for online shopping?",
+    answer: "Yes, Tech Heim offers a secure shopping experience with strict data privacy measures in place to protect customer information.",
+  },
+  {
+    question: "How can I get assistance with my purchase or any other inquiries?",
+    answer: "If you need assistance with your purchase or have any questions, our dedicated customer support team is here to help. Contact us through our support page.",
+  },
+];

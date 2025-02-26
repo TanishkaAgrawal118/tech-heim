@@ -281,11 +281,11 @@ p {
   }
   .banner-left{
     padding:3rem 17rem 3rem 3rem!important;
-    height: 17rem !important;
+    height: 18rem !important;
   }
   .banner-right {
     height: 19.6rem;
-    width: 20rem !important;
+    width: 21rem !important;
   }
   .banner-ellipse5 {
     margin: 2rem 5rem -23rem -4rem !important;
@@ -315,7 +315,7 @@ p {
   margin: 0 auto 15px;
 }
 
-/* Checkmark image */
+
 .complete-modal{
   height: 13rem !important;
   width: 20rem !important;
