@@ -1,0 +1,16 @@
+.navigation {
+  display: flex;
+  text-align: left;
+  margin: 20px;
+  font-size: 14px;
+  color: #666;
+  gap: 5px;
+}
+.navigation a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navigation .active {
+  color: #0c68f4;
+}

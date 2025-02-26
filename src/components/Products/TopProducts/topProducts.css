@@ -1,0 +1,11 @@
+.topProducts{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 3rem;
+}
+.topProducts img {
+    height: 3rem;
+    width: 5rem;
+    cursor: pointer;
+}
