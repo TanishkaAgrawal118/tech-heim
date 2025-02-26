@@ -9,6 +9,11 @@
     width: 5rem;
     cursor: pointer;
 }
+.products h5{
+    font-size: 0.8rem;
+    text-align: center;
+    color: rgb(58, 58, 58);
+}
 @media (max-width: 800px){
     .topProducts img {
         height: 2rem;
