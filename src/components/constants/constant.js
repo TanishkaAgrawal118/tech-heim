@@ -1,6 +1,9 @@
 import accessory from "../../../src/assets/accessories.svg";
 import camera from "../../../src/assets/camera.svg";
 import laptop from "../../../src/assets/laptop.png";
+import laptop1 from '../../../src/assets/laptop1.svg'
+import laptop2 from '../../../src/assets/laptop2.svg'
+import laptop3 from '../../../src/assets/laptop1.svg'
 import smartPhone from "../../../src/assets/phone.svg";
 import game from "../../../src/assets/game.svg";
 import smartWatch from "../../../src/assets/watch.svg";
@@ -8,7 +11,7 @@ import mouse from "../../../src/assets/mouse.svg";
 import keyboard from "../../../src/assets/keyboard.svg";
 import sliderWatch from "../../../src/assets/slider-smart-watch.svg";
 import sliderLaptop from "../../../src/assets/slider-laptop.svg";
-import sliderWatch2 from "../../../src/assets/slider-waatch.png";
+import sliderWatch2 from "../../../src/assets/slider-watch.png";
 import newLaptop from "../../../src/assets/new-laptop.svg";
 import newPhone from "../../../src/assets/newPhone.svg";
 import apple from '../../../src/assets/apple.svg';
@@ -207,3 +210,117 @@ export const dropdownProduct = [
   { title: "Networking", icon: sidebarNetwork},
   { title: "Accessories", icon: sidebarAccessory },
 ]
+
+export const products = [
+  {
+    id: 1,
+    name: "Apple MacBook Air 15\" w/ Touch ID",
+    price: 2490.87,
+    discount: "12%",
+    rating: 4.9,
+    stock: 10,
+    image: laptop,
+    description: "A powerful and lightweight MacBook with Touch ID and Retina display."
+  },
+  {
+    id: 2,
+    name: "Apple MacBook Air 15\" (2023) - Space Grey",
+    price: 2490.87,
+    discount: "12%",
+    rating: 4.9,
+    stock: 15,
+    image: laptop1,
+    description: "Latest MacBook Air with M2 chip and enhanced battery life."
+  },
+  {
+    id: 3,
+    name: "Apple MacBook Air 13\" w/ Touch ID",
+    price: 1299.00,
+    discount: "10%",
+    rating: 4.8,
+    stock: 20,
+    image: laptop2,
+    description: "Portable MacBook Air 13-inch model with M1 chip."
+  },
+  {
+    id: 4,
+    name: "Apple MacBook Pro 16\" w/ M2 Chip",
+    price: 3165.10,
+    discount: "12%",
+    rating: 4.7,
+    stock: 5,
+    image: laptop3,
+    description: "High-performance MacBook Pro with M2 chip and Liquid Retina display."
+  },
+  {
+    id: 5,
+    name: "iPhone 13 Pro Max",
+    price: 1099.99,
+    discount: "15%",
+    rating: 4.9,
+    stock: 30,
+    image: laptop1,
+    description: "Apple's flagship smartphone with ProMotion display and triple-lens camera."
+  },
+  {
+    id: 6,
+    name: "AirPods Pro (2nd Gen)",
+    price: 249.99,
+    discount: "20%",
+    rating: 4.8,
+    stock: 50,
+    image: laptop,
+    description: "Noise-canceling AirPods Pro with improved sound quality."
+  },
+
+  {
+    id: 7,
+    name: "Apple MacBook Air 15\" (2023) - Space Grey",
+    price: 2490.87,
+    discount: "12%",
+    rating: 4.9,
+    stock: 15,
+    image: laptop1,
+    description: "Latest MacBook Air with M2 chip and enhanced battery life."
+  },
+  {
+    id: 8,
+    name: "Apple MacBook Air 13\" w/ Touch ID",
+    price: 1299.00,
+    discount: "10%",
+    rating: 4.8,
+    stock: 20,
+    image: laptop2,
+    description: "Portable MacBook Air 13-inch model with M1 chip."
+  },
+  {
+    id: 9,
+    name: "Apple MacBook Pro 16\" w/ M2 Chip",
+    price: 3165.10,
+    discount: "12%",
+    rating: 4.7,
+    stock: 5,
+    image: laptop3,
+    description: "High-performance MacBook Pro with M2 chip and Liquid Retina display."
+  },
+  {
+    id: 10,
+    name: "iPhone 13 Pro Max",
+    price: 1099.99,
+    discount: "15%",
+    rating: 4.9,
+    stock: 30,
+    image: laptop1,
+    description: "Apple's flagship smartphone with ProMotion display and triple-lens camera."
+  },
+  {
+    id: 11,
+    name: "AirPods Pro (2nd Gen)",
+    price: 249.99,
+    discount: "20%",
+    rating: 4.8,
+    stock: 50,
+    image: laptop,
+    description: "Noise-canceling AirPods Pro with improved sound quality."
+  }
+];
