@@ -8,9 +8,13 @@ import start from "../../../assets/Star.svg";
 const ViewProduct = () => {
   return (
     <Container className="product-containers">
+      <div>
+
+      </div>
       {products.map((product) => (
         <Paper key={product.id}>
           <div className="product-cards">
+            <span className="discount-badge">{product.discount}</span>
             <img
               src={product.image}
               alt={product.name}
