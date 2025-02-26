@@ -127,7 +127,7 @@
     font-size: 0.8rem;
   }
 }
-@media (max-width: 360px) {
+@media (max-width: 660px) {
   .contact-message p {
     text-align: justify;
     color: grey;
@@ -150,8 +150,9 @@
     font-size: 0.7rem;
   }
   .contact-message {
-    max-width: 71%;
-  }
+    max-width: 73%;
+    height: 50%;
+}
   .contact-info {
     display: flex;
     justify-content: center;
