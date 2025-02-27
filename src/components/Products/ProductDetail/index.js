@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "./productDetail.css";
 import productDetail from "../../../assets/productDetail1.svg";
@@ -11,7 +11,14 @@ import frame4 from "../../../assets/frame4.svg";
 import Footer from "../../LandingPages/Footer";
 import { Paper } from "@mui/material";
 import star from "../../../assets/Star.svg";
+
 const ProductDetail = () => {
+  const { state } = useLocation();
+  const product = state?.product;
+
+  if (!product) {
+    return <p>Product not found!</p>;
+  }
   return (
     <>
       <NavBar />
@@ -28,7 +35,7 @@ const ProductDetail = () => {
           <Link to="/">Laptops</Link>
         </div>
 
-        <div className="product-main">
+        <div className="product-detail-main">
           <div className="product-image-section">
             <img
               src={productDetail}
@@ -45,12 +52,12 @@ const ProductDetail = () => {
           </div>
 
           <div className="product-info-section">
-            <h2 className="product-title">
-              MacBook Pro M2 MNEJ3 2022 LLA 13.3 inch
+            <h2 className="product-detail-title">
+              {product.name}
             </h2>
-            <p className="product-rating">
+            <p className="product-detail-rating">
               <img src={star} alt="star" />
-              4.9 | <span>Sold 125</span>
+              {product.rating} | <span>Sold {product.stock}</span>
             </p>
             <div className="availability-section">
               <span>In Stock</span>
@@ -73,16 +80,16 @@ const ProductDetail = () => {
 
             <ul className="product-specs">
               <li>
-                <span>Brand</span> Apple
+                <span>Brand</span> {product.details.brand}
               </li>
               <li>
-                <span>Model Name</span> MacBook Pro
+                <span>Model Name</span> {product.details.model}
               </li>
               <li>
-                <span>Screen Size</span> 13.3 Inches
+                <span>Screen Size</span> {product.details.screenSize}
               </li>
               <li>
-                <span>Hard Disk Size</span> 256 GB
+                <span>Hard Disk Size</span>{product.details.hardDiskSize}
               </li>
               <li>
                 <span>CPU Model</span> core i5
@@ -99,7 +106,7 @@ const ProductDetail = () => {
                 <h3 className="current-price">$1299.00</h3>
                 <div className="price-info">
                   <span className="original-price">$1410.87</span>
-                  <span className="discount-badge">-12%</span>
+                  <span className="discount-detail-badge">-12%</span>
                 </div>
               </div>
 
