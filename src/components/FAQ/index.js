@@ -9,7 +9,7 @@ const FAQ = () => {
     <NavBar/>
     <Container>
       <div>
-      <p>Home</p> <p>FQA</p>
+      <p>Home</p> <p>FAQ</p>
       </div>
       <img src={frequently} alt='FAQ' />
     </Container>

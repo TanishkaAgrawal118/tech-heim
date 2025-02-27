@@ -14,7 +14,6 @@ function App() {
       <Route path='/FAQ' element={<FAQ/>}></Route>
     </Routes>
    </BrowserRouter>
-    {/* <DataTable/> */}
    </>
   );
 }

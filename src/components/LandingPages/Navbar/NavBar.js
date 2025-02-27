@@ -40,13 +40,13 @@ const NavBar = () => {
 
         <div id="navbarNav" className="nav-content">
           <ul className="navbar-nav mx-auto">
-            <li className="nav-item">
+            <li className="navItem">
               <Link className="nav-link active" to="/">
                 Home
               </Link>
             </li>
             {/* <li
-              className="nav-item"
+              className="navItem"
               onMouseEnter={() => {
                 setIsProductDropdown(true);
                 console.log("entered")
@@ -57,23 +57,23 @@ const NavBar = () => {
               </a>
             </li> */}
              <li
-              className="nav-item"
+              className="navItem"
             >
               <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
                 Products
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="navItem">
               <Link className="nav-link" to="#">
                 Blog
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="navItem">
               <Link className="nav-link" to="/FAQ">
                 FAQ
               </Link>
             </li>
-            <li className="nav-item">
+            <li className="navItem">
               <Link className="nav-link" to="#">
                 Contact Us
               </Link>
