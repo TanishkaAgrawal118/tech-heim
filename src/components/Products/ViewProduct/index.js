@@ -8,8 +8,8 @@ import { useNavigate } from "react-router";
 
 const ViewProduct = () => {
   const navigate = useNavigate();
-  const handleProductDetail = (id) => {
-    navigate(`/productDetails/${id}`);
+  const handleProductDetail = (product) => {
+    navigate(`/productDetails/${product.id}`, { state: { product } });
   };
 
   return (
@@ -17,7 +17,7 @@ const ViewProduct = () => {
       <div  className="product-containers">
       {products.map((product) => (
         <Paper key={product.id}>
-          <div className="product-cards" onClick={handleProductDetail}>
+          <div className="product-cards"  onClick={() => handleProductDetail(product)}>
             <span className="discount-badge">{product.discount}</span>
             <img
               src={product.image}
