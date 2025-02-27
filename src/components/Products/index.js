@@ -5,9 +5,9 @@ import { Link } from "react-router";
 import ViewProduct from "./ViewProduct";
 import TopProduct from "./TopProducts";
 import Filter from "./FIlter";
-import './style.css'
-import Footer from '../LandingPages/Footer'
-import Bottom from '../../components/LandingPages/Bottom'
+import "./style.css";
+import Footer from "../LandingPages/Footer";
+import Bottom from "../../components/LandingPages/Bottom";
 const Product = () => {
   return (
     <>
@@ -28,8 +28,8 @@ const Product = () => {
           <ViewProduct />
         </div>
       </Container>
-      <Bottom/>
-      <Footer/>
+      <Bottom />
+      <Footer />
     </>
   );
 };

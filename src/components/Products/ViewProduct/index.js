@@ -4,16 +4,20 @@ import { Paper } from "@mui/material";
 import "./style.css";
 import { products } from "../../constants/constant";
 import start from "../../../assets/Star.svg";
+import { useNavigate } from "react-router";
 
 const ViewProduct = () => {
-  return (
-    <Container className="product-containers">
-      <div>
+  const navigate = useNavigate();
+  const handleProductDetail = (id) => {
+    navigate(`/productDetails/${id}`);
+  };
 
-      </div>
+  return (
+    <Container>
+      <div  className="product-containers">
       {products.map((product) => (
         <Paper key={product.id}>
-          <div className="product-cards">
+          <div className="product-cards" onClick={handleProductDetail}>
             <span className="discount-badge">{product.discount}</span>
             <img
               src={product.image}
@@ -36,6 +40,8 @@ const ViewProduct = () => {
           </div>
         </Paper>
       ))}
+      </div>
+     
     </Container>
   );
 };

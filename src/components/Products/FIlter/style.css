@@ -1,5 +1,5 @@
 .product-filter {
-  width: 250px;
+  width: 300px;
   padding: 15px;
   background: #fff;
   border-radius: 10px;
@@ -107,7 +107,7 @@
 }
 .filter-head {
   display: flex;
-  cursor: pointer;
+  cursor: pointer !important;
   justify-content: space-between;
   margin-bottom: 3px;
 }
