@@ -12,9 +12,9 @@ const HeroSection = () => {
         <div className="hero">
           <div className="hero-left">
             <h1>Tech Heim</h1>
-            <span style={{ display: "flex" }}>
+            <span style={{ display: "flex", gap:"5px" }}>
               <p style={{ color: "#021736", margin: "0 5px 0 0" }}>"Join the </p>
-              <p style={{ color: "#F45E0C"}}>digital revolution"</p>
+              <p style={{ color: "#F45E0C",  margin: "0 5px 0 10px"}}>digital revolution"</p>
             </span>
             <div className="light-effect"></div>
             <button>Explore More</button>

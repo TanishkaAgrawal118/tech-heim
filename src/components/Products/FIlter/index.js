@@ -20,7 +20,14 @@ const Filter = () => {
     driveSize: ["128GB"],
   });
 
-  const [openFilter, setOpenFilter] = useState({});
+  const [openFilter, setOpenFilter] = useState({
+    brand: true,
+    ram: true,
+    screenSize: true,
+    processor: true,
+    gpu: true,
+    driveSize: true,
+  });
 
   const toggleFilter = (filterName) => {
     setOpenFilter((prev) => ({
@@ -51,7 +58,11 @@ const Filter = () => {
       <div className="filter-section">
         <div className="filter-head" onClick={() => toggleFilter("brand")}>
           <h5>Brand</h5>
-          <img src={arrowDropdown} alt="arrow" className={openFilter.brand ? "rotate" : ""} />
+          <img
+            src={arrowDropdown}
+            alt="arrow"
+            className={openFilter.brand ? "rotate" : ""}
+          />
         </div>
         {openFilter.brand &&
           BRANDS.map((brand) => (
@@ -69,7 +80,11 @@ const Filter = () => {
       <div className="filter-section">
         <div className="filter-head" onClick={() => toggleFilter("ram")}>
           <h5>RAM</h5>
-          <img src={arrowDropdown} alt="arrow" className={openFilter.ram ? "rotate" : ""} />
+          <img
+            src={arrowDropdown}
+            alt="arrow"
+            className={openFilter.ram ? "rotate" : ""}
+          />
         </div>
         {openFilter.ram &&
           RAM_OPTIONS.map((ram) => (
@@ -87,7 +102,11 @@ const Filter = () => {
       <div className="filter-section">
         <div className="filter-head" onClick={() => toggleFilter("screenSize")}>
           <h5>Screen Size</h5>
-          <img src={arrowDropdown} alt="arrow" className={openFilter.screenSize ? "rotate" : ""} />
+          <img
+            src={arrowDropdown}
+            alt="arrow"
+            className={openFilter.screenSize ? "rotate" : ""}
+          />
         </div>
         {openFilter.screenSize &&
           SCREEN_SIZES.map((size) => (
@@ -105,7 +124,11 @@ const Filter = () => {
       <div className="filter-section">
         <div className="filter-head" onClick={() => toggleFilter("processor")}>
           <h5>Processor</h5>
-          <img src={arrowDropdown} alt="arrow" className={openFilter.processor ? "rotate" : ""} />
+          <img
+            src={arrowDropdown}
+            alt="arrow"
+            className={openFilter.processor ? "rotate" : ""}
+          />
         </div>
         {openFilter.processor &&
           PROCESSORS.map((cpu) => (
@@ -123,7 +146,11 @@ const Filter = () => {
       <div className="filter-section">
         <div className="filter-head" onClick={() => toggleFilter("gpu")}>
           <h5>GPU Brand</h5>
-          <img src={arrowDropdown} alt="arrow" className={openFilter.gpu ? "rotate" : ""} />
+          <img
+            src={arrowDropdown}
+            alt="arrow"
+            className={openFilter.gpu ? "rotate" : ""}
+          />
         </div>
         {openFilter.gpu &&
           GPU_BRANDS.map((gpu) => (
@@ -141,7 +168,11 @@ const Filter = () => {
       <div className="filter-section">
         <div className="filter-head" onClick={() => toggleFilter("driveSize")}>
           <h5>Drive Size</h5>
-          <img src={arrowDropdown} alt="arrow" className={openFilter.driveSize ? "rotate" : ""} />
+          <img
+            src={arrowDropdown}
+            alt="arrow"
+            className={openFilter.driveSize ? "rotate" : ""}
+          />
         </div>
         {openFilter.driveSize &&
           DRIVE_SIZES.map((size) => (
