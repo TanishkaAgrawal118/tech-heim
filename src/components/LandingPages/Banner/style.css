@@ -38,15 +38,16 @@ p {
   margin-bottom: 4rem;
 }
 .banner-countdown {
-  flex-wrap: wrap;
+  flex-wrap:nowrap;
   display: flex;
+  gap:0.2rem;
   justify-content: space-evenly;
   margin: 0rem 0rem 3rem -1rem;
 }
 .countdown {
   border: 1px solid black;
   border-radius: 10px;
-  padding: 5px;
+  padding: 3px;
   text-align: center;
 }
 
@@ -59,8 +60,10 @@ p {
   margin: 10px;
   font-size: 1rem;
 }
+
 .banner-left button {
-  margin: 5rem 1rem 0rem 1rem;
+  margin: 2.7rem auto;
+  display: flex;
   align-items: center;
   padding: 9px;
   justify-content: center;
@@ -85,7 +88,7 @@ p {
 .banner-right {
   flex-wrap: wrap;
   height: 27.6rem;
-  width: 26rem;
+  width: 100% !important;
   background-color: #005690;
   justify-content: space-between;
   overflow: hidden;
@@ -116,8 +119,8 @@ p {
 .banner-ellipse5 {
   margin: 1rem -12rem -22rem -1rem !important;
 }
-@media(max-width: 1399px){
-  .banner-left{
+@media (max-width: 1399px) {
+  .banner-left {
     padding-bottom: 0px;
   }
   .ellipse3 {
@@ -126,14 +129,14 @@ p {
 }
 
 @media (max-width: 1238px) {
-  .banner-left button{
-    margin:9px 0 15px -92px !important;
+  .banner-left button {
+    margin: 9px 0 15px -92px !important;
   }
-  .banner-left{
+  .banner-left {
     width: 90%;
     padding: 1rem;
   }
-   .banner-right {
+  .banner-right {
     height: 29.6rem;
     width: 24rem;
     margin: 2rem 1rem 1rem -4rem !important;
@@ -170,14 +173,13 @@ p {
     margin: 5px 0px 32px -123px;
     font-size: 1.2rem;
   }
-
 }
 
 @media (max-width: 991px) {
-  .banner-title{
+  .banner-title {
     font-size: 1rem;
-  font-weight: 600;
-  margin: -3rem 0rem 2rem 0rem !important;
+    font-weight: 600;
+    margin: -3rem 0rem 2rem 0rem !important;
   }
   .banner-content h3 {
     margin: 60px 0px 78px -39px !important;
@@ -187,11 +189,11 @@ p {
     height: 16rem !important;
     width: 18rem !important;
     margin: 6rem 0rem -3rem -1rem !important;
-}
-.banner-content p {
-  font-size: 1rem !important;
-  margin: 0rem 0rem 0rem -2.2rem !important
-}
+  }
+  .banner-content p {
+    font-size: 1rem !important;
+    margin: 0rem 0rem 0rem -2.2rem !important;
+  }
   .banner-countdown {
     font-size: 0.8rem !important;
     margin: 0.5rem 0rem 1rem -4rem !important;
@@ -211,12 +213,11 @@ p {
   }
 }
 
-
-@media (max-width: 770px){
+@media (max-width: 770px) {
   .banner-countdown {
     font-size: 0.8rem !important;
-    margin: 0rem 5rem 1rem -12rem !important; 
-  }  
+    margin: 0rem 5rem 1rem -12rem !important;
+  }
   .banner-content h3 {
     margin: 38px 0 23px -165px !important;
   }
@@ -233,32 +234,31 @@ p {
     width: 13rem !important;
     margin: 4rem 0rem -5rem -1rem !important;
   }
-    .banner-left {
-      width: 37rem !important;
-      padding: 2rem;
-      padding-bottom: 2rem;
-      height: 23rem !important;
-    }
-    .banner-right {
-      height: 28.6rem;
-      width: 32.7rem;
-    }
-    .banner-device {
-      margin: -15rem 2rem 0rem 19rem;
-    }
-    .ellipse3{
-      margin: 0px !important;
-    }
+  .banner-left {
+    width: 37rem !important;
+    padding: 2rem;
+    padding-bottom: 2rem;
+    height: 23rem !important;
+  }
+  .banner-right {
+    height: 28.6rem;
+    width: 32.7rem;
+  }
+  .banner-device {
+    margin: -15rem 2rem 0rem 19rem;
+  }
+  .ellipse3 {
+    margin: 0px !important;
+  }
 }
 
-@media (max-width: 767px){
-  .banner-right{
+@media (max-width: 767px) {
+  .banner-right {
     width: 32rem !important;
   }
-  
 }
 
-@media (max-width: 517px){
+@media (max-width: 517px) {
   .banner-countdown {
     font-size: 0.5rem !important;
     margin: -1rem 17rem 1rem -17rem !important;
@@ -269,7 +269,7 @@ p {
   .banner-content h3 {
     margin: 37px 0px 78px -261px !important;
     font-size: 0.7rem !important;
-  } 
+  }
   .banner-content p {
     font-size: 0.6rem !important;
     margin: -3rem 16rem 0rem -16.5rem !important;
@@ -279,29 +279,28 @@ p {
     width: 9rem !important;
     margin: -13rem 0rem -21rem -2rem !important;
   }
-  .banner-left{
-    padding:3rem 17rem 3rem 3rem!important;
+  .banner-left {
+    padding: 3rem 17rem 3rem 3rem !important;
     height: 17rem !important;
   }
   .banner-right {
     height: 19.6rem;
-    width: 20rem !important;
+    width: 100% !important;
   }
   .banner-ellipse5 {
     margin: 2rem 5rem -23rem -4rem !important;
     height: 23rem !important;
     width: 40rem;
   }
-.banner-device {
-  margin: 0rem -2rem -2rem -4rem !important;
-  height: 10rem !important;
-  width: 10rem !important;
+  .banner-device {
+    margin: 0rem -2rem -2rem -4rem !important;
+    height: 10rem !important;
+    width: 10rem !important;
+  }
+  .ellipse3 {
+    margin: 0px !important;
+  }
 }
-.ellipse3{
-  margin: 0px !important;
-}
-}
-
 
 /* Modal */
 .done-img {
@@ -316,21 +315,19 @@ p {
 }
 
 /* Checkmark image */
-.complete-modal{
+.complete-modal {
   height: 13rem !important;
   width: 20rem !important;
-
 }
 .done-img img {
   width: 50%;
   height: 50%;
-
 }
-.done-content{
+.done-content {
   text-align: center;
 }
-.done-content p{
-  color:grey;
+.done-content p {
+  color: grey;
   font-size: 0.9rem;
   margin-bottom: 40px;
 }

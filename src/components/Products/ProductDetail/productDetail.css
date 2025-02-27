@@ -18,7 +18,7 @@
 }
 .product-detail-main {
   display: flex;
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
   gap: 11px;
   flex-wrap: wrap;
 }
@@ -90,11 +90,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
 }
+
 .color-circle.selected {
   border: 2px solid #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
 }
-
 .product-price-section {
   display: flex;
   justify-content: center;
@@ -185,7 +185,6 @@
   color: black;
   border-color: #007bff;
 }
-
 .monthly-price {
   font-weight: bold;
   font-size: 16px;

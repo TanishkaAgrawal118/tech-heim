@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -13,16 +13,25 @@ import { Paper } from "@mui/material";
 import star from "../../../assets/Star.svg";
 
 const ProductDetail = () => {
+  const [selectedColor, setSelectedColor] = useState("#444");
+  const [selectedInstallment, setSelectedInstallment] = useState("3 Months");
   const navigate = useNavigate();
-  const handleCartDetail = () =>{
-    navigate('/cartDetails');
-  }
+  const handleCartDetail = () => {
+    navigate("/cartDetails");
+  };
   const { state } = useLocation();
   const product = state?.product;
 
   if (!product) {
     return <p>Product not found!</p>;
   }
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+  const handleInstallmentSelect = (period) => {
+    setSelectedInstallment(period);
+  };
+
   return (
     <>
       <NavBar />
@@ -56,9 +65,7 @@ const ProductDetail = () => {
           </div>
 
           <div className="product-info-section">
-            <h2 className="product-detail-title">
-              {product.name}
-            </h2>
+            <h2 className="product-detail-title">{product.name}</h2>
             <p className="product-detail-rating">
               <img src={star} alt="star" />
               {product.rating} | <span>Sold {product.stock}</span>
@@ -71,14 +78,16 @@ const ProductDetail = () => {
             <div>
               <p>Select Color</p>
               <div className="color-selection">
-                <div
-                  className="color-circle"
-                  style={{ backgroundColor: "#d1d1d1" }}
-                ></div>
-                <div
-                  className="color-circle selected"
-                  style={{ backgroundColor: "#444" }}
-                ></div>
+                {["#d1d1d1", "#444"].map((color) => (
+                  <div
+                    key={color}
+                    className={`color-circle ${
+                      selectedColor === color ? "selected" : ""
+                    }`}
+                    style={{ backgroundColor: color }}
+                    onClick={() => handleColorSelect(color)}
+                  ></div>
+                ))}
               </div>
             </div>
 
@@ -93,7 +102,8 @@ const ProductDetail = () => {
                 <span>Screen Size</span> {product.details.screenSize}
               </li>
               <li>
-                <span>Hard Disk Size</span>{product.details.hardDiskSize}
+                <span>Hard Disk Size</span>
+                {product.details.hardDiskSize}
               </li>
               <li>
                 <span>CPU Model</span> core i5
@@ -127,18 +137,27 @@ const ProductDetail = () => {
                 </p>
 
                 <div className="installment-options">
-                  <button className="installment-button active">
-                    3 Months
-                  </button>
-                  <button className="installment-button">6 Months</button>
-                  <button className="installment-button">12 Months</button>
-                  <button className="installment-button">18 Months</button>
+                  {["3 Months", "6 Months", "12 Months", "18 Months"].map(
+                    (period) => (
+                      <button
+                        key={period}
+                        className={`installment-button ${
+                          selectedInstallment === period ? "active" : ""
+                        }`}
+                        onClick={() => handleInstallmentSelect(period)}
+                      >
+                        {period}
+                      </button>
+                    )
+                  )}
                 </div>
                 <p className="monthly-price">$433.00/Month</p>
               </div>
 
               <div className="action-buttons">
-                <button className="buy-now" onClick={handleCartDetail}>Buy Now</button>
+                <button className="buy-now" onClick={handleCartDetail}>
+                  Buy Now
+                </button>
                 <button className="add-to-cart">Add to cart</button>
               </div>
             </Paper>
