@@ -1,8 +1,10 @@
 .slider-text {
   padding: 1rem 0rem 0rem 0rem;
+  padding-top: 40px;
   width: 25rem;
   height: 15rem;
   color: white;
+  text-align: center;
 }
 .products-slider {
   overflow-x: hidden;
@@ -19,37 +21,35 @@
   margin: -15rem 0rem 0 20rem;
   position: relative;
 }
+.product-card-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
 
 .slider-title {
   color: white;
-  text-align: left;
   margin-bottom: 10px;
   font-size: 1.5rem;
   font-weight: 600;
 }
 .product-card {
   width: 15vw !important;
-  height: 18rem;
+  height: 19rem;
   background: white;
   border-radius: 3px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
+  display: flex !important;
   flex-direction: column;
+  justify-content: space-between !important; 
   align-items: center;
-  justify-content: center;
   margin-top: auto !important;
 }
 
-.discount-badge {
-  background: #ffd0cb;
-  color: #ff6f61;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-}
-
-.product-image {
+.product-image img{
   align-items: center;
   justify-content: center;
   max-width: 100%;
@@ -70,15 +70,16 @@
 
 .discounted-price {
   font-size: 1rem;
-  color: #ff6f61;
-  font-weight: bold;
+  color: #333333;
 }
 
 .slider-price {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   gap: 10px;
+  margin-top: auto;
 }
 @media (max-width: 1206px){
   .product-card{

@@ -9,6 +9,9 @@
 }
 
 .product-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   cursor: pointer;
   width: 13rem;
@@ -19,15 +22,12 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
 }
-.product-card p {
+.product-cards p {
   display: flex;
   justify-content: flex-start;
 }
-.product-card:hover {
-  transform: scale(1.05);
-}
 
-.product-image {
+.product-image img{
   width: 100%;
   height: auto;
   border-radius: 8px;
@@ -40,8 +40,7 @@
 
 .product-price {
   font-size: 16px;
-  font-weight: bold;
-  color: #ff5722;
+  color: #333333;
 }
 .rating{
   display: flex;
@@ -69,14 +68,13 @@
 
 .discounted-price {
   font-size: 1rem;
-  color: #ff6f61;
-  font-weight: bold;
+  color: #333333;
 }
 .price{
   display: flex;
   flex-direction: column;
 }
-.slider-price {
+.slider-price-detail {
   display: flex;
   justify-content: space-between;
   width: 100%;

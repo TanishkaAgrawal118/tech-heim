@@ -1,6 +1,6 @@
 import React from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "./productDetail.css";
 import productDetail from "../../../assets/productDetail1.svg";
@@ -13,6 +13,10 @@ import { Paper } from "@mui/material";
 import star from "../../../assets/Star.svg";
 
 const ProductDetail = () => {
+  const navigate = useNavigate();
+  const handleCartDetail = () =>{
+    navigate('/cartDetails');
+  }
   const { state } = useLocation();
   const product = state?.product;
 
@@ -134,7 +138,7 @@ const ProductDetail = () => {
               </div>
 
               <div className="action-buttons">
-                <button className="buy-now">Buy Now</button>
+                <button className="buy-now" onClick={handleCartDetail}>Buy Now</button>
                 <button className="add-to-cart">Add to cart</button>
               </div>
             </Paper>

@@ -17,6 +17,12 @@
 .navItem{
   cursor: pointer !important;
 }
+.active-nav {
+  color: #0C68F4 !important;
+  font-weight: 800;
+  border-bottom: 2px solid #0C68F4;
+  transition: all 0.3s ease;
+}
 .tech-heim{
   color: #0951BE;
   align-items: center;

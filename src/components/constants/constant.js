@@ -49,7 +49,7 @@ export const productsOnSale = [
   },
   {
     id: 2,
-    name: "NPET K10 Wired Gaming Keyboard, LED Backlit, Spill-Resistant",
+    name: "NPET K10 Wired Gaming Keyboard, LED Backlit",
     image: keyboard,
     originalPrice: 49.0,
     discountedPrice: 34.3,
@@ -65,7 +65,7 @@ export const productsOnSale = [
   },
   {
     id: 4,
-    name: "Apple 2022 MacBook Air M2 Chip (8GB RAM, 256GB SSD)",
+    name: "Apple 2022 MacBook Air (8GB RAM, 256GB SSD)",
     image: sliderLaptop,
     originalPrice: 950.22,
     discountedPrice: 712.66,
@@ -117,10 +117,6 @@ export const newProducts = [
 ];
 
 export const topBrands = [
-  {
-    name: "Apple",
-    logo: brand,
-  },
   {
     name: "Sony",
     logo: sony,

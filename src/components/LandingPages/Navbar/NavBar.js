@@ -13,67 +13,47 @@ const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
-  const navigate = useNavigate();
   const location = useLocation();
 
   const isContactPage = location.pathname === "/contact";
+
+  const isActive = (path) => location.pathname === path;
+
   return (
     <>
-      <nav
-        className="navbar navbar-expand-lg navbar-light px-5"
-        style={{ overflowX: "hidden", position: "relative" }}
-      >
+      <nav className="navbar navbar-expand-lg navbar-light px-5" style={{ overflowX: "hidden", position: "relative" }}>
         <a className="navbar-brand d-none d-lg-block" href="#">
-          <img
-            src={logo}
-            alt="Logo"
-            className="me-2"
-            style={{ width: "56px", height: "63px" }}
-          />
+          <img src={logo} alt="Logo" className="me-2" style={{ width: "56px", height: "63px" }} />
         </a>
 
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setIsSidebarOpen(true)}
-        >
+        <button className="navbar-toggler" type="button" onClick={() => setIsSidebarOpen(true)}>
           <span className="navbar-toggler-icon"></span>
         </button>
 
         <div id="navbarNav" className="nav-content">
           <ul className="navbar-nav mx-auto">
-            <li className="navItem">
-              <Link className="nav-link active" to="/">
+            <li className="nav-item">
+              <Link className={`nav-link ${isActive("/") ? "active-nav" : ""}`} to="/">
                 Home
               </Link>
             </li>
-            {/* <li
-              className="nav-item"
-              onMouseEnter={() => {
-                setIsProductDropdown(true);
-              }}
-            >
-              <a style={{ cursor: "pointer" }} className="nav-link" href="#">
-                Products
-              </a>
-            </li> */}
             <li className="nav-item">
-              <Link style={{ cursor: "pointer" }} className="nav-link" to="/products">
+              <Link className={`nav-link ${isActive("/products") ? "active-nav" : ""}`} to="/products">
                 Products
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="#">
+              <Link className={`nav-link ${isActive("/blog") ? "active-nav" : ""}`} to="/">
                 Blog
               </Link>
             </li>
-            <li className="navItem">
-              <Link className="nav-link" to="/FAQ">
+            <li className="nav-item">
+              <Link className={`nav-link ${isActive("/FAQ") ? "active-nav" : ""}`} to="/FAQ">
                 FAQ
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
+              <Link className={`nav-link ${isActive("/contact") ? "active-nav" : ""}`} to="/contact">
                 Contact Us
               </Link>
             </li>
@@ -81,18 +61,13 @@ const NavBar = ({ onLoginClick }) => {
         </div>
 
         <p className="d-block d-lg-none tech-heim">Tech Heim</p>
-        <div className="d-flex navbar-images">
-            <img
-              src={search}
-              alt="search"
-              className="m-3 d-lg-block"
-              onClick={() => setIsSearchOpen(true)}
-            />
 
+        <div className="d-flex navbar-images">
+          <img src={search} alt="search" className="m-3 d-lg-block" onClick={() => setIsSearchOpen(true)} />
           <img src={basket} alt="basket" className="m-3" />
 
-          {isContactPage ? ( 
-            <Link className="btn btn-primary login-signup-btn"  onClick={onLoginClick}>
+          {isContactPage ? (
+            <Link className="btn btn-primary login-signup-btn" onClick={onLoginClick}>
               Login / Sign Up
             </Link>
           ) : (
@@ -103,21 +78,11 @@ const NavBar = ({ onLoginClick }) => {
 
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-      {isProductDropdown && (
-        <ProductDropdown setIsProductDropdown={setIsProductDropdown} />
-      )}
+      {isProductDropdown && <ProductDropdown setIsProductDropdown={setIsProductDropdown} />}
 
       <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)}>
         <div className="search-modal">
-          <input
-            type="text"
-            placeholder="What can we help you to find?"
-            style={{
-              padding: "10px",
-              borderRadius: "5px",
-              marginBottom: "30px",
-            }}
-          />
+          <input type="text" placeholder="What can we help you to find?" style={{ padding: "10px", borderRadius: "5px", marginBottom: "30px" }} />
 
           <div style={{ display: "flex", gap: "3rem" }}>
             <div>
