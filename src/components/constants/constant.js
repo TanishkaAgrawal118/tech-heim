@@ -210,7 +210,6 @@ export const dropdownProduct = [
   { title: "Networking", icon: sidebarNetwork},
   { title: "Accessories", icon: sidebarAccessory },
 ]
-
 export const products = [
   {
     id: 1,
@@ -220,7 +219,20 @@ export const products = [
     rating: 4.9,
     stock: 10,
     image: laptop,
-    description: "A powerful and lightweight MacBook with Touch ID and Retina display."
+    description: "A powerful and lightweight MacBook with Touch ID and Retina display.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Air 15",
+      screenSize: "15 inches",
+      hardDiskSize: "512 GB SSD",
+      processor: "Apple M2 chip",
+      graphics: "Apple 10-core GPU",
+      display: "15-inch LED-backlit Retina display",
+      batteryLife: "Up to 18 hours",
+      weight: "3.3 lbs (1.5 kg)",
+      color: "Silver, Space Grey",
+      includedItems: "67W USB-C Power Adapter, USB-C Charge Cable (2m)",
+    }
   },
   {
     id: 2,
@@ -230,7 +242,20 @@ export const products = [
     rating: 4.9,
     stock: 15,
     image: laptop1,
-    description: "Latest MacBook Air with M2 chip and enhanced battery life."
+    description: "Latest MacBook Air with M2 chip and enhanced battery life.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Air 15 (2023)",
+      screenSize: "15 inches",
+      hardDiskSize: "512 GB SSD",
+      processor: "Apple M2 chip",
+      graphics: "Apple 10-core GPU",
+      display: "Liquid Retina, True Tone",
+      batteryLife: "Up to 18 hours",
+      weight: "3.3 lbs (1.5 kg)",
+      color: "Space Grey",
+      includedItems: "67W USB-C Power Adapter, USB-C Charge Cable (2m)",
+    }
   },
   {
     id: 3,
@@ -240,7 +265,20 @@ export const products = [
     rating: 4.8,
     stock: 20,
     image: laptop2,
-    description: "Portable MacBook Air 13-inch model with M1 chip."
+    description: "Portable MacBook Air 13-inch model with M1 chip.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Air 13",
+      screenSize: "13.3 inches",
+      hardDiskSize: "256 GB SSD",
+      processor: "Apple M1 chip",
+      graphics: "Apple 8-core GPU",
+      display: "13.3-inch Retina with True Tone",
+      batteryLife: "Up to 15 hours",
+      weight: "2.8 lbs (1.29 kg)",
+      color: "Gold, Silver, Space Grey",
+      includedItems: "30W USB-C Power Adapter, USB-C Charge Cable (2m)",
+    }
   },
   {
     id: 4,
@@ -250,7 +288,20 @@ export const products = [
     rating: 4.7,
     stock: 5,
     image: laptop3,
-    description: "High-performance MacBook Pro with M2 chip and Liquid Retina display."
+    description: "High-performance MacBook Pro with M2 chip and Liquid Retina display.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Pro 16",
+      screenSize: "16 inches",
+      hardDiskSize: "1 TB SSD",
+      processor: "Apple M2 Pro chip",
+      graphics: "Apple 16-core GPU",
+      display: "16-inch Liquid Retina XDR",
+      batteryLife: "Up to 20 hours",
+      weight: "4.7 lbs (2.1 kg)",
+      color: "Space Grey, Silver",
+      includedItems: "140W USB-C Power Adapter, USB-C to MagSafe 3 Cable",
+    }
   },
   {
     id: 5,
@@ -260,7 +311,19 @@ export const products = [
     rating: 4.9,
     stock: 30,
     image: laptop1,
-    description: "Apple's flagship smartphone with ProMotion display and triple-lens camera."
+    description: "Apple's flagship smartphone with ProMotion display and triple-lens camera.",
+    details: {
+      brand: "Apple",
+      model: "iPhone 13 Pro Max",
+      screenSize: "6.7 inches",
+      storage: "256 GB",
+      processor: "A15 Bionic chip",
+      display: "Super Retina XDR",
+      batteryLife: "Up to 28 hours video playback",
+      weight: "8.46 oz (240g)",
+      color: "Sierra Blue, Gold, Silver, Graphite",
+      includedItems: "USB-C to Lightning Cable",
+    }
   },
   {
     id: 6,
@@ -270,9 +333,17 @@ export const products = [
     rating: 4.8,
     stock: 50,
     image: laptop,
-    description: "Noise-canceling AirPods Pro with improved sound quality."
+    description: "Noise-canceling AirPods Pro with improved sound quality.",
+    details: {
+      brand: "Apple",
+      model: "AirPods Pro (2nd Gen)",
+      batteryLife: "Up to 6 hours (24 hours with case)",
+      noiseCancellation: "Active Noise Cancellation",
+      weight: "0.19 oz (5.4g) per bud",
+      color: "White",
+      includedItems: "MagSafe Charging Case, USB-C Cable",
+    }
   },
-
   {
     id: 7,
     name: "Apple MacBook Air 15\" (2023) - Space Grey",
@@ -281,7 +352,20 @@ export const products = [
     rating: 4.9,
     stock: 15,
     image: laptop1,
-    description: "Latest MacBook Air with M2 chip and enhanced battery life."
+    description: "Latest MacBook Air with M2 chip and enhanced battery life.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Air 15 (2023)",
+      screenSize: "15 inches",
+      hardDiskSize: "512 GB SSD",
+      processor: "Apple M2 chip",
+      graphics: "Apple 10-core GPU",
+      display: "Liquid Retina, True Tone",
+      batteryLife: "Up to 18 hours",
+      weight: "3.3 lbs (1.5 kg)",
+      color: "Space Grey",
+      includedItems: "67W USB-C Power Adapter, USB-C Charge Cable (2m)",
+    }
   },
   {
     id: 8,
@@ -291,7 +375,20 @@ export const products = [
     rating: 4.8,
     stock: 20,
     image: laptop2,
-    description: "Portable MacBook Air 13-inch model with M1 chip."
+    description: "Portable MacBook Air 13-inch model with M1 chip.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Air 13",
+      screenSize: "13.3 inches",
+      hardDiskSize: "256 GB SSD",
+      processor: "Apple M1 chip",
+      graphics: "Apple 8-core GPU",
+      display: "13.3-inch Retina with True Tone",
+      batteryLife: "Up to 15 hours",
+      weight: "2.8 lbs (1.29 kg)",
+      color: "Gold, Silver, Space Grey",
+      includedItems: "30W USB-C Power Adapter, USB-C Charge Cable (2m)",
+    }
   },
   {
     id: 9,
@@ -301,9 +398,23 @@ export const products = [
     rating: 4.7,
     stock: 5,
     image: laptop3,
-    description: "High-performance MacBook Pro with M2 chip and Liquid Retina display."
+    description: "High-performance MacBook Pro with M2 chip and Liquid Retina display.",
+    details: {
+      brand: "Apple",
+      model: "MacBook Pro 16",
+      screenSize: "16 inches",
+      hardDiskSize: "1 TB SSD",
+      processor: "Apple M2 Pro chip",
+      graphics: "Apple 16-core GPU",
+      display: "16-inch Liquid Retina XDR",
+      batteryLife: "Up to 20 hours",
+      weight: "4.7 lbs (2.1 kg)",
+      color: "Space Grey, Silver",
+      includedItems: "140W USB-C Power Adapter, USB-C to MagSafe 3 Cable",
+    }
   }
 ];
+
 
 export const BRANDS = ["Asus", "Acer", "Apple", "Dell"];
 

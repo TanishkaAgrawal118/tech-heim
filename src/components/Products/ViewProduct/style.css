@@ -1,20 +1,23 @@
 .product-containers {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between; 
+  justify-content: flex-start; 
   align-items: center;
   gap: 20px;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
+  margin: 0 10px 10px 0;
 }
 
 .product-cards {
   position: relative;
+  cursor: pointer;
   width: 13rem;
   height: 19rem;
   padding: 15px;
   border-radius: 10px;
   transition: transform 0.3s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 }
 .product-card p {
   display: flex;
