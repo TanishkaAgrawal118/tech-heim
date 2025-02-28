@@ -47,7 +47,11 @@ const Stepper = ({ currentStep }) => {
                   currentStep >= 1 && index === 0 ? "checkout-line" : ""
                 }`}
               ></div>
-              <div className="line right"></div>
+              <div
+                className={`line right ${
+                  currentStep === 2 && index === 1 ? "payment-line" : ""
+                }`}
+              ></div>
             </div>
           )}
         </div>
