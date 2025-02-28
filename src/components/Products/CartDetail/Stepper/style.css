@@ -72,12 +72,18 @@
 
 .line.left.checkout-line {
   background-color: #007bff;
-  transition: background-color 1s ease, width 1s ease;
+  width: 7rem;
+  transition: background-color 0.5s ease, width 0.5s ease;
   height: 3px;
-  width: 6.87rem;
   left: 104px;
 }
-
+.line.right.payment-line {
+  background-color: #007bff;
+  width: 6.89rem;
+  transition: background-color 0.5s ease, width 0.5s ease;
+  height: 3px;
+  left:6.5rem;
+}
 .line.right {
   background-color: #ccc;
   width: 0px;
@@ -85,26 +91,26 @@
 
 @keyframes lineGlow {
   from {
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
   }
   to {
-    box-shadow: 0 0 10px rgba(0, 123, 255, 1);
+      box-shadow: 0 0 10px rgba(0, 123, 255, 1);
   }
 }
 
-@media (max-width: 470px) {
+@media(max-width: 470px){
   .step img {
     width: 2.8rem;
     height: 2.7rem;
-  }
-  .line {
-    left: 69px;
-  }
-  .step {
-    width: 90px;
-  }
-  .line {
-    width: 50px;
-    left: 66px;
-  }
+}
+.line {
+  left: 69px;
+}
+.step {
+  width: 90px;
+}
+.line {
+  width: 50px;
+  left: 66px;
+}
 }
