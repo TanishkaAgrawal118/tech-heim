@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "react-slick";
-import randomShape from '../../../assets/random-shape-in-blue.svg'
+import randomShape from "../../../assets/random-shape-in-blue.svg";
 import "./style.css";
 import { productsOnSale } from "../../constants/constant";
 import { Container } from "react-bootstrap";
@@ -36,38 +36,37 @@ const ProductsSlider = () => {
 
   return (
     <Container>
-  <div className="products-slider">
-    {/* <img src={randomShape} alt="randomShape"/> */}
-      <div className="slider-text">
-        <h2 className="slider-title">Products On Sale</h2>
-        <p>Shop Now!</p>
-      </div>
-      <div className="main-slider">
-        <Slider {...settings}>
-          {productsOnSale.map((product) => (
-            <div key={product.id} className="product-card">
-              <span className="discount-badge">{product.discount}</span>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="product-image"
-              />
-              <h3 className="product-name">{product.name}</h3>
-              <div className="slider-price">
-                <p className="original-price">
-                  ${product.originalPrice.toFixed(2)}
-                </p>
-                <p className="discounted-price">
-                  ${product.discountedPrice.toFixed(2)}
-                </p>
+      <div className="products-slider">
+        {/* <img src={randomShape} alt="randomShape"/> */}
+        <div className="slider-text">
+          <h2 className="slider-title">Products On Sale</h2>
+          <p>Shop Now!</p>
+        </div>
+        <div className="main-slider">
+          <Slider {...settings}>
+            {productsOnSale.map((product) => (
+              <div key={product.id} className="product-card">
+                <div className="product-image">
+                  <img src={product.image} alt={product.name} />
+                  <h3 className="product-name">{product.name}</h3>
+                </div>
+
+                <div className="product-card-bottom">
+                  <div className="slider-price">
+                    <p className="original-price">
+                      ${product.originalPrice.toFixed(2)}
+                    </p>
+                    <p className="discounted-price">
+                      ${product.discountedPrice.toFixed(2)}
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        </div>
       </div>
-    </div>
     </Container>
-  
   );
 };
 
