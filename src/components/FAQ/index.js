@@ -21,7 +21,7 @@ const FAQ = () => {
       <NavBar />
       <Container>
         <div className="navigation">
-          <Link to="/">Home</Link> &gt;{" "}
+          <Link to="/" style={{color:"#717171"}}>Home</Link> &gt;{" "}
           <Link className="active" to="/FAQ">
             FAQ
           </Link>
