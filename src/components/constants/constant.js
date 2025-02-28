@@ -408,7 +408,70 @@ export const products = [
       color: "Space Grey, Silver",
       includedItems: "140W USB-C Power Adapter, USB-C to MagSafe 3 Cable",
     }
-  }
+  },
+  {
+    id: 10,
+    name: "Apple iPad Pro 12.9\" (2023) - WiFi",
+    price: 1199.99,
+    discount: "10%",
+    rating: 4.8,
+    stock: 25,
+    image: laptop,
+    description: "Powerful iPad Pro with M2 chip and stunning Liquid Retina XDR display.",
+    details: {
+      brand: "Apple",
+      model: "iPad Pro 12.9 (2023)",
+      screenSize: "12.9 inches",
+      storage: "512 GB",
+      processor: "Apple M2 chip",
+      display: "Liquid Retina XDR, ProMotion",
+      batteryLife: "Up to 10 hours",
+      weight: "1.5 lbs (682g)",
+      color: "Space Grey, Silver",
+      includedItems: "USB-C Charge Cable, 20W USB-C Power Adapter",
+    }
+},
+{
+    id: 11,
+    name: "Apple Watch Series 9 GPS 45mm",
+    price: 429.99,
+    discount: "15%",
+    rating: 4.7,
+    stock: 40,
+    image: laptop1,
+    description: "Apple Watch Series 9 with advanced health tracking and always-on display.",
+    details: {
+      brand: "Apple",
+      model: "Watch Series 9",
+      screenSize: "45mm",
+      batteryLife: "Up to 18 hours",
+      weight: "1.37 oz (39g)",
+      color: "Midnight, Starlight, Product(RED)",
+      includedItems: "Magnetic Charging Cable",
+      features: "ECG, Blood Oxygen, Fitness Tracking, Always-on Retina Display"
+    }
+},
+{
+    id: 12,
+    name: "Apple TV 4K (3rd Gen)",
+    price: 149.00,
+    discount: "5%",
+    rating: 4.6,
+    stock: 60,
+    image: laptop3,
+    description: "Apple TV 4K with A15 Bionic chip and HDR support.",
+    details: {
+      brand: "Apple",
+      model: "Apple TV 4K (3rd Gen)",
+      storage: "128 GB",
+      processor: "A15 Bionic chip",
+      resolution: "4K HDR, Dolby Vision, HDR10+",
+      weight: "7.5 oz (214g)",
+      color: "Black",
+      includedItems: "Siri Remote, Power Cord",
+      connectivity: "WiFi 6, Ethernet, Thread support"
+    }
+}
 ];
 
 

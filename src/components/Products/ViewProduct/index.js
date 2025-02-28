@@ -24,11 +24,10 @@ const ViewProduct = () => {
               <span className="discount-badge">{product.discount}</span>
               <div className="product-image">
                 <img src={product.image} alt={product.name} />
-              
+                <h4 className="product-title">{product.name}</h4>
               </div>
-              <h4 className="product-title">{product.name}</h4>
+             
               <div className="slider-price-detail">
-                
                 <div className="price">
                   <p className="original-price">${product.price.toFixed(2)}</p>
                   <p className="product-price">${product.price.toFixed(2)}</p>
