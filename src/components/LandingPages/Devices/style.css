@@ -1,11 +1,17 @@
+.devices-slider-wrapper {
+  overflow-x: auto;  
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch; 
+  scrollbar-width: none;
+}
+
 .devices {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 3.4rem;
-  padding: 20px 0 20px 0;
-  overflow: hidden;
-  flex-wrap: nowrap;
+  gap: 6rem;
+  padding: 20px 0;
+  flex-wrap: nowrap;  
+  width: max-content;  
   margin-bottom: 3rem;
 }
 
@@ -14,41 +20,71 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: auto;
-  height: auto;
-  padding: 5px 10px 5px 10px;
+  min-width: 9rem;
+  height: 9rem;
   border-radius: 5px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  white-space: normal; 
+  scroll-snap-align: center; 
 }
 
 .device-container img {
-  max-width: 100%;
+  max-width: 80px; 
   height: auto;
-  margin-bottom: 2px;
+  margin-bottom: 5px;
 }
 
 .device-container p {
   font-size: 16px;
   font-weight: 500;
-  color: #333; 
-  margin: 0; 
+  color: #333;
+  margin: 0;
   text-align: center;
-  scroll-snap-align: center;
 }
 
+.devices-slider-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
 
+.devices-slider-wrapper::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+@media (max-width: 1000px){
+  .devices{
+    gap: 2rem;
+  }
+  .device-container{
+    min-width: 8rem;
+    height: 8rem;
+  }
+}
 @media (max-width: 768px) {
   .device-container p {
-    font-size: 14px; 
+    font-size: 14px;
   }
+  .device-container {
+    min-width: 6rem;
+    height: 7rem;
+}
+.device-container img {
+  max-width: 66px;
+}
 }
 
 @media (max-width: 480px) {
   .devices {
-    gap: 12px; 
+    gap: 8px;
   }
   .device-container p {
-    font-size: 11px; 
+    font-size: 12px;
   }
+  .device-container {
+    min-width: 5rem;
+    height: 5rem;
+}
+.device-container img {
+  max-width: 49px;
+}
 }

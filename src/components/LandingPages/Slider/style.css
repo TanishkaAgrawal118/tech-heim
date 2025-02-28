@@ -46,6 +46,7 @@
   flex-direction: column;
   justify-content: space-between !important; 
   align-items: center;
+  margin-left: 40px;
   margin-top: auto !important;
 }
 
@@ -99,19 +100,35 @@
 
 @media (max-width: 770px) {
   .product-card {
-    width: 100% !important;
+    width: 77% !important;
   }
   .main-slider{
     margin-left: -100px;
     margin:-15rem 0rem 0 11rem;
   }
+  .slider-text{
+    width: 11rem;
+  }
 }
 
-@media (max-width: 400px){
+@media (max-width: 440px){
   .main-slider{
     margin: -15rem 0rem 0px 8rem;
   }
   .product-card {
     height: 15rem;
+}
+.product-card {
+  height: 14rem !important;
+  width: 8rem !important;
+}
+.discounted-price {
+  font-size: 0.8rem;
+}
+.original-price {
+  font-size: 0.8rem;
+}
+.product-image img {
+  height: 7rem;
 }
 }

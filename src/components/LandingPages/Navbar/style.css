@@ -109,9 +109,12 @@
   margin-left: auto; 
 }
 
-@media(max-width: 440px){
+@media(max-width: 470px){
   .navbar-images img{
     margin: 0rem 0rem 1rem 0rem !important;
+  }
+  .tech-heim{
+    font-size: 20px;
   }
 }
 
