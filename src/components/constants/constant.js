@@ -37,6 +37,9 @@ export const devices = [
   { device: "Smart Phone", image: smartPhone },
   { device: "Gaming", image: game },
   { device: "Smart Watch", image: smartWatch },
+  { device: "Smart Phone", image: smartPhone },
+  { device: "Gaming", image: game },
+  { device: "Smart Watch", image: smartWatch },
 ];
 export const productsOnSale = [
   {

@@ -3,7 +3,6 @@ import NavBar from "../../LandingPages/Navbar/NavBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "./productDetail.css";
-import productDetail from "../../../assets/productDetail1.svg";
 import frame1 from "../../../assets/frame1.svg";
 import frame2 from "../../../assets/frame2.svg";
 import frame3 from "../../../assets/frame3.svg";
@@ -51,7 +50,7 @@ const ProductDetail = () => {
         <div className="product-detail-main">
           <div className="product-image-section">
             <img
-              src={productDetail}
+              src={product.image}
               alt="Product"
               className="main-product-image"
             />
