@@ -6,30 +6,38 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import deleteIcon from "../../../../assets/trash btn.svg";
 import "./style.css";
 import Footer from "../../../LandingPages/Footer";
-import { useLocation, useNavigate } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductByIdThunk } from "../../../../redux/actions/productAction";
 
 const CartItems = () => {
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const product = state?.product;
+  // const { state } = useLocation();
+  // const product = state?.product;
 
-
-  const [cartProduct, setCartProduct] = useState(product || {});
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { product } = useSelector((state) => state.products);
+  useEffect(() => {
+    dispatch(fetchProductByIdThunk(id));
+  }, [dispatch, id]);
 
   const updateQuantity = (change) => {
     setCartProduct((prevProduct) => ({
       ...prevProduct,
-      quantity: Math.max(1, prevProduct.quantity + change), 
+      quantity: Math.max(1, prevProduct.quantity + change),
     }));
   };
-
-  const subtotal = (cartProduct.discountedPrice || 0) * (cartProduct.quantity || 1);
-  const shipmentCost = cartProduct.shipmentCost || 0;
-  const discount = ((cartProduct.originalPrice - cartProduct.discountedPrice) || 0) * (cartProduct.quantity || 1);
+  const [cartProduct, setCartProduct] = useState(product || {});
+  const subtotal = (product?.discountedPrice || 0) * (product?.quantity || 1);
+  const shipmentCost = product?.shipmentCost || 0;
+  const discount =
+    (product?.originalPrice - product?.discountedPrice || 0) *
+    (product?.quantity || 1);
   const grandTotal = subtotal + shipmentCost;
 
   const handleCheckout = () => {
-    navigate(`/cartDetails/${cartProduct.id}/checkout`, { state: { product: cartProduct } });
+    navigate(`/cartDetails/${product.id}/checkout`);
   };
 
   if (!product) {
@@ -43,19 +51,21 @@ const CartItems = () => {
           <div className="selectedCartItems">
             <Paper elevation={3} className="singleCart">
               <div className="itemImage">
-                <img src={cartProduct.image} alt={cartProduct.name} />
+                <img src={product.image} alt={product.name} />
               </div>
 
               <div className="itemDetails">
-                <h5>{cartProduct.name}</h5>
+                <h5>{product.name}</h5>
                 <p>
-                  <strong>Color:</strong> {cartProduct.details?.color}
+                  <strong>Color:</strong> {product.details?.color}
                 </p>
-                <p>{cartProduct.delivery}</p>
-                <p><strong>{cartProduct.guarantee}</strong></p>
+                <p>{product.delivery}</p>
                 <p>
-                  <del>${cartProduct.originalPrice?.toFixed(2)}</del> &nbsp;
-                  <strong>${cartProduct.discountedPrice?.toFixed(2)}</strong>
+                  <strong>{product.guarantee}</strong>
+                </p>
+                <p>
+                  <del>${product.originalPrice?.toFixed(2)}</del> &nbsp;
+                  <strong>${product.discountedPrice?.toFixed(2)}</strong>
                 </p>
               </div>
 
@@ -68,7 +78,7 @@ const CartItems = () => {
                   <IconButton size="small" onClick={() => updateQuantity(-1)}>
                     <RemoveIcon />
                   </IconButton>
-                  <span>{cartProduct.quantity}</span>
+                  <span>{product.quantity}</span>
                   <IconButton size="small" onClick={() => updateQuantity(1)}>
                     <AddIcon />
                   </IconButton>
