@@ -2,6 +2,7 @@ import React from "react";
 import "./style.css";
 import { newProducts } from "../../constants/constant";
 import { Container } from "react-bootstrap";
+import star  from '../../../assets/Star.svg'
 
 const NewProduct = () => {
   return (
@@ -13,7 +14,7 @@ const NewProduct = () => {
             View all
           </a>
         </div>
-        <hr/>
+        <hr />
         <div className="products-grid">
           {newProducts.map((product) => (
             <div key={product.id} className="productCard">
@@ -23,9 +24,10 @@ const NewProduct = () => {
                 className="product-image"
               />
               <h3 className="product-name">{product.name}</h3>
-              <p className="product-price">${product.price.toFixed(2)}</p>
+
               <div className="product-details">
-                <span className="product-rating">⭐ {product.rating}</span>
+                <p className="product-price">${product.price.toFixed(2)}</p>
+                <span className="product-rating"><img src={star} alt="star" /> {product.rating}</span>
               </div>
             </div>
           ))}

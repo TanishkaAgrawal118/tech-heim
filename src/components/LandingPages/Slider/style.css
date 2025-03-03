@@ -1,8 +1,10 @@
 .slider-text {
   padding: 1rem 0rem 0rem 0rem;
+  padding-top: 40px;
   width: 25rem;
   height: 15rem;
   color: white;
+  text-align: center;
 }
 .products-slider {
   overflow-x: hidden;
@@ -11,7 +13,7 @@
   background-color: #0d47a1;
   border-radius: 1px;
 }
-.products-slider img{
+.products-slider img {
   z-index: -1;
 }
 .main-slider {
@@ -19,40 +21,36 @@
   margin: -15rem 0rem 0 20rem;
   position: relative;
 }
+.product-card-bottom {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
 
 .slider-title {
   color: white;
-  text-align: left;
   margin-bottom: 10px;
   font-size: 1.5rem;
   font-weight: 600;
 }
 .product-card {
   width: 15vw !important;
-  height: 18rem;
+  height: 19rem;
   background: white;
   border-radius: 3px;
   padding: 20px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  display: flex;
+  display: flex !important;
   flex-direction: column;
+  justify-content: space-between !important;
   align-items: center;
-  justify-content: center;
+  margin-left: 40px;
   margin-top: auto !important;
 }
 
-.discount-badge {
-  background: #ffd0cb;
-  color: #ff6f61;
-  padding: 5px 10px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-}
-
-.product-image {
+.product-image img {
   align-items: center;
   justify-content: center;
   max-width: 100%;
@@ -73,18 +71,19 @@
 
 .discounted-price {
   font-size: 1rem;
-  color: #ff6f61;
-  font-weight: bold;
+  color: #333333;
 }
 
 .slider-price {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   width: 100%;
   gap: 10px;
+  margin-top: auto;
 }
-@media (max-width: 1206px){
-  .product-card{
+@media (max-width: 1206px) {
+  .product-card {
     height: 17rem;
     width: 92% !important;
   }
@@ -93,7 +92,7 @@
   .product-card {
     width: 25vw !important;
   }
-  .slider-text h2{
+  .slider-text h2 {
     font-size: 1rem;
     padding: 0;
   }
@@ -101,19 +100,35 @@
 
 @media (max-width: 770px) {
   .product-card {
-    width: 100% !important;
+    width: 77% !important;
   }
-  .main-slider{
+  .main-slider {
     margin-left: -100px;
-    margin:-15rem 0rem 0 11rem;
+    margin: -15rem 0rem 0 11rem;
+  }
+  .slider-text {
+    width: 11rem;
   }
 }
 
-@media (max-width: 400px){
-  .main-slider{
+@media (max-width: 440px) {
+  .main-slider {
     margin: -15rem 0rem 0px 8rem;
   }
   .product-card {
     height: 15rem;
-}
+  }
+  .product-card {
+    height: 14rem !important;
+    width: 8rem !important;
+  }
+  .discounted-price {
+    font-size: 0.8rem;
+  }
+  .original-price {
+    font-size: 0.8rem;
+  }
+  .product-image img {
+    height: 6rem;
+  }
 }
