@@ -31,7 +31,7 @@ const ProductDetail = () => {
   if (!product) return <p>No product found!</p>;
   
   const handleCartDetail = (product) => {
-    navigate(`/cartDetails/${product.id}`, { state: { product } });
+    navigate(`/cartDetails/${product.id}`);
 };
   const handleColorSelect = (color) => {
     setSelectedColor(color);
