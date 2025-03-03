@@ -3,35 +3,28 @@ import './style.css';
 import laptop1 from '../../../../assets/laptop1.svg'
 import laptop2 from '../../../../assets/laptop2.svg'
 import laptop3 from '../../../../assets/laptop3.svg'
+import { useLocation, useNavigate, useParams } from 'react-router';
 
-const YourOrder = ({ onProceed }) => {
+const YourOrder = () => {
+  const navigate = useNavigate();
+  const { state } = useLocation();
+  const { id } = useParams();
+  const product = state?.product;
+  const handleProceedToPayment = (product) => {
+    navigate(`/cartDetails/${id}/payment`, { state: { product } });
+  };
   return (
     <div className="yourOrder">
       <h4>Your Order</h4>
       <div className="orderItem">
-        <img src={laptop3} alt="MacBook" />
+      <img src={product.image} alt={product.name} />
         <div>
-          MacBook Pro M2 MNEJ3 2022 13.3 inch
-          <div className="itemMeta">Black ×1</div>
-          <div className="itemPrice">$433.00 from $1299.00</div>
-        </div>
-      </div>
-
-      <div className="orderItem">
-        <img src={laptop1} alt="Case" />
-        <div>
-          Inateck 12.3-13 Inch Laptop Case Sleeve
-          <div className="itemMeta">Blue ×1</div>
-          <div className="itemPrice">$63.26</div>
-        </div>
-      </div>
-
-      <div className="orderItem">
-        <img src={laptop2} alt="Screen" />
-        <div>
-          Laptop Privacy Screen for 13 inch MacBook
-          <div className="itemMeta">Black ×1</div>
-          <div className="itemPrice">$23.26</div>
+          {product.name}
+          <div className="itemMeta">{product.details?.color} ×{product.quantity}</div>
+          <div className="itemPrice">
+            ${product.discountedPrice?.toFixed(2)} each <br />
+            <del>${product.originalPrice?.toFixed(2)} each</del>
+          </div>
         </div>
       </div>
 
@@ -47,7 +40,7 @@ const YourOrder = ({ onProceed }) => {
         <div className="grandTotal"><span>Grand Total</span><span>$543.02</span></div>
       </div>
 
-      <button className="checkoutButton" onClick={onProceed}>Continue to pay</button>
+      <button className="checkoutButton" onClick={() => handleProceedToPayment(product)}>Continue to pay</button>
     </div>
   );
 };
