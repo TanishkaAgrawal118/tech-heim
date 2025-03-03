@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Container } from "react-bootstrap";
@@ -14,22 +14,23 @@ import star from "../../../assets/Star.svg";
 const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState("#444");
   const [selectedInstallment, setSelectedInstallment] = useState("3 Months");
+
   const navigate = useNavigate();
-  const handleCartDetail = () => {
-    navigate("/cartDetails");
-  };
+
+  
+  const handleCartDetail = (product) => {
+    navigate(`/cartDetails/${product.id}`, { state: { product } });
+};
   const { state } = useLocation();
   const product = state?.product;
 
-  if (!product) {
-    return <p>Product not found!</p>;
-  }
   const handleColorSelect = (color) => {
     setSelectedColor(color);
   };
   const handleInstallmentSelect = (period) => {
     setSelectedInstallment(period);
   };
+
 
   return (
     <>
@@ -92,12 +93,12 @@ const ProductDetail = () => {
 
             <ul className="product-specs">
               <li>
-                <span>Brand</span> {product.details.brand}
+                <span>Brand</span> {product.brand}
               </li>
               <li>
-                <span>Model Name</span> {product.details.model}
+                <span>Model Name</span> {product.sku}
               </li>
-              <li>
+              {/* <li>
                 <span>Screen Size</span> {product.details.screenSize}
               </li>
               <li>
@@ -106,7 +107,7 @@ const ProductDetail = () => {
               </li>
               <li>
                 <span>CPU Model</span> core i5
-              </li>
+              </li> */}
             </ul>
 
             <a href="#" className="show-more">
@@ -154,7 +155,9 @@ const ProductDetail = () => {
               </div>
 
               <div className="action-buttons">
-                <button className="buy-now" onClick={handleCartDetail}>
+              <button className="buy-now" onClick={() => handleCartDetail(product)}>
+
+
                   Buy Now
                 </button>
                 <button className="add-to-cart">Add to cart</button>
