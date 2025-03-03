@@ -4,26 +4,20 @@ import { Paper } from "@mui/material";
 import { useNavigate } from "react-router";
 import "./style.css";
 import start from "../../../assets/Star.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../../../redux/actions/productAction";
 
 const ViewProduct = () => {
-  const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
+ const dispatch = useDispatch();
+ const products = useSelector((state) => state.products.products);
 
-  useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await fetch("http://localhost:5000/products");
-        const data = await response.json();
-        setProducts(data);
-      } catch (error) {
-        console.log("Error in fetching products", error);
-      }
-    };
-    fetchProduct();
-  }, []);
+ const navigate = useNavigate();
 
+ useEffect(() => {
+  dispatch(fetchProducts());
+ }, [dispatch]);
   const handleProductDetail = (product) => {
-    navigate(`/productDetails/${product.id}`, { state: { product } });
+    navigate(`/productDetails/${product.id}`);
   };
 
   return (
