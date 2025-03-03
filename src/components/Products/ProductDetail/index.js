@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import "./productDetail.css";
 import frame1 from "../../../assets/frame1.svg";
@@ -10,20 +10,29 @@ import frame4 from "../../../assets/frame4.svg";
 import Footer from "../../LandingPages/Footer";
 import { Paper } from "@mui/material";
 import star from "../../../assets/Star.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
 
 const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState("#444");
   const [selectedInstallment, setSelectedInstallment] = useState("3 Months");
-
+  const { id } = useParams();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const { product, loading, error } = useSelector(state => state.products);
+
+  useEffect(() => {
+    dispatch(fetchProductByIdThunk(id));
+  },[dispatch, id]);
+
+  if (loading) return <p>Loading product details...</p>;
+  if (error) return <p>Error: {error}</p>;
+  if (!product) return <p>No product found!</p>;
   
   const handleCartDetail = (product) => {
     navigate(`/cartDetails/${product.id}`, { state: { product } });
 };
-  const { state } = useLocation();
-  const product = state?.product;
-
   const handleColorSelect = (color) => {
     setSelectedColor(color);
   };
@@ -51,7 +60,7 @@ const ProductDetail = () => {
         <div className="product-detail-main">
           <div className="product-image-section">
             <img
-              src={product.image}
+              src={product?.image}
               alt="Product"
               className="main-product-image"
             />
@@ -65,10 +74,10 @@ const ProductDetail = () => {
           </div>
 
           <div className="product-info-section">
-            <h2 className="product-detail-title">{product.name}</h2>
+            <h2 className="product-detail-title">{product?.name}</h2>
             <p className="product-detail-rating">
               <img src={star} alt="star" />
-              {product.rating} | <span>Sold {product.stock}</span>
+              {product?.rating} | <span>Sold {product?.stock}</span>
             </p>
             <div className="availability-section">
               <span>In Stock</span>
@@ -93,10 +102,10 @@ const ProductDetail = () => {
 
             <ul className="product-specs">
               <li>
-                <span>Brand</span> {product.brand}
+                <span>Brand</span> {product?.brand}
               </li>
               <li>
-                <span>Model Name</span> {product.sku}
+                <span>Model Name</span> {product?.sku}
               </li>
               {/* <li>
                 <span>Screen Size</span> {product.details.screenSize}
