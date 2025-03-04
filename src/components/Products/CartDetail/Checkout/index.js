@@ -2,10 +2,8 @@ import React from "react";
 import { Container } from "react-bootstrap";
 import YourOrder from "../YourOrder";
 import "./style.css";
-import { useNavigate, useOutletContext, useParams } from "react-router";
 
 const Checkout = ({ onProceed }) => {
-
   return (
     <Container>
       <div className="checkout">

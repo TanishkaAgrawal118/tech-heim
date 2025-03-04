@@ -1,37 +1,66 @@
-import React, { useEffect } from 'react';
-import './style.css';
-import laptop1 from '../../../../assets/laptop1.svg'
-import laptop2 from '../../../../assets/laptop2.svg'
-import laptop3 from '../../../../assets/laptop3.svg'
-import { useLocation, useNavigate, useParams } from 'react-router';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchProductByIdThunk } from '../../../../redux/actions/productAction';
+import React, { useEffect, useState } from "react";
+import "./style.css";
+import { useNavigate, useParams } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductByIdThunk } from "../../../../redux/actions/productAction";
 
 const YourOrder = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
   const { product } = useSelector((state) => state.products);
+  const [cartListItems, setCartListItems] = useState([]);
+
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id));
+
+    const localStorageCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    setCartListItems(localStorageCartItems);
   }, [dispatch, id]);
 
-  const handleProceedToPayment = (product) => {
-    navigate(`/cartDetails/${id}/payment`, { state: { product } });
+  const displayProduct = cartListItems.find((item) => item.id === id) || {
+    ...product,
+    quantity: 1,
   };
+  
+  const subtotal =
+    (displayProduct.discountedPrice || 0) * (displayProduct.quantity || 1);
+  const discount =
+    (displayProduct.originalPrice - displayProduct.discountedPrice || 0) *
+    (displayProduct.quantity || 1);
+  const shipmentCost = product?.shipmentCost || 0;
+  const grandTotal = subtotal + shipmentCost;
+
+  const handleProceedToPayment = () => {
+    navigate(`/cartDetails/${id}/payment`, {
+      state: { product: displayProduct },
+    });
+  };
+
   return (
     <div className="yourOrder">
       <h4>Your Order</h4>
-      <div className="orderItem">
-      <img src={product?.image} alt={product?.name} />
-        <div>
-          {product?.name}
-          <div className="itemMeta">{product?.color} ×{product?.quantity}</div>
-          <div className="itemPrice">
-            ${product?.discountedPrice?.toFixed(2)} each <br />
-            <del>${product?.originalPrice?.toFixed(2)} each</del>
-          </div>
-        </div>
+
+      <div className="orderItemsList">
+        {cartListItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          cartListItems.map((product) => (
+            <div key={product.id} className="orderItem">
+              <img src={product.image} alt={product.name} />
+              <div>
+                {product.name}
+                <div className="itemMeta">
+                  {product.details?.color} × {product.quantity}
+                </div>
+                <div className="itemPrice">
+                  ${product.discountedPrice?.toFixed(2)} each <br />
+                  <del>${product.originalPrice?.toFixed(2)} each</del>
+                </div>
+              </div>
+            </div>
+          ))
+        )}
       </div>
 
       <div className="discountBox">
@@ -40,13 +69,27 @@ const YourOrder = () => {
       </div>
 
       <div className="orderSummaryDetails">
-        <div className="row"><span>Subtotal</span><span>$519.52</span></div>
-        <div className="row"><span>Discount</span><span>-$111.87</span></div>
-        <div className="row"><span>Shipment cost</span><span>$22.50</span></div>
-        <div className="grandTotal"><span>Grand Total</span><span>$543.02</span></div>
+        <div className="row">
+          <span>Subtotal</span>
+          <span>${subtotal.toFixed(2)}</span>
+        </div>
+        <div className="row">
+          <span>Discount</span>
+          <span>-${discount.toFixed(2)}</span>
+        </div>
+        <div className="row">
+          <span>Shipment cost</span>
+          <span>${shipmentCost.toFixed(2)}</span>
+        </div>
+        <div className="grandTotal">
+          <span>Grand Total</span>
+          <span>${grandTotal.toFixed(2)}</span>
+        </div>
       </div>
 
-      <button className="checkoutButton" onClick={() => handleProceedToPayment(product)}>Continue to pay</button>
+      <button className="checkoutButton" onClick={handleProceedToPayment}>
+        Continue to pay
+      </button>
     </div>
   );
 };
