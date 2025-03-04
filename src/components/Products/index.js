@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../LandingPages/Navbar/NavBar";
 import { Container } from "react-bootstrap";
 import { Link } from "react-router";
@@ -8,7 +8,16 @@ import Filter from "./FIlter";
 import "./style.css";
 import Footer from "../LandingPages/Footer";
 import Bottom from "../../components/LandingPages/Bottom";
+
 const Product = () => {
+  const [selectedFilters, setSelectedFilters] = useState({
+    brand: [],
+    ram: [],
+    screenSize: [],
+    processor: [],
+    gpu: [],
+    driveSize: [],
+  });
   return (
     <>
       <NavBar />
@@ -24,8 +33,11 @@ const Product = () => {
         </div>
         <TopProduct />
         <div className="product-filter-section">
-          <Filter />
-          <ViewProduct />
+        <Filter
+            selectedFilters={selectedFilters}
+            setSelectedFilters={setSelectedFilters}
+          />
+          <ViewProduct selectedFilters={selectedFilters} />
         </div>
       </Container>
       <Bottom />
