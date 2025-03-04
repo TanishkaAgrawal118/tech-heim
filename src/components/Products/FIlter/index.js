@@ -10,16 +10,7 @@ import {
 } from "../../constants/constant";
 import arrowDropdown from "../../../assets/arrow-down.svg";
 
-const Filter = () => {
-  const [selectedFilters, setSelectedFilters] = useState({
-    brand: ["Apple"],
-    ram: ["12 GB"],
-    screenSize: ['15" - 15.9"'],
-    processor: ["AMD Ryzen 9"],
-    gpu: ["NVIDIA", "Intel"],
-    driveSize: ["128GB"],
-  });
-
+const Filter = ({ selectedFilters, setSelectedFilters }) => {
   const [openFilter, setOpenFilter] = useState({
     brand: true,
     ram: true,
@@ -29,163 +20,67 @@ const Filter = () => {
     driveSize: true,
   });
 
-  const toggleFilter = (filterName) => {
-    setOpenFilter((prev) => ({
-      ...prev,
-      [filterName]: !prev[filterName],
-    }));
+  const toggleFilter = (filter) => {
+    setOpenFilter((prev) => ({ ...prev, [filter]: !prev[filter] }));
   };
 
   const handleCheckboxChange = (category, value) => {
-    setSelectedFilters((prev) => {
-      const updated = { ...prev };
-      if (updated[category].includes(value)) {
-        updated[category] = updated[category].filter((item) => item !== value);
-      } else {
-        updated[category] = [...updated[category], value];
-      }
-      return updated;
+    setSelectedFilters((prev) => ({
+      ...prev,
+      [category]: prev[category].includes(value)
+        ? prev[category].filter((v) => v !== value)
+        : [...prev[category], value],
+    }));
+  };
+
+  const handleClearAll = () => {
+    setSelectedFilters({
+      brand: [],
+      ram: [],
+      screenSize: [],
+      processor: [],
+      gpu: [],
+      driveSize: [],
     });
   };
+
+  const renderCheckboxes = (category, options) => (
+    options.map((option) => (
+      <label key={option} className="filter-option">
+        <input
+          type="checkbox"
+          style={{cursor:"pointer"}}
+          checked={selectedFilters[category].includes(option)}
+          onChange={() => handleCheckboxChange(category, option)}
+        />
+        {option}
+      </label>
+    ))
+  );
 
   return (
     <div className="product-filter">
       <div className="filter-header">
         <h4>Filters</h4>
-        <span className="clear-all">Clear all</span>
+        <span className="clear-all" onClick={handleClearAll}>Clear all</span>
       </div>
 
-      <div className="filter-section">
-        <div className="filter-head" onClick={() => toggleFilter("brand")}>
-          <h5>Brand</h5>
-          <img
-            src={arrowDropdown}
-            alt="arrow"
-            className={openFilter.brand ? "rotate" : ""}
-          />
+      {[
+        { key: "brand", label: "Brand", options: BRANDS },
+        { key: "ram", label: "RAM", options: RAM_OPTIONS },
+        { key: "screenSize", label: "Screen Size", options: SCREEN_SIZES },
+        { key: "processor", label: "Processor", options: PROCESSORS },
+        { key: "gpu", label: "GPU Brand", options: GPU_BRANDS },
+        { key: "driveSize", label: "Drive Size", options: DRIVE_SIZES },
+      ].map(({ key, label, options }) => (
+        <div className="filter-section" key={key}>
+          <div className="filter-head" onClick={() => toggleFilter(key)}>
+            <h5>{label}</h5>
+            <img src={arrowDropdown} alt="arrow" className={openFilter[key] ? "rotate" : ""} />
+          </div>
+          {openFilter[key] && renderCheckboxes(key, options)}
         </div>
-        {openFilter.brand &&
-          BRANDS.map((brand) => (
-            <label key={brand} className="filter-option">
-              <input
-                type="checkbox"
-                checked={selectedFilters.brand.includes(brand)}
-                onChange={() => handleCheckboxChange("brand", brand)}
-              />
-              {brand}
-            </label>
-          ))}
-      </div>
-
-      <div className="filter-section">
-        <div className="filter-head" onClick={() => toggleFilter("ram")}>
-          <h5>RAM</h5>
-          <img
-            src={arrowDropdown}
-            alt="arrow"
-            className={openFilter.ram ? "rotate" : ""}
-          />
-        </div>
-        {openFilter.ram &&
-          RAM_OPTIONS.map((ram) => (
-            <label key={ram} className="filter-option">
-              <input
-                type="checkbox"
-                checked={selectedFilters.ram.includes(ram)}
-                onChange={() => handleCheckboxChange("ram", ram)}
-              />
-              {ram}
-            </label>
-          ))}
-      </div>
-
-      <div className="filter-section">
-        <div className="filter-head" onClick={() => toggleFilter("screenSize")}>
-          <h5>Screen Size</h5>
-          <img
-            src={arrowDropdown}
-            alt="arrow"
-            className={openFilter.screenSize ? "rotate" : ""}
-          />
-        </div>
-        {openFilter.screenSize &&
-          SCREEN_SIZES.map((size) => (
-            <label key={size} className="filter-option">
-              <input
-                type="checkbox"
-                checked={selectedFilters.screenSize.includes(size)}
-                onChange={() => handleCheckboxChange("screenSize", size)}
-              />
-              {size}
-            </label>
-          ))}
-      </div>
-
-      <div className="filter-section">
-        <div className="filter-head" onClick={() => toggleFilter("processor")}>
-          <h5>Processor</h5>
-          <img
-            src={arrowDropdown}
-            alt="arrow"
-            className={openFilter.processor ? "rotate" : ""}
-          />
-        </div>
-        {openFilter.processor &&
-          PROCESSORS.map((cpu) => (
-            <label key={cpu} className="filter-option">
-              <input
-                type="checkbox"
-                checked={selectedFilters.processor.includes(cpu)}
-                onChange={() => handleCheckboxChange("processor", cpu)}
-              />
-              {cpu}
-            </label>
-          ))}
-      </div>
-
-      <div className="filter-section">
-        <div className="filter-head" onClick={() => toggleFilter("gpu")}>
-          <h5>GPU Brand</h5>
-          <img
-            src={arrowDropdown}
-            alt="arrow"
-            className={openFilter.gpu ? "rotate" : ""}
-          />
-        </div>
-        {openFilter.gpu &&
-          GPU_BRANDS.map((gpu) => (
-            <label key={gpu} className="filter-option">
-              <input
-                type="checkbox"
-                checked={selectedFilters.gpu.includes(gpu)}
-                onChange={() => handleCheckboxChange("gpu", gpu)}
-              />
-              {gpu}
-            </label>
-          ))}
-      </div>
-
-      <div className="filter-section">
-        <div className="filter-head" onClick={() => toggleFilter("driveSize")}>
-          <h5>Drive Size</h5>
-          <img
-            src={arrowDropdown}
-            alt="arrow"
-            className={openFilter.driveSize ? "rotate" : ""}
-          />
-        </div>
-        {openFilter.driveSize &&
-          DRIVE_SIZES.map((size) => (
-            <label key={size} className="filter-option">
-              <input
-                type="checkbox"
-                checked={selectedFilters.driveSize.includes(size)}
-                onChange={() => handleCheckboxChange("driveSize", size)}
-              />
-              {size}
-            </label>
-          ))}
-      </div>
+      ))}
     </div>
   );
 };
