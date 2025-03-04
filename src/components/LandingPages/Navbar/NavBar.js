@@ -8,18 +8,32 @@ import Modal from "../../Modals/modal";
 import Sidebar from "../SideBar/Sidebar";
 import ProductDropdown from "../../Products/ProductsDropdown";
 import { Link, useLocation, useNavigate } from "react-router";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const isContactPage = location.pathname === "/contact";
   const isActive = (pathname) => {
     return location.pathname.startsWith(pathname);
   };
 
+  const { cartItems } = useSelector((state) => state.cart);
+  console.log(cartItems);
+
+    const cartQuantity = cartItems.length;
+
+    const handleCart = () => {
+      if (cartItems.length > 0) {
+        const firstCartItemId = cartItems[0]?.id;
+        navigate(`/cartDetails/${firstCartItemId}`);
+      }
+    };
+    
   return (
     <>
       <nav
@@ -47,7 +61,10 @@ const NavBar = ({ onLoginClick }) => {
           <ul className="navbar-nav mx-auto">
             <li className="nav-item">
               <Link
-                className={`nav-link ${ location.pathname === "/" ? "active-nav" : "" }`} to="/"
+                className={`nav-link ${
+                  location.pathname === "/" ? "active-nav" : ""
+                }`}
+                to="/"
               >
                 Home
               </Link>
@@ -104,8 +121,13 @@ const NavBar = ({ onLoginClick }) => {
             className="m-3 d-lg-block"
             onClick={() => setIsSearchOpen(true)}
           />
-          <img src={basket} alt="basket" className="m-3" />
 
+          <div className="cart-container">
+            <ShoppingCartIcon className="m-3" onClick={handleCart} />
+            {cartQuantity > 0 && (
+              <span className="cart-quantity-badge">{cartQuantity}</span>
+            )}
+          </div>
           {isContactPage ? (
             <Link
               className="btn btn-primary login-signup-btn"

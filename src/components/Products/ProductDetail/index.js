@@ -12,6 +12,7 @@ import { Paper } from "@mui/material";
 import star from "../../../assets/Star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
+import { addToCart } from "../../../redux/actions/cartAction";
 
 const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState("#444");
@@ -40,6 +41,10 @@ const ProductDetail = () => {
     setSelectedInstallment(period);
   };
 
+  const handleAddToCart = (product) => {
+      dispatch(addToCart(product));
+      alert("Item added to cart!");
+  };
 
   return (
     <>
@@ -126,10 +131,10 @@ const ProductDetail = () => {
           <div className="product-price-section">
             <Paper className="price-card">
               <div className="price-section">
-                <h3 className="current-price">$1299.00</h3>
+                <h3 className="current-price">${product.originalPrice}</h3>
                 <div className="price-info">
-                  <span className="original-price">$1410.87</span>
-                  <span className="discount-detail-badge">-12%</span>
+                  <span className="original-price">${product.discountedPrice}</span>
+                  <span className="discount-detail-badge">-{product.discount}</span>
                 </div>
               </div>
 
@@ -169,7 +174,7 @@ const ProductDetail = () => {
 
                   Buy Now
                 </button>
-                <button className="add-to-cart">Add to cart</button>
+                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>Add to cart</button>
               </div>
             </Paper>
           </div>

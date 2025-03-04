@@ -12,7 +12,6 @@ export const fetchProducts = () => {
                 type: FETCH_PRODUCTS,
                 payload: data
             })
-            console.log(data);
         } catch (error) {
             console.log("Error in fetching products", error);
         }
@@ -31,7 +30,6 @@ export const fetchProductByIdThunk = (id) => {
                 type: FETCH_PRODUCT_BY_ID_SUCCESS,
                 payload: product,
             });
-            console.log(product);
         } catch (error) {
             dispatch({
                 type: FETCH_PRODUCT_BY_ID_FAILURE,
