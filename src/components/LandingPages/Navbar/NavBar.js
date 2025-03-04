@@ -23,17 +23,15 @@ const NavBar = ({ onLoginClick }) => {
   };
 
   const { cartItems } = useSelector((state) => state.cart);
-  console.log(cartItems);
+  const cartQuantity = cartItems.length;
 
-    const cartQuantity = cartItems.length;
+  const handleCart = () => {
+    if (cartItems.length > 0) {
+      const firstCartItemId = cartItems[0]?.id;
+      navigate(`/cartDetails/${firstCartItemId}`);
+    }
+  };
 
-    const handleCart = () => {
-      if (cartItems.length > 0) {
-        const firstCartItemId = cartItems[0]?.id;
-        navigate(`/cartDetails/${firstCartItemId}`);
-      }
-    };
-    
   return (
     <>
       <nav
