@@ -14,7 +14,8 @@ const YourOrder = () => {
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id));
 
-    const localStorageCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+    const localStorageCartItems =
+      JSON.parse(localStorage.getItem("cartItems")) || [];
     setCartListItems(localStorageCartItems);
   }, [dispatch, id]);
 
@@ -22,7 +23,7 @@ const YourOrder = () => {
     ...product,
     quantity: 1,
   };
-  
+
   const subtotal =
     (displayProduct.discountedPrice || 0) * (displayProduct.quantity || 1);
   const discount =

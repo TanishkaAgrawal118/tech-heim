@@ -4,6 +4,7 @@ import {
   DECREASE_ITEM,
   REMOVE_FROM_CART,
 } from "../actions/cartAction";
+import { ADD_PRODUCT_SUCCESS, REMOVE_PRODUCT_SUCCESS } from "../actions/productAction";
 
 const initialState = {
   cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
@@ -48,7 +49,19 @@ const cartReducer = (state = initialState, action) => {
 
       return { ...state, cartItems: updatedCartItems };
     }
+    case ADD_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        products: [...state.products, action.payload],
+      };
 
+    case REMOVE_PRODUCT_SUCCESS:
+      return {
+        ...state,
+        products: state.products.filter(
+          (product) => product.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

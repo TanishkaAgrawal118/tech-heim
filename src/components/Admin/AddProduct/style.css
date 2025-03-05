@@ -1,0 +1,54 @@
+.product-List-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+.add-product-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.add-product-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-product-form button {
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer !important;
+}
+
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #f9f9f9;
+}
+
+.product-table th, .product-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.product-table th {
+    background-color: #f1f1f1;
+}
+
+.product-table input[type="checkbox"] {
+    transform: scale(1.3);
+    cursor: pointer;
+}
+
+.product-table button {
+    padding: 5px 10px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    cursor: pointer !important;
+    border-radius: 5px;
+}
