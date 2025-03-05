@@ -1,0 +1,68 @@
+.checkout {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.checkoutDetails {
+    flex: 1;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.checkoutSection {
+    margin-bottom: 20px;
+}
+
+.inputBox {
+    background-color: #f0f0f5;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.editIcon {
+    cursor: pointer;
+    color: blue;
+}
+
+.shippingOption {
+    cursor: pointer;
+    background-color: #f0f0f5;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.shippingOption p {
+    font-size: 12px;
+    color: gray;
+    margin: 0;
+    width: 100%;
+}
+
+.shippingOption.selected {
+    background-color: #e7f0ff;
+    border: 1px solid #0c68f4;
+}
+
+.returnLink {
+    color: blue;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+@media (max-width:1000px){
+    .checkout{
+        flex-direction: column;
+    }
+}

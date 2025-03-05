@@ -8,6 +8,7 @@ import Banner from './Banner'
 import './style.css'
 import TopBrands from './TopBrands'
 import Footer from './Footer'
+import Bottom from './Bottom'
 
 const LandingPage = () => {
   return (
@@ -19,6 +20,7 @@ const LandingPage = () => {
     <NewProduct/>
     <Banner/>
     <TopBrands/>
+    <Bottom/>
     <Footer/>
    </>
   )

@@ -25,8 +25,8 @@
   align-items: center;
   justify-content: center;
 }
-.hero-left button{
-  background-color: #F45E0C;
+.hero-left button {
+  background-color: #f45e0c;
   font-size: 1rem;
   color: white;
   margin: 5rem 5rem 1rem 0rem;
@@ -43,15 +43,14 @@
   padding: 10px;
 }
 
-@media (max-width: 995px){
-
-  .hero-left{
-    margin:0px -100px 0px 0px;
+@media (max-width: 995px) {
+  .hero-left {
+    margin: 0px -100px 0px 0px;
   }
-  .hero p{
+  .hero p {
     font-size: 2vmax;
   }
-  .hero-left button{
+  .hero-left button {
     width: 16vmax;
     height: 3vmax;
     border-radius: 0.1rem;
@@ -63,31 +62,31 @@
   }
 }
 
-@media (max-width: 770px){ 
-  .hero-left button{
+@media (max-width: 770px) {
+  .hero-left button {
     width: 19vmax;
     height: 4.2vmax;
     margin: 2rem 5rem 1rem 0rem;
-    border-radius: 0.4rem;   
+    border-radius: 0.4rem;
     font-size: 0.7rem;
   }
-    .hero-right img {
+  .hero-right img {
     height: 27vmax;
     width: 37vmax;
     margin: -2px -14px 0px -3px;
   }
 }
-@media(max-width: 490px){
+@media (max-width: 490px) {
   .hero-right img {
     height: 16vmax;
     max-width: 22vmax;
     margin: 0px -33px -4px -23px;
   }
-  .hero h1{
+  .hero h1 {
     font-size: 3vmax;
     margin-bottom: 10px;
   }
-  .hero p{
+  .hero p {
     font-size: 0.7rem;
   }
   .hero-left button {
@@ -101,13 +100,46 @@
 
 .light-effect {
   position: absolute;
-  width: 30%;
+  width: 20vmax;
   height: 30%;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(244, 94, 12, 0.6) 0%, rgba(244, 94, 12, 0) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(244, 94, 12, 0.6) 0%,
+    rgba(244, 94, 12, 0) 70%
+  );
   filter: blur(50px);
   top: 20%;
   left: 10%;
   transform: translate(-50%, -50%);
   z-index: -1;
+  overflow-x: hidden;
+}
+@media (max-width: 950px) {
+  .light-effect {
+    position: fixed;
+    width: 30vmax;
+    height: 30vmax;
+    filter: blur(30px);
+  }
+  .light-effect-small {
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(244, 94, 12, 0.6) 0%, rgba(244, 94, 12, 0) 70%);
+    filter: blur(50px);
+    top: 20%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+}
+
+@media (max-width: 490px) {
+  .light-effect {
+    width: 40vmax;
+    height: 40vmax;
+    filter: blur(20px);
+  }
 }
