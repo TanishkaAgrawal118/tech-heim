@@ -11,6 +11,8 @@ import Checkout from "./components/Products/CartDetail/Checkout";
 import Payment from "./components/Products/CartDetail/Payment";
 import CartItems from "./components/Products/CartDetail/CartItems";
 import AdminDashboard from "./components/Admin/AdminDashboard";
+import AddProduct from "./components/Admin/AddProduct/AddProduct";
+import AddAdmin from "./components/Admin/AdminManagement";
 
 function App() {
   return (
@@ -27,8 +29,9 @@ function App() {
             <Route path="checkout" element={<Checkout />} />
             <Route path="payment" element={<Payment />} />
           </Route>
-          <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
-        </Routes>
+          <Route path="/product-management" element={<AddProduct/>}></Route>
+          <Route path="/admin-management" element={<AddAdmin/>}></Route>
+        </Routes> 
       </BrowserRouter>
       {/* <DataTable/> */}
     </>

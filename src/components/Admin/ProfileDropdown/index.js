@@ -9,7 +9,7 @@ const ProfileDropdown = () => {
     navigate("/profile");
   };
   const handleAdminDashboard = () =>{
-    navigate("/admin-dashboard");
+    navigate("/product-management");
   }
  
   return (
