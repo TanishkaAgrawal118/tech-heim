@@ -1,0 +1,11 @@
+.product-edit-page {
+  display: flex;
+  flex-direction: row;
+}
+.edit-product-detail{
+  display: flex;
+}
+.edit-product-right{
+  display: flex;
+  flex-direction: column;
+}

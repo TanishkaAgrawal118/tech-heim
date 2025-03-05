@@ -4,6 +4,7 @@ export const FETCH_PRODUCT_BY_ID_SUCCESS = 'FETCH_PRODUCT_BY_ID_SUCCESS';
 export const FETCH_PRODUCT_BY_ID_FAILURE = 'FETCH_PRODUCT_BY_ID_FAILURE';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const REMOVE_PRODUCT_SUCCESS = 'REMOVE_PRODUCT_SUCCESS';
+export const UPDATE_PRODUCT_STATUS = "products/updateProductStatus";
 
 export const fetchProducts = () => {
     return async (dispatch) => {
@@ -82,3 +83,9 @@ export const removeProduct = (id) => {
         }
     };
 };
+
+
+export const updateProductStatus = (productId, status) => ({
+    type: UPDATE_PRODUCT_STATUS,
+    payload: { productId, status }
+});

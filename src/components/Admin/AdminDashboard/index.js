@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
 import AddProduct from "../AddProduct/AddProduct";
 import "./style.css";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { Container } from "react-bootstrap";
 import profile from '../../../assets/adminProfile.svg';
 import productEdit from '../../../assets/product-edit.svg';
@@ -11,6 +11,7 @@ import logout from '../../../assets/logout.svg';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const handleProduct = () =>{
     navigate('/product-management')
   }
@@ -20,6 +21,9 @@ const AdminDashboard = () => {
   const handleContact = () => {
     navigate('/contact');
   }
+  const isActive = (pathname) => {
+    return location.pathname.startsWith(pathname);
+  };
 
   return (
     <>
@@ -35,7 +39,7 @@ const AdminDashboard = () => {
               <p>Jimmy Smith</p>
             </div>
 
-            <div className="admin-dashboard-2" onClick={handleProduct}>
+            <div className={`admin-dashboard-2 ${isActive("/product-management") || ("/edit-product") ? "active-admin-dashboard" : ""}` } onClick={handleProduct}>
               <img src={productEdit} alt="product-edit" />
               <p>Product Management</p>
             </div>

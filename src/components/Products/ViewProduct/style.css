@@ -112,6 +112,13 @@
   width: 4rem;
   border: 1px solid grey;
 }
+.loading-message, .end-message {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
 @media (max-width: 1224px) {
   .product-container {
     grid-template-columns: repeat(2, 1fr);

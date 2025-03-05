@@ -13,6 +13,7 @@ import CartItems from "./components/Products/CartDetail/CartItems";
 import AdminDashboard from "./components/Admin/AdminDashboard";
 import AddProduct from "./components/Admin/AddProduct/AddProduct";
 import AddAdmin from "./components/Admin/AdminManagement";
+import EditProduct from "./components/Admin/EditProduct";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           </Route>
           <Route path="/product-management" element={<AddProduct/>}></Route>
           <Route path="/admin-management" element={<AddAdmin/>}></Route>
+          <Route path="/edit-product" element={<EditProduct/>}></Route>
         </Routes> 
       </BrowserRouter>
       {/* <DataTable/> */}

@@ -49,3 +49,21 @@
 .admin-dashboard-2 img {
   margin-left: 5px;
 }
+.admin-submenu {
+  padding-left: 30px;
+  background-color: #f8f8f8;
+}
+
+.submenu-item {
+  cursor: pointer;
+  padding: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+.submenu-item:hover {
+  color: #007bff;
+}
+.active-admin-dashboard{
+  color: #007bff;
+}
