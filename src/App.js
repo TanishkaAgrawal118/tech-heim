@@ -10,6 +10,7 @@ import CartDetail from "./components/Products/CartDetail";
 import Checkout from "./components/Products/CartDetail/Checkout";
 import Payment from "./components/Products/CartDetail/Payment";
 import CartItems from "./components/Products/CartDetail/CartItems";
+import AdminDashboard from "./components/Admin/AdminDashboard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="checkout" element={<Checkout />} />
             <Route path="payment" element={<Payment />} />
           </Route>
+          <Route path="/admin-dashboard" element={<AdminDashboard/>}></Route>
         </Routes>
       </BrowserRouter>
       {/* <DataTable/> */}

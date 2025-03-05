@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../../../../src/assets/logo.svg";
 import search from "../../../assets/search-normal.svg";
 import basket from "../../../assets/basket.svg";
@@ -10,18 +10,19 @@ import ProductDropdown from "../../Products/ProductsDropdown";
 import { Link, useLocation, useNavigate } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
+import AdminDropdown from "../../Admin/ProfileDropdown";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
+  const [isUserDropdown, setUserDropdown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isContactPage = location.pathname === "/contact";
   const isActive = (pathname) => {
     return location.pathname.startsWith(pathname);
   };
-
   const { cartItems } = useSelector((state) => state.cart);
   const cartQuantity = cartItems.length;
 
@@ -31,7 +32,6 @@ const NavBar = ({ onLoginClick }) => {
       navigate(`/cartDetails/${firstCartItemId}`);
     }
   };
-
   return (
     <>
       <nav
@@ -134,11 +134,16 @@ const NavBar = ({ onLoginClick }) => {
               Login / Sign Up
             </Link>
           ) : (
-            <img src={profile} alt="profile" className="m-3" />
+            <div
+              className="profile-wrapper"
+              onMouseEnter={() => setUserDropdown(true)}
+            >
+              <img src={profile} alt="profile" className="icon profile-icon" onClick={() => setUserDropdown(false)}/>
+            </div>
           )}
         </div>
       </nav>
-
+      <div className="user-dropdown">{isUserDropdown && <AdminDropdown closeDropdown={() => setUserDropdown(false)}/>}</div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
       {isProductDropdown && (

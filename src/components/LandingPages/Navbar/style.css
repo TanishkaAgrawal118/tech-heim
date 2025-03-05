@@ -54,6 +54,12 @@
   background-color: #003D99;
 }
 
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
 @media (max-width: 992px) {
   .navbar-nav.mx-auto {
     gap: 45px;
@@ -204,4 +210,12 @@
   border-radius: 50%;
   padding: 4px 8px;
   line-height: 1;
+}
+
+.user-dropdown{
+
+  cursor: pointer;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }

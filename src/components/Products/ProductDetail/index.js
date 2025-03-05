@@ -13,6 +13,9 @@ import star from "../../../assets/Star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
 import { addToCart } from "../../../redux/actions/cartAction";
+import { ToastContainer, toast } from 'react-toastify';
+
+
 
 const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState("#444");
@@ -22,7 +25,11 @@ const ProductDetail = () => {
   const navigate = useNavigate();
 
   const { product, loading, error } = useSelector(state => state.products);
-
+  const showToastMessage = () => {
+    toast.success("Product added to cart !", {
+      position: "top-right"
+    });
+  };
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id));
   },[dispatch, id]);
@@ -43,7 +50,7 @@ const ProductDetail = () => {
 
   const handleAddToCart = (product) => {
       dispatch(addToCart(product));
-      alert("Item added to cart!");
+      showToastMessage();
   };
 
   return (
@@ -210,7 +217,7 @@ const ProductDetail = () => {
           </table>
         </div>
       </Container>
-
+      <ToastContainer />
       <Footer />
     </>
   );
