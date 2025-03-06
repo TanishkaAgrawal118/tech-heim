@@ -32,7 +32,7 @@ function App() {
           </Route>
           <Route path="/product-management" element={<AddProduct/>}></Route>
           <Route path="/admin-management" element={<AddAdmin/>}></Route>
-          <Route path="/edit-product" element={<EditProduct/>}></Route>
+          <Route path="/edit-product/:id" element={<EditProduct/>}></Route>
         </Routes> 
       </BrowserRouter>
       {/* <DataTable/> */}

@@ -40,8 +40,8 @@ const AddProduct = () => {
     const newStatus = product.status === "active" ? "inactive" : "active";
     dispatch(updateProductStatus(product.id, newStatus));
 };
-const handleEdit = () =>{
-  navigate('/edit-product');
+const handleEdit = (product) =>{
+  navigate(`/edit-product/${product.id}`);
 }
 
   return (
@@ -74,7 +74,7 @@ const handleEdit = () =>{
                   {paginatedProducts.length > 0 ? (
                     paginatedProducts.map((product) => (
                       <tr key={product.id}>
-                        <td className="product-name" onClick={handleEdit}>
+                        <td className="product-name" onClick={() => {handleEdit(product)}}>
                           <img
                             src={product.image}
                             alt={product.name}
@@ -97,7 +97,7 @@ const handleEdit = () =>{
                         <td>{product.details?.color || "-"}</td>
                         <td>
                           <div className="product-actions">
-                            <img src={edit} alt="edit" className="product-edit-btn" onClick={handleEdit}/>
+                            <img src={edit} alt="edit" className="product-edit-btn" onClick={() => {handleEdit(product)}}/>
                             <img src={deleteIcon} alt="delete" className="product-delete-btn"/>
                           </div>
                         </td>
