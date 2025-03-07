@@ -12,12 +12,10 @@
   color: #666;
   gap: 5px;
 }
-
 .navigation a {
   text-decoration: none;
   cursor: pointer;
 }
-
 .navigation .active {
   color: #0c68f4;
 }
@@ -38,14 +36,12 @@
   height: 3rem;
   margin: 10px;
 }
-
 .contact-item h3 {
   font-size: 1.5rem;
 }
-
 .contact-form {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   max-width: 90%;
@@ -118,7 +114,6 @@
   .contact-container {
     padding: 0 0 20px 0;
   }
-
   .contact-message {
     max-width: 61%;
   }
