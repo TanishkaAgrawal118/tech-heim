@@ -1,21 +1,19 @@
 import React, { useState } from "react";
-import "./style.css"; 
-import product1 from '../../../assets/product1.svg'
-import product2 from '../../../assets/product2.svg'
-import product3 from '../../../assets/product3.svg'
-
-
+import "./style.css";
+import product1 from "../../../assets/product1.svg";
+import product2 from "../../../assets/product2.svg";
+import product3 from "../../../assets/product3.svg";
 
 const categories = [
-  {  title: "Mobile Phones" },
-  {  title: "Laptops & Computers" },
-  {  title: "Tablets & E-reader" },
-  {  title: "Wearables" },
+  { title: "Mobile Phones" },
+  { title: "Laptops & Computers" },
+  { title: "Tablets & E-reader" },
+  { title: "Wearables" },
   { title: "Audio" },
-  {  title: "Cameras" },
-  {  title: "Gaming" },
+  { title: "Cameras" },
+  { title: "Gaming" },
   { title: "Networking" },
-  {  title: "Accessories" },
+  { title: "Accessories" },
 ];
 
 const featuredProducts = [
@@ -25,16 +23,21 @@ const featuredProducts = [
   { image: product3, title: "Cases & Protection" },
 ];
 
-const ProductDropdown = ({setIsProductDropdown}) => {
+const ProductDropdown = ({ setIsProductDropdown }) => {
   const [hoveredCategory, setHoveredCategory] = useState(null);
 
   return (
-    <div className="product-dropdown"   onMouseLeave={() => setIsProductDropdown(false)}>
+    <div
+      className="product-dropdown"
+      onMouseLeave={() => setIsProductDropdown(false)}
+    >
       <div className="dropdown-sidebar">
         {categories.map((category, index) => (
           <div
             key={index}
-            className={`sidebar-item ${hoveredCategory === index ? "active" : ""}`}
+            className={`sidebar-item ${
+              hoveredCategory === index ? "active" : ""
+            }`}
             onMouseEnter={() => setHoveredCategory(index)}
           >
             <span>{category.title}</span>
@@ -42,10 +45,11 @@ const ProductDropdown = ({setIsProductDropdown}) => {
         ))}
       </div>
 
-
       <div className="dropdown-content">
         <div className="subcategories">
-          <a href="#" className="view-all">View all</a>
+          <a href="#" className="view-all">
+            View all
+          </a>
         </div>
 
         <div className="featured-products">
