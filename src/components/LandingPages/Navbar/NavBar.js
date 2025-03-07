@@ -47,13 +47,8 @@ const NavBar = ({ onLoginClick }) => {
                 Home
               </Link>
             </li>
-<<<<<<< HEAD
-            {/* <li
-              className="navItem"
-=======
             <li
               className="nav-item"
->>>>>>> a860989 (login/signUp Page)
               onMouseEnter={() => {
                 setIsProductDropdown(true);
               }}
@@ -61,17 +56,6 @@ const NavBar = ({ onLoginClick }) => {
               <a style={{ cursor: "pointer" }} className="nav-link" href="#">
                 Products
               </a>
-<<<<<<< HEAD
-            </li> */}
-             <li
-              className="navItem"
-            >
-              <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
-                Products
-              </Link>
-            </li>
-            <li className="navItem">
-=======
             </li>
             {/* <li className="nav-item">
               <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
@@ -79,7 +63,6 @@ const NavBar = ({ onLoginClick }) => {
               </Link>
             </li> */}
             <li className="nav-item">
->>>>>>> a860989 (login/signUp Page)
               <Link className="nav-link" to="#">
                 Blog
               </Link>
