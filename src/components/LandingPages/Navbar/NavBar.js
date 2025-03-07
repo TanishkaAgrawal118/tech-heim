@@ -7,19 +7,21 @@ import "./style.css";
 import Modal from "../../Modals/modal";
 import Sidebar from "../SideBar/Sidebar";
 import ProductDropdown from "../../Products/ProductsDropdown";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 
-const NavBar = () => {
+const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
+  const isContactPage = location.pathname === "/contact";
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light px-4"
-        style={{ overflowX: "hidden",position:"relative" }}
+        className="navbar navbar-expand-lg navbar-light px-5"
+        style={{ overflowX: "hidden", position: "relative" }}
       >
         <a className="navbar-brand d-none d-lg-block" href="#">
           <img
@@ -45,25 +47,22 @@ const NavBar = () => {
                 Home
               </Link>
             </li>
-            {/* <li
-              className="navItem"
+            <li
+              className="nav-item"
               onMouseEnter={() => {
                 setIsProductDropdown(true);
-                console.log("entered")
               }}
             >
               <a style={{ cursor: "pointer" }} className="nav-link" href="#">
                 Products
               </a>
-            </li> */}
-             <li
-              className="navItem"
-            >
+            </li>
+            {/* <li className="nav-item">
               <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
                 Products
               </Link>
-            </li>
-            <li className="navItem">
+            </li> */}
+            <li className="nav-item">
               <Link className="nav-link" to="#">
                 Blog
               </Link>
@@ -73,30 +72,40 @@ const NavBar = () => {
                 FAQ
               </Link>
             </li>
-            <li className="navItem">
-              <Link className="nav-link" to="#">
+            <li className="nav-item">
+              <Link className="nav-link" to="/contact">
                 Contact Us
               </Link>
             </li>
           </ul>
         </div>
-        
+
         <p className="d-block d-lg-none tech-heim">Tech Heim</p>
         <div className="d-flex navbar-images">
-          <img
-            src={search}
-            alt="search"
-            className="m-3 d-none d-lg-block"
-            onClick={() => setIsSearchOpen(true)}
-          />
+            <img
+              src={search}
+              alt="search"
+              className="m-3 d-lg-block"
+              onClick={() => setIsSearchOpen(true)}
+            />
+
           <img src={basket} alt="basket" className="m-3" />
-          <img src={profile} alt="profile" className="m-3" />
+
+          {isContactPage ? ( 
+            <Link className="btn btn-primary login-signup-btn"  onClick={onLoginClick}>
+              Login / Sign Up
+            </Link>
+          ) : (
+            <img src={profile} alt="profile" className="m-3" />
+          )}
         </div>
       </nav>
 
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-      {isProductDropdown && <ProductDropdown setIsProductDropdown={setIsProductDropdown}/>}
+      {isProductDropdown && (
+        <ProductDropdown setIsProductDropdown={setIsProductDropdown} />
+      )}
 
       <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)}>
         <div className="search-modal">
