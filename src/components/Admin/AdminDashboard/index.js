@@ -24,7 +24,10 @@ const AdminDashboard = () => {
   const isActive = (pathname) => {
     return location.pathname.startsWith(pathname);
   };
-
+  const handleUserOnBoard = () => {
+    navigate('/user-onBoard')
+    console.log("user clicked")
+  }
   return (
     <>
         <div className="navigation">
@@ -39,14 +42,15 @@ const AdminDashboard = () => {
               <p>Jimmy Smith</p>
             </div>
 
-            <div className={`admin-dashboard-2 ${isActive("/product-management") || ("/edit-product") ? "active-admin-dashboard" : ""}` } onClick={handleProduct}>
+            <div className={`admin-dashboard-2 ${isActive("/product-management") || isActive("/edit-product") ? "active-admin-dashboard" : "inactive-admin-dashboard"}`} onClick={handleProduct}>
               <img src={productEdit} alt="product-edit" />
               <p>Product Management</p>
             </div>
 
-            <div className="admin-dashboard-2" >
+            <div className={`admin-dashboard-2 ${isActive ("/user-onBoard") ? "active-admin-dashboard" : "inactive-admin-dashboard"}`} onClick={handleUserOnBoard}>
               <img src={productEdit} alt="product-edit" />
               <p>User Onboarding</p>
+              
             </div>
 
             <div className="admin-dashboard-2" onClick={handleAdmin}>

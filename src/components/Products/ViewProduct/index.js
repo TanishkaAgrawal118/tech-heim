@@ -68,7 +68,7 @@ const ViewProduct = ({ selectedFilters }) => {
       >
         <div className="product-containers">
           {displayedProducts.map((product) => (
-            <Paper key={product.id} className="product-card-wrapper">
+            <Paper key={product.id} elevation={0} className="product-card-wrapper">
               <div
                 className="product-cards"
                 onClick={() => handleProductDetail(product)}

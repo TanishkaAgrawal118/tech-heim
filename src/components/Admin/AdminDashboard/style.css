@@ -67,3 +67,6 @@
 .active-admin-dashboard{
   color: #007bff;
 }
+.inactive-admin-dashboard{
+  color: rgb(27, 27, 27);
+}

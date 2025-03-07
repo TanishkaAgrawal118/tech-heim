@@ -14,6 +14,7 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import AddProduct from "./components/Admin/AddProduct/AddProduct";
 import AddAdmin from "./components/Admin/AdminManagement";
 import EditProduct from "./components/Admin/EditProduct";
+import UserOnBoard from "./components/Admin/UserOnBoarding";
 
 function App() {
   return (
@@ -33,6 +34,8 @@ function App() {
           <Route path="/product-management" element={<AddProduct/>}></Route>
           <Route path="/admin-management" element={<AddAdmin/>}></Route>
           <Route path="/edit-product/:id" element={<EditProduct/>}></Route>
+          <Route path="/edit-product" element={<EditProduct/>}></Route>
+          <Route path="/user-onBoard" element={<UserOnBoard/>}></Route>
         </Routes> 
       </BrowserRouter>
       {/* <DataTable/> */}

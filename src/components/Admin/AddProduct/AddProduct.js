@@ -43,7 +43,9 @@ const AddProduct = () => {
 const handleEdit = (product) =>{
   navigate(`/edit-product/${product.id}`);
 }
-
+const handleAddProduct = () =>{
+  navigate('/edit-product');
+}
   return (
     <>
       <NavBar />
@@ -55,7 +57,7 @@ const handleEdit = (product) =>{
 
           <div className="product-List-container">
             <h2>Product Management</h2>
-
+          {/* <button onClick={handleAddProduct}>Add Product</button> */}
             <div className="table-wrapper">
               <table className="product-table">
                 <thead>

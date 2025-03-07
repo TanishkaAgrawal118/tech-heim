@@ -31,7 +31,6 @@ const Product = () => {
             Products
           </Link>
         </div>
-        <TopProduct />
         <div className="product-filter-section">
         <Filter
             selectedFilters={selectedFilters}

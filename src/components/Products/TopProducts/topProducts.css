@@ -20,6 +20,7 @@
     align-items: center;
     gap: 1rem;
     flex-wrap: nowrap; 
+    justify-content: center;
 }
 
 .products {
@@ -28,9 +29,15 @@
 
 .products img {
     cursor: pointer;
+    height: 4rem;
+    width: 8rem;
+    margin-bottom: 10px;
 }
-
-@media (min-width: 801px) {
+.products h5 {
+    font-size: 1rem;
+    color: rgb(58, 58, 58);
+}
+/* @media (min-width: 801px) {
     .topProducts {
         justify-content: space-around;
         flex-wrap: wrap; 
@@ -43,11 +50,10 @@
         font-size: 0.8rem;
         color: rgb(58, 58, 58);
     }
-}
+} */
 
-@media (max-width: 800px) {
+@media (max-width: 1200px) {
     .topProducts {
-        justify-content: flex-start;
         scroll-snap-type: x mandatory;
     }
     .products {

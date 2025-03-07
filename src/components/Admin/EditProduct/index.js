@@ -9,12 +9,19 @@ import "quill/dist/quill.snow.css";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import edit from "../../../assets/edit.svg";
+import deleteIcon from "../../../assets/trash btn.svg";
 
 const EditProduct = () => {
-  const [description, setDescription] = useState("");
+  const [descriptionData, setDescriptionData] = useState({
+    description: "",
+  });
   const { id } = useParams();
   const dispatch = useDispatch();
   const { product, loading } = useSelector((state) => state.products);
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
   const [formData, setFormData] = useState({
     name: "",
     stock: "",
@@ -34,18 +41,39 @@ const EditProduct = () => {
     discountPrice: "",
     shipmentCost: "",
     discount: "",
-
     image: "",
   });
-  const [descriptionData, setDescriptionData] = useState({
-    description: "",
-  });
+
   useEffect(() => {
-    dispatch(fetchProductByIdThunk(id));
+    if (id) {
+      dispatch(fetchProductByIdThunk(id));
+    } else {
+      console.log("no id");
+      setFormData({
+        name: "",
+        stock: "",
+        rating: "",
+        quantity: "",
+        brand: "",
+        model: "",
+        hardDiskSize: "",
+        processor: "",
+        graphics: "",
+        display: "",
+        batteryLife: "",
+        weight: "",
+        color: "",
+        includedItems: "",
+        originalPrice: "",
+        discountPrice: "",
+        shipmentCost: "",
+        discount: "",
+        image: "",
+      });
+    }
   }, [dispatch, id]);
 
   useEffect(() => {
-    console.log("Fetched Product:", product);
     if (product) {
       setFormData({
         name: product.name || "",
@@ -80,9 +108,13 @@ const EditProduct = () => {
     });
   };
   const handleDescriptionChange = (value) => {
-    setDescriptionData({
-      description: value,
-    });
+    setFormData({ ...formData, description: value });
+  };
+  const handlePreviewClick = () => {
+    setIsPreviewOpen(true);
+  };
+  const handleClosePreview = () => {
+    setIsPreviewOpen(false);
   };
 
   return (
@@ -328,6 +360,31 @@ const EditProduct = () => {
                     <h5>Product media</h5>
                     <div>
                       <img src={formData.image} alt="product" />
+                      <div className="image-actions">
+                        <VisibilityOutlinedIcon
+                          className="product-preview"
+                          onClick={handlePreviewClick}
+                        />
+                        <img src={edit} alt="edit" className="product-edit" />
+                        <img
+                          src={deleteIcon}
+                          alt="delete"
+                          className="product-delete"
+                        />
+                      </div>
+                      {isPreviewOpen && (
+                        <div className="preview-modal">
+                          <div className="preview-modal-content">
+                            <button
+                              className="close-button"
+                              onClick={handleClosePreview}
+                            >
+                              ✕
+                            </button>
+                            <img src={formData.image} alt="Product Preview" />
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </Paper>
                 </div>
@@ -345,13 +402,12 @@ const EditProduct = () => {
               </Paper>
             </div>
           </div>
-
         </div>
-                  
+
         <div className="edit-btn">
-            <button className="discard-edit">Discard</button>
-            <button className="save-edit">Save</button>
-          </div>
+          <button className="discard-edit">Discard</button>
+          <button className="save-edit">Save</button>
+        </div>
       </Container>
     </>
   );

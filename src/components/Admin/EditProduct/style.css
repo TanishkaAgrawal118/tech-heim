@@ -34,7 +34,7 @@
   background-color: #f9f9f9;
   transition: all 0.3s ease;
 }
-.edit-product-detail input{
+.edit-product-detail input {
   font-size: 0.87rem;
   color: rgb(54, 54, 54) !important;
 }
@@ -47,9 +47,9 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 .edit-input::placeholder {
-  font-size: 0.8rem; 
-  color: #888; 
-  opacity: 1; 
+  font-size: 0.8rem;
+  color: #888;
+  opacity: 1;
 }
 
 .edit-product-detail label {
@@ -79,29 +79,87 @@
   border-radius: 12px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-.edit-product-media img{
+.edit-product-media img {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: auto;
 }
-.edit-btn{
+.edit-btn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.discard-edit, .save-edit{
+.discard-edit,
+.save-edit {
   font-size: 1.1rem;
   width: 100px;
   border-radius: 5px;
-  margin:15px;
+  margin: 15px;
   padding: 10px;
   border: none;
   color: white;
 }
-.discard-edit{
+.discard-edit {
   background-color: rgb(255, 70, 70);
 }
-.save-edit{
+.save-edit {
   background-color: rgb(70, 144, 255);
+}
+.image-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.product-preview {
+  cursor: pointer;
+  width: 77px !important;
+}
+.product-edit {
+  cursor: pointer;
+  width: 21px;
+}
+.product-delete {
+  cursor: pointer;
+  width: 22px;
+}
+.preview-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.preview-modal-content {
+  position: relative;
+}
+
+.preview-modal-content img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.close-button {
+  margin: 20px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 25px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
