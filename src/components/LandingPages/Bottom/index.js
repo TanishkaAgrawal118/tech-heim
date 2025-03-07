@@ -33,8 +33,4 @@ const Bottom = () => {
   )
 }
 
-<<<<<<< HEAD
 export default Bottom
-=======
-export default Bottom
->>>>>>> b6403e6 (bottom)
