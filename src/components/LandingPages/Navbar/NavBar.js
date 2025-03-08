@@ -83,14 +83,6 @@ const NavBar = ({ onLoginClick }) => {
             </li>
             <li className="nav-item">
               <Link
-                className={`nav-link ${isActive("/blog") ? "active-nav" : ""}`}
-                to="/"
-              >
-                Blog
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
                 className={`nav-link ${isActive("/FAQ") ? "active-nav" : ""}`}
                 to="/FAQ"
               >

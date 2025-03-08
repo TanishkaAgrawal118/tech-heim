@@ -8,9 +8,6 @@
   border: none;
   outline: none;
 }
-.navbar-images {
-  cursor: pointer;
-}
 .collapse {
   pointer-events: auto !important;
 }
@@ -110,9 +107,9 @@
   padding: 1rem;
 }
 .navbar-images {
+  cursor: pointer;
   display: flex;
   align-items: center;
-  margin-left: auto;
 }
 
 @media (max-width: 470px) {

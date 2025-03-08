@@ -38,7 +38,6 @@ function App() {
           <Route path="/user-onBoard" element={<UserOnBoard/>}></Route>
         </Routes> 
       </BrowserRouter>
-      {/* <DataTable/> */}
     </>
   );
 }
