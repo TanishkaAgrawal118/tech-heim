@@ -5,7 +5,7 @@ import DataTable from "./components/TableTask/Table";
 import FAQ from "./components/FAQ";
 import Contact from "./components/Contact";
 import Product from "./components/Products";
-import ProductDetail from "./components/Products/ProductDetail";
+
 import CartDetail from "./components/Products/CartDetail";
 import Checkout from "./components/Products/CartDetail/Checkout";
 import Payment from "./components/Products/CartDetail/Payment";
@@ -15,6 +15,7 @@ import AddProduct from "./components/Admin/AddProduct/AddProduct";
 import AddAdmin from "./components/Admin/AdminManagement";
 import EditProduct from "./components/Admin/EditProduct";
 import UserOnBoard from "./components/Admin/UserOnBoarding";
+import ProductDetail from "./components/Products/ProductDetail";
 
 function App() {
   return (
@@ -25,7 +26,7 @@ function App() {
           <Route path="/FAQ" element={<FAQ />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/products" element={<Product />}></Route>
-          <Route path="/productDetails/:id" element={<ProductDetail />} />
+          <Route path="/productDetails/:id" element={<ProductDetail/>} />
           <Route path="/cartDetails/:id" element={<CartDetail />}>
             <Route index element={<CartItems />} />
             <Route path="checkout" element={<Checkout />} />

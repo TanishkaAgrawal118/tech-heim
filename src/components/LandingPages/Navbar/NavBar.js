@@ -35,8 +35,8 @@ const NavBar = ({ onLoginClick }) => {
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light px-5"
-        style={{ overflowX: "hidden", position: "relative" }}
+        className="navbar navbar-expand-lg navbar-light"
+        style={{ overflowX: "hidden", position: "relative", paddingLeft:"1rem", paddingRight:"1rem" }}
       >
         <a className="navbar-brand d-none d-lg-block" href="#">
           <img

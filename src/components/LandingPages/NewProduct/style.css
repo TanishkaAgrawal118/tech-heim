@@ -53,12 +53,14 @@
 }
 
 .product-name {
+  font-weight: 600;
   color: #333333;
   margin-bottom: 10px;
 }
 
 .product-price {
   font-size: 14px;
+  font-weight: 600;
   color: #333333;
   margin-bottom: 15px;
 }
@@ -118,8 +120,9 @@
     grid-template-columns: repeat(1, minmax(200px, 1fr));
   }
   .productCard {
-    height: 17rem !important;
-    width: 12rem !important;
+    height: 14rem !important;
+    width: 10rem !important;
     margin: auto !important;
-  }
+    margin-bottom: 22px !important;
+}
 }

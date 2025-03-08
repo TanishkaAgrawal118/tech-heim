@@ -76,7 +76,7 @@ const handleAddProduct = () =>{
                   {paginatedProducts.length > 0 ? (
                     paginatedProducts.map((product) => (
                       <tr key={product.id}>
-                        <td className="product-name" onClick={() => {handleEdit(product)}}>
+                        <td className="add-product-name" onClick={() => {handleEdit(product)}}>
                           <img
                             src={product.image}
                             alt={product.name}

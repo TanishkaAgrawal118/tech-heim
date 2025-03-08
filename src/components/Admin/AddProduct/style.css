@@ -65,7 +65,7 @@
     cursor: pointer !important;
     border-radius: 5px;
 }
-.product-name{
+.add-product-name{
     margin: 0;
     align-items: center;
     display: flex;
@@ -77,10 +77,10 @@
     display: flex;
     align-items: center;
 }
-.product-name:hover{
+.add-product-name:hover{
     color:#0c68f4;
 }
-.product-name img{
+.add-product-name img{
     width: 4rem;
     height: 4rem;
     margin: 0;
