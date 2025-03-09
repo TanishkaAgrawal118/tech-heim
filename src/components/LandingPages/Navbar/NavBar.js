@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import logo from "../../../../src/assets/logo.svg";
 import search from "../../../assets/search-normal.svg";
 import basket from "../../../assets/basket.svg";
@@ -8,20 +8,35 @@ import Modal from "../../Modals/modal";
 import Sidebar from "../SideBar/Sidebar";
 import ProductDropdown from "../../Products/ProductsDropdown";
 import { Link, useLocation, useNavigate } from "react-router";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useSelector } from "react-redux";
+import AdminDropdown from "../../Admin/ProfileDropdown";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
-  const navigate = useNavigate();
+  const [isUserDropdown, setUserDropdown] = useState(false);
   const location = useLocation();
-
+  const navigate = useNavigate();
   const isContactPage = location.pathname === "/contact";
+  const isActive = (pathname) => {
+    return location.pathname.startsWith(pathname);
+  };
+  const { cartItems } = useSelector((state) => state.cart);
+  const cartQuantity = cartItems.length;
+
+  const handleCart = () => {
+    if (cartItems.length > 0) {
+      const firstCartItemId = cartItems[0]?.id;
+      navigate(`/cartDetails/${firstCartItemId}`);
+    }
+  };
   return (
     <>
       <nav
-        className="navbar navbar-expand-lg navbar-light px-5"
-        style={{ overflowX: "hidden", position: "relative" }}
+        className="navbar navbar-expand-lg navbar-light"
+        style={{ overflowX: "hidden", position: "relative", paddingLeft:"1rem", paddingRight:"1rem" }}
       >
         <a className="navbar-brand d-none d-lg-block" href="#">
           <img
@@ -42,38 +57,45 @@ const NavBar = ({ onLoginClick }) => {
 
         <div id="navbarNav" className="nav-content">
           <ul className="navbar-nav mx-auto">
-            <li className="navItem">
-              <Link className="nav-link active" to="/">
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${
+                  location.pathname === "/" ? "active-nav" : ""
+                }`}
+                to="/"
+              >
                 Home
               </Link>
             </li>
-            <li
-              className="nav-item"
-              onMouseEnter={() => {
-                setIsProductDropdown(true);
-              }}
-            >
-              <a style={{ cursor: "pointer" }} className="nav-link" href="#">
-                Products
-              </a>
-            </li>
-            {/* <li className="nav-item">
-              <Link style={{ cursor: "pointer" }} className="nav-link" to="#">
-                Products
-              </Link>
-            </li> */}
             <li className="nav-item">
-              <Link className="nav-link" to="#">
-                Blog
+              <Link
+                className={`nav-link ${
+                  isActive("/products") ||
+                  isActive("/productDetails") ||
+                  isActive("/cartDetails")
+                    ? "active-nav"
+                    : ""
+                }`}
+                to="/products"
+              >
+                Products
               </Link>
             </li>
-            <li className="navItem">
-              <Link className="nav-link" to="/FAQ">
+            <li className="nav-item">
+              <Link
+                className={`nav-link ${isActive("/FAQ") ? "active-nav" : ""}`}
+                to="/FAQ"
+              >
                 FAQ
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contact">
+              <Link
+                className={`nav-link ${
+                  isActive("/contact") ? "active-nav" : ""
+                }`}
+                to="/contact"
+              >
                 Contact Us
               </Link>
             </li>
@@ -81,26 +103,39 @@ const NavBar = ({ onLoginClick }) => {
         </div>
 
         <p className="d-block d-lg-none tech-heim">Tech Heim</p>
+
         <div className="d-flex navbar-images">
-            <img
-              src={search}
-              alt="search"
-              className="m-3 d-lg-block"
-              onClick={() => setIsSearchOpen(true)}
-            />
+          <img
+            src={search}
+            alt="search"
+            className="m-3 d-lg-block"
+            onClick={() => setIsSearchOpen(true)}
+          />
 
-          <img src={basket} alt="basket" className="m-3" />
-
-          {isContactPage ? ( 
-            <Link className="btn btn-primary login-signup-btn"  onClick={onLoginClick}>
+          <div className="cart-container">
+            <ShoppingCartIcon className="m-3" onClick={handleCart} />
+            {cartQuantity > 0 && (
+              <span className="cart-quantity-badge">{cartQuantity}</span>
+            )}
+          </div>
+          {isContactPage ? (
+            <Link
+              className="btn btn-primary login-signup-btn"
+              onClick={onLoginClick}
+            >
               Login / Sign Up
             </Link>
           ) : (
-            <img src={profile} alt="profile" className="m-3" />
+            <div
+              className="profile-wrapper"
+              onMouseEnter={() => setUserDropdown(true)}
+            >
+              <img src={profile} alt="profile" className="icon profile-icon" onClick={() => setUserDropdown(false)}/>
+            </div>
           )}
         </div>
       </nav>
-
+      <div className="user-dropdown">{isUserDropdown && <AdminDropdown closeDropdown={() => setUserDropdown(false)}/>}</div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
       {isProductDropdown && (

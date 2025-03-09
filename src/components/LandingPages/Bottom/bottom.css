@@ -23,3 +23,12 @@
     margin-top: 10px;
   }
 }
+@media (max-width: 600px){
+    .bottom{
+        padding: 20px;
+        flex-direction: column;
+    }
+    .section{
+        margin-top: 10px;
+    }
+}
