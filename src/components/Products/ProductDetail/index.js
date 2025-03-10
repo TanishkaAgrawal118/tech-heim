@@ -2,39 +2,67 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { Button, Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import "./productDetail.css";
 import frame1 from "../../../assets/frame1.svg";
 import frame2 from "../../../assets/frame2.svg";
 import frame3 from "../../../assets/frame3.svg";
 import frame4 from "../../../assets/frame4.svg";
 import Footer from "../../LandingPages/Footer";
-import { Paper } from "@mui/material";
+import { Paper, TextareaAutosize } from "@mui/material";
 import star from "../../../assets/Star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
 import { addToCart } from "../../../redux/actions/cartAction";
 import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import Modal from "../../Modals/modal";
+import { MdOutlineStarPurple500 } from "react-icons/md";
+import StarRating from "../ReviewProduct/starRating";
 
 const ProductDetail = () => {
-  const [selectedColor, setSelectedColor] = useState("#444");
-  const [selectedInstallment, setSelectedInstallment] = useState("3 Months");
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const [selectedColor, setSelectedColor] = useState("#444");
+  const [selectedInstallment, setSelectedInstallment] = useState("3 Months");
   const { product, loading, error } = useSelector((state) => state.products);
+  const [isReviewModal, setIsReviewModal] = useState(false);
+  const [rating, setRating] = useState(0);
+  const [review, setReview] = useState("");
+  const [reviews, setReviews] = useState([]);
   const showToastMessage = () => {
     toast.success("Product added to cart !", {
       position: "top-right",
+      position: "top-right",
     });
   };
+
+  useEffect(() => {
+    const storedReviews =
+      JSON.parse(localStorage.getItem("productReviews")) || {};
+    const productReviews = storedReviews[product?.id] || [];
+    setReviews(productReviews);
+  }, [product?.id]);
+
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id));
   }, [dispatch, id]);
 
+  useEffect(() => {
+    if (product) {
+      const storedReviews =
+        JSON.parse(localStorage.getItem("productReviews")) || {};
+      if (product.id && storedReviews[product.id]) {
+        setReviews(storedReviews[product.id]);
+      }
+    }
+  }, [product]);
+
   if (loading) return <p>Loading product details...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>No product found!</p>;
+
 
   const handleCartDetail = (product) => {
     navigate(`/cartDetails/${product.id}`);
@@ -45,10 +73,34 @@ const ProductDetail = () => {
   const handleInstallmentSelect = (period) => {
     setSelectedInstallment(period);
   };
-
   const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     showToastMessage();
+    dispatch(addToCart(product));
+    showToastMessage();
+  };
+
+  const handleSubmit = () => {
+    if (!review || !rating) {
+      alert("Please provide both rating and review");
+      return;
+    }
+    const newReview = {
+      id: Date.now(),
+      review,
+      rating,
+      date: new Date().toISOString(),
+    };
+    const storedReviews =
+      JSON.parse(localStorage.getItem("productReviews")) || {};
+    const currentProductReviews = storedReviews[product?.id] || [];
+    const updatedReviews = [...currentProductReviews, newReview];
+    storedReviews[product?.id] = updatedReviews;
+    localStorage.setItem("productReviews", JSON.stringify(storedReviews));
+    setReviews(updatedReviews);
+    setReview("");
+    setRating(0);
+    setIsReviewModal(false);
   };
   return (
     <>
@@ -135,13 +187,13 @@ const ProductDetail = () => {
           <div className="product-price-section">
             <Paper className="price-card">
               <div className="price-section">
-                <h3 className="current-price">${product.originalPrice}</h3>
+                <h3 className="current-price">${product?.originalPrice}</h3>
                 <div className="price-info">
                   <span className="original-price">
-                    ${product.discountedPrice}
+                    ${product?.discountedPrice}
                   </span>
                   <span className="discount-detail-badge">
-                    -{product.discount}
+                    -{product?.discount}
                   </span>
                 </div>
               </div>
@@ -182,6 +234,12 @@ const ProductDetail = () => {
                   onClick={() => handleCartDetail(product)}
                 >
                   Buy Now
+                </button>
+                <button
+                  className="add-to-cart"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to cart
                 </button>
                 <button
                   className="add-to-cart"
@@ -235,11 +293,97 @@ const ProductDetail = () => {
             </tr>
           </table>
         </div>
+
+        <Paper className="reviews-section">
+          <div className="review-top">
+            <h4>Ratings & Reviews</h4>
+            <Button onClick={() => setIsReviewModal(true)}>Rate Product</Button>
+          </div>
+          <div className="rating-summary">
+            <div className="rating-score">
+              <span className="score">
+                {(
+                  reviews.reduce((sum, review) => sum + review.rating, 0) /
+                  (reviews.length || 1)
+                ).toFixed(1)}{" "}
+                ★
+              </span>
+              <p>
+                {reviews.length} Ratings & {reviews.length} Reviews
+              </p>
+            </div>
+
+            <div className="rating-bars">
+              {[5, 4, 3, 2, 1].map((star) => {
+                const count = reviews.filter((r) => r.rating === star).length;
+                const percentage = (count / (reviews.length || 1)) * 100;
+
+                return (
+                  <div key={star} className="rating-bar">
+                    <span>
+                      {star} <MdOutlineStarPurple500 />
+                    </span>
+                    <div className="bar">
+                      <div
+                        className={`filled-bar star-${star}`}
+                        style={{ width: `${percentage}%` }}
+                      ></div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {reviews.length > 0 ? (
+            reviews.map((review) => (
+              <div key={review.id} className="review">
+                <div className="review-header">
+                  <span className="rating">{review.rating} ★</span>
+                  <strong>{review.review}</strong>
+                </div>
+                <span className="review-date">
+                  {new Date(review.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                </span>
+              </div>
+            ))
+          ) : (
+            <p>No reviews yet. Be the first to review!</p>
+          )}
+        </Paper>
+
+        <Modal isOpen={isReviewModal} onClose={() => setIsReviewModal(false)}>
+          <div>
+            <h4>Write Review</h4>
+          </div>
+          <div className="review-modal-top">
+            <div>
+              <img src={product?.image} />
+            </div>
+            <div>
+              <p style={{ marginLeft: "5px" }}>{product?.name}</p>
+              <StarRating value={rating} onChange={setRating} />
+            </div>
+          </div>
+          <div className="review-modal-text">
+            <TextareaAutosize
+              placeholder="Please write product review here"
+              onChange={(e) => setReview(e.target.value)}
+            ></TextareaAutosize>
+            <label>Select the image</label>
+            <input type="file"></input>
+            <Button onClick={handleSubmit}>Submit</Button>
+          </div>
+        </Modal>
       </Container>
+
       <ToastContainer />
       <Footer />
     </>
   );
 };
-
 export default ProductDetail;

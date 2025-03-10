@@ -267,6 +267,7 @@
   padding: 31px;
   border-radius: 8px;
   margin-top: 20px;
+  margin-bottom: 30px;
   width: 58rem;
   background-color: #fafafa;
 }
@@ -347,7 +348,6 @@
   font-weight: bold;
   color: #4caf50;
 }
-
 .review {
   margin-top: 20px;
   padding: 15px;
@@ -383,19 +383,100 @@
 .review-footer span:hover {
   color: #000;
 }
-.review-head{
+.review-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.review-head Button{
-  border-radius: 2px;
-  height: 34px;
-  width: 121px;
-  font-size: 0.9rem;
+.review-top Button {
+  border-radius: 3px;
   font-weight: 500;
+  font-size: 0.9rem;
+  width: 123px;
+  height: 32px;
+}
+
+.review-modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.review-modal-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.review-modal-top img {
+  width: 85px;
+  height: 85px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.review-modal-top p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5d5d5d;
+  margin-bottom: 4px;
+}
+
+.review-modal-top svg {
+  color: rgb(219, 219, 219);
+  width: 25px;
+  cursor: pointer;
+  height: 28px;
+}
+
+.review-modal-text textarea {
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  margin-bottom: 36px;
+}
+
+.review-modal-text textarea:focus {
+  border-color: #f45e0c;
+}
+
+.review-header input[type="file"] {
+  display: none;
   cursor: pointer;
 }
+.review-modal-text input[type="file"]{
+  cursor: pointer;
+}
+.review-modal-text label {
+  display: block;
+  align-items: center;
+  color: #333;
+  font-size: 13px;
+}
+
+.review-modal-text Button {
+  width: 34%;
+  margin: 73px auto;
+  padding: 9px;
+  background-color: #f45e0c;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.modal-content{
+  width: 32rem !important;
+  height: 30rem;
+}
+
 @media (max-width: 768px) {
   .product-detail-main {
     flex-direction: column;
