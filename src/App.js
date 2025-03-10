@@ -16,17 +16,19 @@ import AddAdmin from "./components/Admin/AdminManagement";
 import EditProduct from "./components/Admin/EditProduct";
 import UserOnBoard from "./components/Admin/UserOnBoarding";
 import ProductDetail from "./components/Products/ProductDetail";
+import CompareProducts from "./components/Products/Compare";
+import ReviewProduct from "./components/Products/ReviewProduct";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />}></Route>
+       <Routes>
+       <Route path="/" element={<LandingPage />}></Route>
           <Route path="/FAQ" element={<FAQ />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
           <Route path="/products" element={<Product />}></Route>
-          <Route path="/productDetails/:id" element={<ProductDetail/>} />
+          <Route path="/productDetails/:id" element={<ProductDetail/>}></Route>
           <Route path="/cartDetails/:id" element={<CartDetail />}>
             <Route index element={<CartItems />} />
             <Route path="checkout" element={<Checkout />} />
@@ -37,7 +39,9 @@ function App() {
           <Route path="/edit-product/:id" element={<EditProduct/>}></Route>
           <Route path="/edit-product" element={<EditProduct/>}></Route>
           <Route path="/user-onBoard" element={<UserOnBoard/>}></Route>
-        </Routes> 
+          <Route path="/compare-products" element={<CompareProducts/>}></Route>
+          <Route path="/review-product/:id" element={<ReviewProduct/>}></Route>
+       </Routes>
       </BrowserRouter>
     </>
   );

@@ -72,7 +72,8 @@ const NavBar = ({ onLoginClick }) => {
                 className={`nav-link ${
                   isActive("/products") ||
                   isActive("/productDetails") ||
-                  isActive("/cartDetails")
+                  isActive("/cartDetails") || 
+                  isActive("/compare-products")
                     ? "active-nav"
                     : ""
                 }`}

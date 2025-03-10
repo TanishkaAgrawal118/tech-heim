@@ -1,0 +1,118 @@
+.compare-container {
+    margin-top: 20px;
+  }
+  .compare-heading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+  .compare-table th > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+  .compare-table th,
+  .compare-table td {
+    padding: 12px;
+    border: 1px solid #dee2e6;
+    text-align: center;
+    position: relative;
+  }
+  .compare-table h5 {
+    font-size: 1rem;
+    margin: 24px 0 26px 0;
+  }
+  
+  .compare-table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+    width: 259.72px;
+    height: 250px;
+    padding: 0;
+    border: 1px solid #dee2e6;
+    vertical-align: top;
+    vertical-align: middle;
+  }
+  .compare-table td {
+    padding: 20px !important;
+    font-size: 14px;
+    height: 59px !important;
+  }
+  
+  .compare-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 8px;
+    margin-top: 0px !important;
+  }
+  
+  .compare-price {
+    color: #28a745;
+    font-weight: bold;
+  }
+  
+  .compare-original-price {
+    color: #6c757d;
+    text-decoration: line-through;
+    margin-left: 5px;
+  }
+  
+  .compare-discount {
+    color: #dc3545;
+    font-size: 14px;
+  }
+  
+  .compare-button {
+    width: 100%;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .compare-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .compare-remove-button {
+    background-color: #dc3545;
+  }
+  
+  .compare-remove-button:hover {
+    background-color: #c82333;
+  }
+  .compare-remove-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+  }
+  .compare-buy-btn,
+  .compare-add-btn {
+    border: none;
+    padding: 5px;
+    color: white;
+    font-weight: 600;
+    width: 161px;
+    height: 37px;
+    margin: 6px 0 13px 0;
+  }
+  .compare-buy-btn {
+    background-color: #186cff;
+  }
+  .compare-add-btn {
+    background-color: rgb(243, 94, 35);
+  }
+  
