@@ -339,7 +339,19 @@ const ProductDetail = () => {
             reviews.map((review) => (
               <div key={review.id} className="review">
                 <div className="review-header">
-                  <span className="rating">{review.rating} ★</span>
+                  <span
+                    className="rating"
+                    style={{
+                      color:
+                        review.rating >= 4
+                          ? "#4caf50" 
+                          : review.rating >= 3
+                          ? "#ffc107"
+                          : "#f44336", 
+                    }}
+                  >
+                    {review.rating} ★
+                  </span>
                   <strong>{review.review}</strong>
                 </div>
                 <span className="review-date">
@@ -357,7 +369,7 @@ const ProductDetail = () => {
         </Paper>
 
         <Modal isOpen={isReviewModal} onClose={() => setIsReviewModal(false)}>
-          <div>
+          <div className="review-modal-title">
             <h4>Write Review</h4>
           </div>
           <div className="review-modal-top">
