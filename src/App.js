@@ -17,7 +17,6 @@ import EditProduct from "./components/Admin/EditProduct";
 import UserOnBoard from "./components/Admin/UserOnBoarding";
 import ProductDetail from "./components/Products/ProductDetail";
 import CompareProducts from "./components/Products/Compare";
-import ReviewProduct from "./components/Products/ReviewProduct";
 
 function App() {
   return (
@@ -40,7 +39,6 @@ function App() {
           <Route path="/edit-product" element={<EditProduct/>}></Route>
           <Route path="/user-onBoard" element={<UserOnBoard/>}></Route>
           <Route path="/compare-products" element={<CompareProducts/>}></Route>
-          <Route path="/review-product/:id" element={<ReviewProduct/>}></Route>
        </Routes>
       </BrowserRouter>
     </>

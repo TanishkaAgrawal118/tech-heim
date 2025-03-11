@@ -197,29 +197,41 @@ const ProductDetail = () => {
         <div className="technical-details">
           <h4>Technical Details</h4>
           <table className="details-table">
+          <tr>
+              <td>Model</td>
+              <td>{product?.details?.model}</td>
+            </tr>
             <tr>
               <td>Display</td>
-              <td>{product.details.display}</td>
+              <td>{product?.details?.display}</td>
             </tr>
             <tr>
               <td>Graphics</td>
-              <td>{product.details.graphics}</td>
+              <td>{product?.details?.graphics}</td>
             </tr>
             <tr>
               <td>Processor</td>
-              <td>{product.details.processor}</td>
+              <td>{product?.details?.processor}</td>
             </tr>
             <tr>
-              <td>In the box</td>
-              <td>67W USB-C Power Adapter, USB-C Charge Cable (2 m)</td>
+              <td>Color</td>
+              <td>{product?.details?.color}</td>
             </tr>
             <tr>
               <td>Included Items</td>
-              <td>{product.details.includedItems}</td>
+              <td>{product?.details?.includedItems}</td>
             </tr>
             <tr>
               <td>Weight</td>
-              <td>{product.details.weight}</td>
+              <td>{product?.details?.weight}</td>
+            </tr>
+            <tr>
+              <td>Screen Size</td>
+              <td>{product?.details?.screenSize}</td>
+            </tr>
+            <tr>
+              <td>Hard disk Size</td>
+              <td>{product?.details?.hardDiskSize}</td>
             </tr>
           </table>
         </div>
