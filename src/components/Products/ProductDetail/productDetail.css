@@ -34,6 +34,14 @@
   align-items: center;
   padding: 10px;
 }
+.product-image-section img {
+  width: 18rem;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
 .main-product-image {
   width: 75%;
   height: auto;
@@ -475,8 +483,8 @@
   transition: background-color 0.2s ease;
 }
 .modal-content {
-  width: 32rem !important;
-  height: 30rem;
+  width: auto;
+  height: auto;
 }
 .review-date {
   font-size: 0.9rem;
@@ -490,6 +498,52 @@
   font-weight: 600;
 }
 
+.product-share-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.share-modal {
+  padding: 5px;
+}
+.share-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 10px 0 45px 0;
+}
+.share-icons img {
+  cursor: pointer;
+}
+.share-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.share-input-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 16rem;
+}
+
+.share-input-container button {
+  background-color: #f45e0c;
+  color: white;
+  border: none;
+  padding: 5px 19px;
+  font-size: 14px;
+  margin: 6px;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: background-color 0.2s ease;
+}
 @media (max-width: 991px) {
   .reviews-section {
     width: 43rem;
@@ -525,14 +579,14 @@
   .rating-summary {
     display: flex;
     flex-direction: column;
-}
-.rating-score {
-  margin: 15px;
-}
-.product-detail-title {
-  font-size: 18px;
-}
-.current-price {
-  font-size: 20px;
-}
+  }
+  .rating-score {
+    margin: 15px;
+  }
+  .product-detail-title {
+    font-size: 18px;
+  }
+  .current-price {
+    font-size: 20px;
+  }
 }

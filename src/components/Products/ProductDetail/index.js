@@ -19,6 +19,11 @@ import { ToastContainer, toast } from "react-toastify";
 import Modal from "../../Modals/modal";
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import StarRating from "../ReviewProduct/starRating";
+import { PiShareFat } from "react-icons/pi";
+import instagram from "../../../assets/instagram.svg";
+import facebook from "../../../assets/facebook-icon.svg";
+import telegram from "../../../assets/telegram.svg";
+import whatsapp from "../../../assets//whatsapp.svg";
 
 const ProductDetail = () => {
   const { id } = useParams();
@@ -28,9 +33,15 @@ const ProductDetail = () => {
   const [selectedInstallment, setSelectedInstallment] = useState("3 Months");
   const { product, loading, error } = useSelector((state) => state.products);
   const [isReviewModal, setIsReviewModal] = useState(false);
+  const [isShareModal, setIsShareModal] = useState(false);
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
   const [reviews, setReviews] = useState([]);
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    setCurrentUrl(window.location.href);
+  }, []);
   const showToastMessage = () => {
     toast.success("Product added to cart !", {
       position: "top-right",
@@ -102,6 +113,12 @@ const ProductDetail = () => {
     setRating(0);
     setIsReviewModal(false);
   };
+  const handleCopy = () => {
+    navigator.clipboard.writeText(currentUrl);
+    toast.success("Product Link Copied !", {
+      position: "top-right",
+    });
+  };
   return (
     <>
       <NavBar />
@@ -120,11 +137,18 @@ const ProductDetail = () => {
 
         <div className="product-detail-main">
           <div className="product-image-section">
-            <img
-              src={product?.image}
-              alt="Product"
-              className="main-product-image"
-            />
+            <div className="d-flex">
+              <img
+                src={product?.image}
+                alt="Product"
+                className="main-product-image"
+              />
+              <PiShareFat
+                className="product-share-icon"
+                onClick={() => setIsShareModal(true)}
+              />
+            </div>
+
             <div className="product-thumbnails">
               <img src={frame1} alt="frame" />
               <img src={frame2} alt="frame" />
@@ -344,10 +368,10 @@ const ProductDetail = () => {
                     style={{
                       color:
                         review.rating >= 4
-                          ? "#4caf50" 
+                          ? "#4caf50"
                           : review.rating >= 3
                           ? "#ffc107"
-                          : "#f44336", 
+                          : "#f44336",
                     }}
                   >
                     {review.rating} ★
@@ -369,26 +393,60 @@ const ProductDetail = () => {
         </Paper>
 
         <Modal isOpen={isReviewModal} onClose={() => setIsReviewModal(false)}>
-          <div className="review-modal-title">
-            <h4>Write Review</h4>
-          </div>
-          <div className="review-modal-top">
-            <div>
-              <img src={product?.image} />
+          <div style={{ width: "29rem", height: "27rem" }}>
+            <div className="review-modal-title">
+              <h4>Write Review</h4>
             </div>
-            <div>
-              <p style={{ marginLeft: "5px" }}>{product?.name}</p>
-              <StarRating value={rating} onChange={setRating} />
+            <div className="review-modal-top">
+              <div>
+                <img src={product?.image} />
+              </div>
+              <div>
+                <p style={{ marginLeft: "5px" }}>{product?.name}</p>
+                <StarRating value={rating} onChange={setRating} />
+              </div>
+            </div>
+            <div className="review-modal-text">
+              <TextareaAutosize
+                placeholder="Please write product review here"
+                onChange={(e) => setReview(e.target.value)}
+              ></TextareaAutosize>
+              <label>Select the image</label>
+              <input type="file"></input>
+              <Button onClick={handleSubmit}>Submit</Button>
             </div>
           </div>
-          <div className="review-modal-text">
-            <TextareaAutosize
-              placeholder="Please write product review here"
-              onChange={(e) => setReview(e.target.value)}
-            ></TextareaAutosize>
-            <label>Select the image</label>
-            <input type="file"></input>
-            <Button onClick={handleSubmit}>Submit</Button>
+        </Modal>
+
+        <Modal
+          isOpen={isShareModal}
+          onClose={() => {
+            setIsShareModal(false);
+          }}
+        >
+          <div className="share-modal">
+            <p>Share this link via</p>
+            <hr />
+            <div className="share-icons">
+              <img src={facebook} alt="facebook" 
+              onClick={() => window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`, '_blank')}/>
+              <img src={whatsapp} alt="whatsapp"
+              onClick={() => window.open(`https://wa.me/?text=${encodeURIComponent(currentUrl)}`, '_blank')}/>
+              <img src={telegram} alt="telegram" 
+               onClick={() => window.open(`https://t.me/share/url?url=${encodeURIComponent(currentUrl)}`, '_blank')}/>
+              <img src={instagram} alt="instagram"
+              onClick={() => window.open('https://www.instagram.com', '_blank')}/>
+            </div>
+            <p className="mb-2">Or Copy Link</p>
+            <div className="share-input-container">
+              <input
+                type="text"
+                value={currentUrl} readOnly 
+              />
+              <button onClick={handleCopy}>
+                Copy
+              </button>
+            </div>
           </div>
         </Modal>
       </Container>

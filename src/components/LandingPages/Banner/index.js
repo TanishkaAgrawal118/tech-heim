@@ -80,7 +80,7 @@ const Banner = () => {
           </Row>
         </div>
 
-        <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)}>
+        <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)} style={{width:"auto", height:"auto"}}>
           <div className="complete-modal">
           <div className="done-img">
             <img src={tick} alt="tick" />

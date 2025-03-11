@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdOutlineStarPurple500 } from 'react-icons/md';
 import './style.css';
 
 const StarRating = ({ totalStars = 5, value, onChange }) => {
+  const [hoverValue, setHoverValue] = useState(0);
 
   const handleStarClick = (index) => {
     onChange(index + 1); 
+  };
+
+  const handleMouseEnter = (index) => {
+    setHoverValue(index + 1);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(0);
   };
 
   return (
@@ -16,10 +25,13 @@ const StarRating = ({ totalStars = 5, value, onChange }) => {
           size={24}
           style={{
             cursor: 'pointer',
-            color: index < value ? '#f45e0c' : '#ccc', 
-            transition: 'color 0.2s ease',
+            color: index < (hoverValue || value) ? '#f45e0c' : '#ccc', 
+            transition: 'color 0.2s ease, transform 0.2s ease',
+            transform: hoverValue > 0 && index < hoverValue ? 'scale(1.2)' : 'scale(1)',
           }}
           onClick={() => handleStarClick(index)}
+          onMouseEnter={() => handleMouseEnter(index)}
+          onMouseLeave={handleMouseLeave}
         />
       ))}
     </div>
