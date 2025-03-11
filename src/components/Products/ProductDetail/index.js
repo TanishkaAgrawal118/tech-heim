@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavBar from "../../LandingPages/Navbar/NavBar";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import "./productDetail.css";
 import frame1 from "../../../assets/frame1.svg";
 import frame2 from "../../../assets/frame2.svg";
@@ -13,9 +13,7 @@ import star from "../../../assets/Star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
 import { addToCart } from "../../../redux/actions/cartAction";
-import { ToastContainer, toast } from 'react-toastify';
-
-
+import { ToastContainer, toast } from "react-toastify";
 
 const ProductDetail = () => {
   const [selectedColor, setSelectedColor] = useState("#444");
@@ -24,23 +22,23 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { product, loading, error } = useSelector(state => state.products);
+  const { product, loading, error } = useSelector((state) => state.products);
   const showToastMessage = () => {
     toast.success("Product added to cart !", {
-      position: "top-right"
+      position: "top-right",
     });
   };
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id));
-  },[dispatch, id]);
+  }, [dispatch, id]);
 
   if (loading) return <p>Loading product details...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!product) return <p>No product found!</p>;
-  
+
   const handleCartDetail = (product) => {
     navigate(`/cartDetails/${product.id}`);
-};
+  };
   const handleColorSelect = (color) => {
     setSelectedColor(color);
   };
@@ -49,10 +47,9 @@ const ProductDetail = () => {
   };
 
   const handleAddToCart = (product) => {
-      dispatch(addToCart(product));
-      showToastMessage();
+    dispatch(addToCart(product));
+    showToastMessage();
   };
-
   return (
     <>
       <NavBar />
@@ -92,7 +89,7 @@ const ProductDetail = () => {
               {product?.rating} | <span>Sold {product?.stock}</span>
             </p>
             <div className="availability-section">
-              <span>In Stock</span>
+              <span>In Stock - {product.stock}</span>
               <span>Guaranteed</span>
               <span>Free Delivery</span>
             </div>
@@ -140,8 +137,12 @@ const ProductDetail = () => {
               <div className="price-section">
                 <h3 className="current-price">${product.originalPrice}</h3>
                 <div className="price-info">
-                  <span className="original-price">${product.discountedPrice}</span>
-                  <span className="discount-detail-badge">-{product.discount}</span>
+                  <span className="original-price">
+                    ${product.discountedPrice}
+                  </span>
+                  <span className="discount-detail-badge">
+                    -{product.discount}
+                  </span>
                 </div>
               </div>
 
@@ -176,12 +177,18 @@ const ProductDetail = () => {
               </div>
 
               <div className="action-buttons">
-              <button className="buy-now" onClick={() => handleCartDetail(product)}>
-
-
+                <button
+                  className="buy-now"
+                  onClick={() => handleCartDetail(product)}
+                >
                   Buy Now
                 </button>
-                <button className="add-to-cart" onClick={() => handleAddToCart(product)}>Add to cart</button>
+                <button
+                  className="add-to-cart"
+                  onClick={() => handleAddToCart(product)}
+                >
+                  Add to cart
+                </button>
               </div>
             </Paper>
           </div>
@@ -190,29 +197,41 @@ const ProductDetail = () => {
         <div className="technical-details">
           <h4>Technical Details</h4>
           <table className="details-table">
+          <tr>
+              <td>Model</td>
+              <td>{product?.details?.model}</td>
+            </tr>
             <tr>
               <td>Display</td>
-              <td>13.3-inch LED-backlit display with IPS technology</td>
+              <td>{product?.details?.display}</td>
             </tr>
             <tr>
               <td>Graphics</td>
-              <td>Apple 10-core GPU</td>
+              <td>{product?.details?.graphics}</td>
             </tr>
             <tr>
               <td>Processor</td>
-              <td>Apple M2 chip</td>
+              <td>{product?.details?.processor}</td>
             </tr>
             <tr>
-              <td>In the box</td>
-              <td>67W USB-C Power Adapter, USB-C Charge Cable (2 m)</td>
+              <td>Color</td>
+              <td>{product?.details?.color}</td>
             </tr>
             <tr>
-              <td>Height</td>
-              <td>0.61 inch (1.56 cm)</td>
+              <td>Included Items</td>
+              <td>{product?.details?.includedItems}</td>
             </tr>
             <tr>
-              <td>Width</td>
-              <td>11.97 inches (30.41 cm)</td>
+              <td>Weight</td>
+              <td>{product?.details?.weight}</td>
+            </tr>
+            <tr>
+              <td>Screen Size</td>
+              <td>{product?.details?.screenSize}</td>
+            </tr>
+            <tr>
+              <td>Hard disk Size</td>
+              <td>{product?.details?.hardDiskSize}</td>
             </tr>
           </table>
         </div>
