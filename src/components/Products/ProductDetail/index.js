@@ -368,6 +368,19 @@ const ProductDetail = () => {
                     style={{
                       color:
                         review.rating >= 4
+                          ? "#4caf50" 
+                          : review.rating >= 3
+                          ? "#ffc107"
+                          : "#f44336", 
+                    }}
+                  >
+                    {review.rating} ★
+                  </span>
+                  <span
+                    className="rating"
+                    style={{
+                      color:
+                        review.rating >= 4
                           ? "#4caf50"
                           : review.rating >= 3
                           ? "#ffc107"
