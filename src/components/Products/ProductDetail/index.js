@@ -190,16 +190,6 @@ const ProductDetail = () => {
               <li>
                 <span>Model Name</span> {product?.sku}
               </li>
-              {/* <li>
-                <span>Screen Size</span> {product.details.screenSize}
-              </li>
-              <li>
-                <span>Hard Disk Size</span>
-                {product.details.hardDiskSize}
-              </li>
-              <li>
-                <span>CPU Model</span> core i5
-              </li> */}
             </ul>
 
             <a href="#" className="show-more">
