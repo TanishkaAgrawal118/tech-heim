@@ -21,6 +21,8 @@
   flex-wrap: nowrap;
   gap: 11px;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .product-image-section {
@@ -28,6 +30,14 @@
   height: auto;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.product-image-section img {
+  width: 18rem;
+  height: auto;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
@@ -267,6 +277,7 @@
   padding: 31px;
   border-radius: 8px;
   margin-top: 20px;
+  margin-bottom: 30px;
   width: 58rem;
   background-color: #fafafa;
 }
@@ -347,7 +358,6 @@
   font-weight: bold;
   color: #4caf50;
 }
-
 .review {
   margin-top: 20px;
   padding: 15px;
@@ -383,21 +393,200 @@
 .review-footer span:hover {
   color: #000;
 }
-.review-head{
+.review-top {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.review-head Button{
-  border-radius: 2px;
-  height: 34px;
-  width: 121px;
-  font-size: 0.9rem;
+.review-top Button {
+  border-radius: 3px;
   font-weight: 500;
+  font-size: 0.9rem;
+  width: 123px;
+  height: 32px;
+}
+
+.review-modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.review-modal-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.review-modal-top img {
+  width: 85px;
+  height: 85px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.review-modal-top p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5d5d5d;
+  margin-bottom: 4px;
+}
+
+.review-modal-top svg {
+  color: rgb(219, 219, 219);
+  width: 25px;
   cursor: pointer;
+  height: 28px;
+}
+
+.review-modal-text textarea {
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  margin-bottom: 36px;
+}
+
+.review-modal-text textarea:focus {
+  border-color: #f45e0c;
+}
+
+.review-header input[type="file"] {
+  display: none;
+  cursor: pointer;
+}
+.review-modal-text input[type="file"] {
+  cursor: pointer;
+}
+.review-modal-text label {
+  display: block;
+  align-items: center;
+  color: #333;
+  font-size: 13px;
+}
+
+.review-modal-text Button {
+  width: 34%;
+  margin: 73px auto;
+  padding: 9px;
+  background-color: #f45e0c;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.modal-content {
+  width: auto;
+  height: auto;
+}
+.review-date {
+  font-size: 0.9rem;
+  color: rgb(97, 97, 97);
+}
+.review-modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.product-share-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+.share-modal {
+  padding: 5px;
+}
+.share-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  margin: 10px 0 45px 0;
+}
+.share-icons img {
+  cursor: pointer;
+}
+.share-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.share-input-container input {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 16rem;
+}
+
+.share-input-container button {
+  background-color: #f45e0c;
+  color: white;
+  border: none;
+  padding: 5px 19px;
+  font-size: 14px;
+  margin: 6px;
+  cursor: pointer;
+  border-radius: 7px;
+  transition: background-color 0.2s ease;
+}
+@media (max-width: 991px) {
+  .reviews-section {
+    width: 43rem;
+  }
 }
 @media (max-width: 768px) {
   .product-detail-main {
     flex-direction: column;
+    flex-wrap: nowrap;
+  }
+  .reviews-section {
+    width: 32.4rem;
+  }
+}
+@media (max-width: 550px) {
+  .reviews-section {
+    width: 20.4rem !important;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  .rating-score .score {
+    font-size: 1.6rem;
+  }
+  .main-product-image {
+    width: 57%;
+  }
+  .product-image-section {
+    width: 20rem;
+  }
+  .product-thumbnails {
+    gap: 6px;
+  }
+  .rating-summary {
+    display: flex;
+    flex-direction: column;
+  }
+  .rating-score {
+    margin: 15px;
+  }
+  .product-detail-title {
+    font-size: 18px;
+  }
+  .current-price {
+    font-size: 20px;
   }
 }
