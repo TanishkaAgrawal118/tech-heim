@@ -178,21 +178,21 @@ export const MenuItems = [
   {
     title: "Products",
     subItems: [
-      { title: "Mobile Phones", icon: sidebarMobile },
-      { title: "Laptops & Computers", icon: sidebarLaptop },
-      { title: "Tablets & E-reader", icon: sidebarTablet  },
-      { title: "Wearables", icon: sidebarWatch },
-      { title: "Audio", icon: sidebarAudio},
-      { title: "Cameras", icon: sidebarCamera },
-      { title: "Gaming", icon: sidebarGames },
-      { title: "Networking", icon: sidebarNetwork},
-      { title: "Accessories", icon: sidebarAccessory },
+      { title: "Mobile Phones", icon: sidebarMobile, link: "/products" },
+      { title: "Laptops & Computers", icon: sidebarLaptop, link: "/products" },
+      { title: "Tablets & E-reader", icon: sidebarTablet, link: "/products" },
+      { title: "Wearables", icon: sidebarWatch, link: "/products" },
+      { title: "Audio", icon: sidebarAudio, link: "/products" },
+      { title: "Cameras", icon: sidebarCamera, link: "/products" },
+      { title: "Gaming", icon: sidebarGames, link: "/products" },
+      { title: "Networking", icon: sidebarNetwork, link: "/products" },
+      { title: "Accessories", icon: sidebarAccessory, link: "/products" },
     ],
   },
-  { title: "Blog" },
-  { title: "FAQ" },
-  { title: "Contact us" },
+  { title: "FAQ", link: "/FAQ" },
+  { title: "Contact us", link: "/contact" },
 ];
+
 
 export const dropdownProduct = [
   { title: "Mobile Phones", icon: sidebarMobile },

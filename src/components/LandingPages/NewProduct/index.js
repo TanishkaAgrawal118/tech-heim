@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import "./style.css";
 import { newProducts } from "../../constants/constant";
 import { Container } from "react-bootstrap";
-import star  from '../../../assets/Star.svg'
+import star from "../../../assets/Star.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../../../redux/actions/productAction";
 import { useNavigate } from "react-router";
@@ -30,19 +30,30 @@ const NewProduct = () => {
         </div>
         <hr />
         <div className="products-grid">
-        {products.slice(0, 4).map((product) => ( 
-            <div key={product.id} className="productCard" onClick={() => handleProductDetail(product)}>
-              <img
-                src={product.image}
-                alt={product.name}
-                className="product-image"
-              />
-              <h3 className="product-name">{product.name}</h3>
-
-              <div className="product-details">
-                <p className="product-price">${product.originalPrice}</p>
-                <span className="product-rating"><img src={star} alt="star" /> {product.rating}</span>
+          {products.slice(0, 4).map((product) => (
+            <div
+              key={product.id}
+              className="productCard"
+              onClick={() => handleProductDetail(product)}
+            >
+              <div className="productCard-top">
+                <img
+                  src={product.image}
+                  alt={product.name}
+                  className="product-image"
+                />
+                <h3 className="product-name">{product.name}</h3>
               </div>
+
+              <div>
+                <div className="product-details">
+                  <p className="product-price">${product.originalPrice}</p>
+                  <span className="product-rating">
+                    <img src={star} alt="star" /> {product.rating}
+                  </span>
+                </div>
+              </div>
+
             </div>
           ))}
         </div>

@@ -36,21 +36,25 @@
 .productCard {
   cursor: pointer;
   width: 15vw !important;
-  height: auto;
+  height: 17rem;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
-  padding: 20px;
+  padding: 0 15px;
   transition: box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  margin: auto !important;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+.productCard-top {
   margin: auto;
 }
-
 .product-image {
   max-width: 100%;
   height: auto;
   border-radius: 8px;
-  margin-bottom: 15px;
+  margin: auto 10px;
 }
 
 .product-name {
@@ -72,7 +76,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  gap: "10px";
+  gap: 10px;
+  margin-bottom: 10px;
 }
 .product-details img {
   width: 17px;
@@ -85,45 +90,65 @@
   color: #007bff;
   font-weight: bold;
 }
-
-@media (max-width: 994px) {
+@media (max-width: 1200px) {
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+  }
+  .productCard{
+    width: 18vw;
+  }
+  .product-image{
+    margin: auto 1px;
+  }
+}
+@media (max-width: 995px) {
   .productCard {
     width: 12rem !important;
+    margin-bottom: 15px !important;
   }
   .products-grid {
     grid-template-columns: repeat(3, minmax(1px, 1fr));
     gap: 0px;
   }
+  .product-name{
+    font-size: 0.9rem;
+  }
+  .product-image {
+    margin: auto 0 !important;
+  }
 }
-@media (max-width: 800px) {
+@media (max-width: 773px) {
   .products-grid {
     grid-template-columns: repeat(2, minmax(1px, 1fr));
     gap: 0px;
   }
-
   .productCard {
     margin-bottom: 10px;
     height: 18rem;
     width: 15rem;
     padding: 12px;
   }
-
   .product-name {
     font-size: 12px;
   }
-
   .product-price {
     font-size: 12px;
   }
 }
-@media (max-width: 470px) {
-  .products-grid {
-    grid-template-columns: repeat(1, minmax(200px, 1fr));
-  }
+@media (max-width: 475px) {
   .productCard {
-    height: 14rem !important;
+    height: 15rem;
     width: 10rem !important;
-    margin: auto !important;
-    margin-bottom: 22px !important;
+  }
 }
+
+@media (max-width: 410px) {
+  .productCard {
+    height: 13rem;
+    width: 8rem !important;
+    padding: 2px 12p;
+    margin-bottom: 13px;
+  }
 }

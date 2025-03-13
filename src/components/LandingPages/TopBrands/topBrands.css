@@ -24,4 +24,16 @@
     .brands-container img:nth-child(n+5) {
       display: none;
     }
+    .brands-container img {
+        display: block;
+        height: 49px !important;
+        width: 92px !important;
+    }    
+  }
+
+  @media (max-width:500px){
+    .brands-container img{
+        height: 13px !important;
+        width: 58px !important;
+    }
   }
