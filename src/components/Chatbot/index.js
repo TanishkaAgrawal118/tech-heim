@@ -13,7 +13,7 @@ const Chatbot = () => {
     };
   }, []);
 
-  return <div id="chatbase-bot" style={{ height: "500px", width: "400px" }} />;
+  return <div id="chatbase-bot"/>;
 };
 
 export default Chatbot;

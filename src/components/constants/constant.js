@@ -133,10 +133,6 @@ export const topBrands = [
     logo: canon,
   },
   {
-    name: "Huawei",
-    logo: brand,
-  },
-  {
     name: "Lenovo",
     logo: lenovo, 
   },

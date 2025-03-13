@@ -253,12 +253,6 @@ const ProductDetail = () => {
                 >
                   Add to cart
                 </button>
-                <button
-                  className="add-to-cart"
-                  onClick={() => handleAddToCart(product)}
-                >
-                  Add to cart
-                </button>
               </div>
             </Paper>
           </div>
