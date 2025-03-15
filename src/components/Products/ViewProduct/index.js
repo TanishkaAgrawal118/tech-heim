@@ -74,9 +74,6 @@ const ViewProduct = ({ selectedFilters }) => {
       alert("You can only compare up to 4 products.");
     }
   };
-
-  const shareUrl = (product) => `${window.location.origin}/productDetails/${product.id}`;
-
   return (
     <Container>
       <InfiniteScroll
