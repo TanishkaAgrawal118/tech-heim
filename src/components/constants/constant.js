@@ -29,6 +29,10 @@ import sidebarAudio from '../../../src/assets/sidebar-headphone.svg'
 import sidebarGames from '../../../src/assets/sidebar-games.svg'
 import sidebarNetwork from '../../../src/assets/sidebar-network.svg'
 import sidebarAccessory from '../../../src/assets/sidebar-devices.svg'
+import frame1 from "../../assets/frame1.svg"
+import frame2 from "../../assets/frame2.svg"
+import frame3 from "../../assets/frame3.svg"
+import frame4 from "../../assets/frame4.svg"
 
 export const devices = [
   { device: "Accessories", image: accessory },
@@ -133,10 +137,6 @@ export const topBrands = [
     logo: canon,
   },
   {
-    name: "Huawei",
-    logo: brand,
-  },
-  {
     name: "Lenovo",
     logo: lenovo, 
   },
@@ -182,21 +182,21 @@ export const MenuItems = [
   {
     title: "Products",
     subItems: [
-      { title: "Mobile Phones", icon: sidebarMobile },
-      { title: "Laptops & Computers", icon: sidebarLaptop },
-      { title: "Tablets & E-reader", icon: sidebarTablet  },
-      { title: "Wearables", icon: sidebarWatch },
-      { title: "Audio", icon: sidebarAudio},
-      { title: "Cameras", icon: sidebarCamera },
-      { title: "Gaming", icon: sidebarGames },
-      { title: "Networking", icon: sidebarNetwork},
-      { title: "Accessories", icon: sidebarAccessory },
+      { title: "Mobile Phones", icon: sidebarMobile, link: "/products" },
+      { title: "Laptops & Computers", icon: sidebarLaptop, link: "/products" },
+      { title: "Tablets & E-reader", icon: sidebarTablet, link: "/products" },
+      { title: "Wearables", icon: sidebarWatch, link: "/products" },
+      { title: "Audio", icon: sidebarAudio, link: "/products" },
+      { title: "Cameras", icon: sidebarCamera, link: "/products" },
+      { title: "Gaming", icon: sidebarGames, link: "/products" },
+      { title: "Networking", icon: sidebarNetwork, link: "/products" },
+      { title: "Accessories", icon: sidebarAccessory, link: "/products" },
     ],
   },
-  { title: "Blog" },
-  { title: "FAQ" },
-  { title: "Contact us" },
+  { title: "FAQ", link: "/FAQ" },
+  { title: "Contact us", link: "/contact" },
 ];
+
 
 export const dropdownProduct = [
   { title: "Mobile Phones", icon: sidebarMobile },
@@ -524,3 +524,107 @@ export const PROCESSORS = [
 export const GPU_BRANDS = ["NVIDIA", "Intel", "AMD", "Apple"];
 
 export const DRIVE_SIZES = ["512GB", "256GB", "64GB", "128GB"];
+
+export const PRODUCT_FIELDS = [
+  { label: "Name", name: "name", placeholder: "Name of Product", type: "text" },
+  { label: "Stock", name: "stock", placeholder: "Active/Inactive", type: "text" },
+  { label: "Rating", name: "rating", placeholder: "Rating", type: "text" },
+  { label: "Quantity", name: "quantity", placeholder: "Quantity", type: "number" },
+  { label: "Brand", name: "brand", placeholder: "Brand", type: "text" },
+  { label: "Model", name: "model", placeholder: "Model", type: "text" },
+  { label: "HardDisk Size", name: "hardDiskSize", placeholder: "HardDisk Size", type: "text" },
+  { label: "Processor", name: "processor", placeholder: "Processor", type: "text" },
+  { label: "Graphics", name: "graphics", placeholder: "Graphics", type: "text" },
+  { label: "Display", name: "display", placeholder: "Display", type: "text" },
+  { label: "Battery Life", name: "batteryLife", placeholder: "Battery Life", type: "text" },
+  { label: "Weight", name: "weight", placeholder: "Weight", type: "text" },
+  { label: "Color", name: "color", placeholder: "Color", type: "text" },
+  { label: "Included Items", name: "includedItems", placeholder: "Included Items", type: "text" },
+];
+
+export const PRODUCT_PRICING_FIELDS = [
+  { label: "Original Price", name: "originalPrice", placeholder: "Original Price", type: "number" },
+  { label: "Discount Price", name: "discountPrice", placeholder: "Discount Price", type: "number" },
+  { label: "Shipment Cost", name: "shipmentCost", placeholder: "Shipment Cost", type: "number" },
+  { label: "Discount", name: "discount", placeholder: "Discount", type: "number" },
+];
+export const STATES = [
+  { label: "Select State", value: "" },
+  { label: "Delhi", value: "Delhi" },
+  { label: "Maharashtra", value: "Maharashtra" },
+  { label: "Karnataka", value: "Karnataka" },
+];
+
+export const COUNTRIES = [
+  { label: "Select Country", value: "" },
+  { label: "India", value: "India" },
+  { label: "USA", value: "USA" },
+  { label: "Canada", value: "Canada" },
+];
+
+export const LANGUAGES = [
+  { label: "Select Language", value: "" },
+  { label: "English", value: "English" },
+  { label: "Hindi", value: "Hindi" },
+  { label: "Spanish", value: "Spanish" },
+];
+export const NAV_LINKS = [
+  { path: "/", label: "Home" },
+  { path: "/products", label: "Products", subPaths: ["/productDetails", "/cartDetails", "/compare-products"] },
+  { path: "/FAQ", label: "FAQ" },
+  { path: "/contact", label: "Contact Us" },
+];
+
+export const SEARCH_ITEMS = [
+  { title: "The Most Searched Items", items: ["MacBook Pro", "AirPods Pro", "Samsung S9", "Tablet", "Xiami", "JBL Speaker", "Canon", "AirPods Max"] },
+  { title: "Most Used Keywords", items: ["Asus", "MagSafe", "Samsung S9", "Tablet", "MacBook Pro", "AirPods Pro", "Phone Cases", "Smart Watch"] },
+];
+export const featureList = [
+  { label: "Processor", key: "processor" },
+  { label: "Screen Size", key: "screenSize" },
+  { label: "Brand", key: "brand" },
+  { label: "Model", key: "model" },
+  { label: "Graphics", key: "graphics" },
+  { label: "Display", key: "display" },
+  { label: "Storage", key: "hardDiskSize" },
+  { label: "Battery Life", key: "batteryLife" },
+  { label: "Weight", key: "weight" },
+  { label: "Color", key: "color" },
+  { label: "Delivery", key: "delivery" },
+  { label: "Included Items", key: "includedItems" },
+  { label: "Rating", key: "rating" },
+];
+export const TECHNICAL_DETAILS = [
+  { key: "model", label: "Model" },
+  { key: "display", label: "Display" },
+  { key: "graphics", label: "Graphics" },
+  { key: "processor", label: "Processor" },
+  { key: "color", label: "Color" },
+  { key: "includedItems", label: "Included Items" },
+  { key: "weight", label: "Weight" },
+  { key: "screenSize", label: "Screen Size" },
+  { key: "hardDiskSize", label: "Hard Disk Size" },
+];
+export const PRODUCT_THUMBNAILS = [frame1, frame2, frame3, frame4, frame3];
+
+export const installmentOptions = ["3 Months", "6 Months", "12 Months", "18 Months"];
+
+export const navLinks = [
+  {
+    name: "Home",
+    path: "/"
+  },
+  {
+    name: "Products",
+    path: "/products",
+    activePaths: ["/products", "/productDetails", "/cartDetails", "/compare-products"]
+  },
+  {
+    name: "FAQ",
+    path: "/FAQ"
+  },
+  {
+    name: "Contact Us",
+    path: "/contact"
+  }
+]

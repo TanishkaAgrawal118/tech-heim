@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import 'react-toastify/dist/ReactToastify.css';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

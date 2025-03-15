@@ -1,39 +1,27 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import NavBar from "../../LandingPages/Navbar/NavBar";
-import { Container, Table } from "react-bootstrap";
-import "./style.css";
-import { removeFromCompare } from "../../../redux/actions/compareAction";
-import close from "../../../assets/sidebar-close.svg";
 import { useNavigate } from "react-router";
-import { addToCart } from "../../../redux/actions/cartAction";
+import { Container, Table } from "react-bootstrap";
 import { ToastContainer, toast } from "react-toastify";
+import NavBar from "../../LandingPages/Navbar/NavBar";
+import { removeFromCompare } from "../../../redux/actions/compareAction";
+import { addToCart } from "../../../redux/actions/cartAction";
+import closeIcon from "../../../assets/sidebar-close.svg";
+import "./style.css";
+import { featureList } from "../../constants/constant";
 
 const CompareProducts = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const compareList = useSelector((state) => state.compare.compareList);
-
-  const showToastMessage = () => {
-    toast.success("Product added to cart!", {
-      position: "top-right",
-    });
-  };
-
-  const handleRemoveFromCompare = (id) => {
-    dispatch(removeFromCompare(id));
-  };
-
-  const handleBuyNow = (product) => {
-    navigate(`/cartDetails/${product.id}`);
-  };
-
-  const handleAdd = (product) => {
+  const showToastMessage = () =>
+    toast.success("Product added to cart!", { position: "top-right" });
+  const handleRemoveFromCompare = (id) => dispatch(removeFromCompare(id));
+  const handleBuyNow = (product) => navigate(`/cartDetails/${product.id}`);
+  const handleAddToCart = (product) => {
     dispatch(addToCart(product));
     showToastMessage();
   };
-
   return (
     <>
       <NavBar />
@@ -41,14 +29,14 @@ const CompareProducts = () => {
         {compareList.length > 0 ? (
           <Table striped bordered hover responsive className="compare-table">
             <thead className="compare-top-tr">
-              <tr >
+              <tr>
                 <th>Feature</th>
                 {compareList.map((product) => (
                   <th key={product.id}>
                     <img
-                      src={close}
+                      src={closeIcon}
                       className="compare-remove-btn"
-                      alt="cross"
+                      alt="Remove"
                       onClick={() => handleRemoveFromCompare(product.id)}
                     />
                     <img
@@ -74,90 +62,16 @@ const CompareProducts = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Processor</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.processor || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Screen Size</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.screenSize || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Brand</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.brand || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Model</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.model || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Graphics</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.graphics || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Display</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.display || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Storage</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.hardDiskSize || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Battery Life</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.batteryLife || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Weight</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.weight || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Color</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.color || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Delivery</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.delivery || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Warranty</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.guarantee || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Included Items</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.details.includedItems || "-"}</td>
-                ))}
-              </tr>
-              <tr>
-                <td>Rating</td>
-                {compareList.map((product) => (
-                  <td key={product.id}>{product.rating || "-"}</td>
-                ))}
-              </tr>
+              {featureList.map(({ label, key }) => (
+                <tr key={key}>
+                  <td>{label}</td>
+                  {compareList.map((product) => (
+                    <td key={product.id}>
+                      {product.details?.[key] || product[key] || "-"}
+                    </td>
+                  ))}
+                </tr>
+              ))}
               <tr>
                 <td></td>
                 {compareList.map((product) => (
@@ -171,7 +85,7 @@ const CompareProducts = () => {
                     <br />
                     <button
                       className="compare-add-btn"
-                      onClick={() => handleAdd(product)}
+                      onClick={() => handleAddToCart(product)}
                     >
                       Add to Cart
                     </button>

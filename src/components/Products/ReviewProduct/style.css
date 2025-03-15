@@ -1,14 +1,272 @@
 .star-rating {
+  display: flex;
+  gap: 4px;
+}
+
+.star-rating svg {
+  transition: transform 0.2s ease;
+}
+
+.star-rating svg:hover {
+  color: #f45e0c;
+  transform: scale(1.2);
+}
+
+.reviews-section {
+  padding: 31px;
+  border-radius: 8px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  width: 58rem;
+  background-color: #fafafa;
+}
+
+.rating-summary {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.rating-score {
+  text-align: center;
+}
+
+.rating-score .score {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #ffb400;
+}
+
+.rating-bars {
+  padding: 10px 7%;
+}
+
+.rating-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  width: 18rem;
+}
+
+.rating-bar span {
+  width: 30px;
+  font-size: 14px;
+}
+
+.bar {
+  width: 100%;
+  height: 8px;
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  margin-left: 10px;
+  overflow: hidden;
+}
+
+.filled-bar {
+  height: 100%;
+  border-radius: 4px;
+}
+
+.star-5 {
+  background-color: #4caf50;
+}
+.star-4 {
+  background-color: #8bc34a;
+}
+.star-3 {
+  background-color: #ffc107;
+}
+.star-2 {
+  background-color: #ff9800;
+}
+.star-1 {
+  background-color: #f44336;
+}
+
+.rating-categories {
+  display: flex;
+  gap: 20px;
+}
+
+.category {
+  text-align: center;
+}
+
+.category span {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #4caf50;
+}
+.review {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.review-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.review-header .rating {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4caf50;
+}
+
+.review-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #777;
+}
+
+.review-footer span {
+  cursor: pointer;
+}
+
+.review-footer span:hover {
+  color: #000;
+}
+.review-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.review-top button {
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  width: 123px !important;
+  height: 32px !important;
+  cursor: pointer;
+}
+
+.review-modal-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.review-modal-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.review-modal-top img {
+  width: 85px;
+  height: 85px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.review-modal-top p {
+  font-size: 15px;
+  font-weight: 500;
+  color: #5d5d5d;
+  margin-bottom: 4px;
+}
+
+.review-modal-top svg {
+  color: rgb(219, 219, 219);
+  width: 25px;
+  cursor: pointer;
+  height: 28px;
+}
+
+.review-modal-text textarea {
+  min-height: 100px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s ease;
+  margin-bottom: 36px;
+}
+
+.review-modal-text textarea:focus {
+  border-color: #f45e0c;
+}
+
+.review-header input[type="file"] {
+  display: none;
+  cursor: pointer;
+}
+.review-modal-text input[type="file"] {
+  cursor: pointer;
+}
+.review-modal-text label {
+  display: block;
+  align-items: center;
+  color: #333;
+  font-size: 13px;
+}
+
+.review-modal-text Button {
+  width: 34%;
+  margin: 73px auto;
+  padding: 9px;
+  background-color: #f45e0c;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.modal-content {
+  width: auto;
+  height: auto;
+}
+.review-date {
+  font-size: 0.9rem;
+  color: rgb(97, 97, 97);
+}
+.review-modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+@media (max-width: 991px) {
+  .reviews-section {
+    width: 43rem;
+  }
+}
+@media (max-width: 768px) {
+  .reviews-section {
+    width: 32.4rem;
+  }
+}
+@media (max-width: 550px) {
+  .reviews-section {
+    width: 20.4rem !important;
+    margin: auto;
+    margin-bottom: 30px;
+  }
+  .rating-score .score {
+    font-size: 1.6rem;
+  }
+  .rating-summary {
     display: flex;
-    gap: 4px;
+    flex-direction: column;
   }
-  
-  .star-rating svg {
-    transition: transform 0.2s ease;
+  .rating-score {
+    margin: 15px;
   }
-  
-  .star-rating svg:hover {
-    color: #f45e0c;
-    transform: scale(1.2); 
+  .current-price {
+    font-size: 20px;
   }
- 
+}

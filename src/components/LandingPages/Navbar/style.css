@@ -1,5 +1,9 @@
 .navbar {
   border-bottom: 1px solid #78abf9;
+  overflow-x: hidden !important;
+  position: relative !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
 .main-nav {
   display: flex;
@@ -57,10 +61,12 @@
   cursor: pointer;
 }
 
-.navbar-nav.mx-auto {
-  gap: 45px;
+.navbar-expand-lg .navbar-nav {
+  gap: 52px;
 }
-
+.contact-page#navbarNav {
+  margin-left: 432px !important;
+}
 .navbar-collapse {
   position: absolute;
   top: 11%;

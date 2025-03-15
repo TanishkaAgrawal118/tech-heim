@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import logo from "../../../../src/assets/logo.svg";
 import search from "../../../assets/search-normal.svg";
-import basket from "../../../assets/basket.svg";
 import profile from "../../../assets/profile.svg";
 import "./style.css";
 import Modal from "../../Modals/modal";
@@ -11,6 +10,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
 import AdminDropdown from "../../Admin/ProfileDropdown";
+import { navLinks } from "../../constants/constant";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -19,10 +19,17 @@ const NavBar = ({ onLoginClick }) => {
   const [isUserDropdown, setUserDropdown] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  
   const isContactPage = location.pathname === "/contact";
-  const isActive = (pathname) => {
-    return location.pathname.startsWith(pathname);
+  const isActive = (path, activePaths) => {
+    if (activePaths) {
+      return activePaths.some((activePath) =>
+        location.pathname.startsWith(activePath)
+      );
+    }
+    return location.pathname === path;
   };
+
   const { cartItems } = useSelector((state) => state.cart);
   const cartQuantity = cartItems.length;
 
@@ -32,11 +39,13 @@ const NavBar = ({ onLoginClick }) => {
       navigate(`/cartDetails/${firstCartItemId}`);
     }
   };
+  const handleHome = () =>{
+    navigate('/');
+  }
   return (
     <>
       <nav
         className="navbar navbar-expand-lg navbar-light"
-        style={{ overflowX: "hidden", position: "relative", paddingLeft:"1rem", paddingRight:"1rem" }}
       >
         <a className="navbar-brand d-none d-lg-block" href="#">
           <img
@@ -46,7 +55,6 @@ const NavBar = ({ onLoginClick }) => {
             style={{ width: "56px", height: "63px" }}
           />
         </a>
-
         <button
           className="navbar-toggler"
           type="button"
@@ -54,57 +62,29 @@ const NavBar = ({ onLoginClick }) => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-
-        <div id="navbarNav" className="nav-content">
+        <div
+          id="navbarNav"
+          className={`nav-content ${
+            location.pathname === "/contact" ? "contact-page" : ""
+          }`}
+        >
           <ul className="navbar-nav mx-auto">
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  location.pathname === "/" ? "active-nav" : ""
-                }`}
-                to="/"
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  isActive("/products") ||
-                  isActive("/productDetails") ||
-                  isActive("/cartDetails") || 
-                  isActive("/compare-products")
-                    ? "active-nav"
-                    : ""
-                }`}
-                to="/products"
-              >
-                Products
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${isActive("/FAQ") ? "active-nav" : ""}`}
-                to="/FAQ"
-              >
-                FAQ
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link
-                className={`nav-link ${
-                  isActive("/contact") ? "active-nav" : ""
-                }`}
-                to="/contact"
-              >
-                Contact Us
-              </Link>
-            </li>
+            {navLinks.map((link) => (
+              <li className="nav-item" key={link.path}>
+                <Link
+                  className={`nav-link ${
+                    isActive(link.path, link.activePaths) ? "active-nav" : ""
+                  }`}
+                  to={link.path}
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
-        <p className="d-block d-lg-none tech-heim">Tech Heim</p>
-
+        <p className="d-block d-lg-none tech-heim" onClick={handleHome}>Tech Heim</p>
         <div className="d-flex navbar-images">
           <img
             src={search}
@@ -112,7 +92,6 @@ const NavBar = ({ onLoginClick }) => {
             className="m-3 d-lg-block"
             onClick={() => setIsSearchOpen(true)}
           />
-
           <div className="cart-container">
             <ShoppingCartIcon className="m-3" onClick={handleCart} />
             {cartQuantity > 0 && (
@@ -128,15 +107,27 @@ const NavBar = ({ onLoginClick }) => {
             </Link>
           ) : (
             <div
-              className="profile-wrapper"
-              onMouseEnter={() => setUserDropdown(true)}
-            >
-              <img src={profile} alt="profile" className="icon profile-icon" onClick={() => setUserDropdown(false)}/>
-            </div>
+            className="profile-wrapper"
+            onClick={(e) => {
+              e.stopPropagation(); 
+              setUserDropdown((prev) => !prev);
+            }}
+          >
+            <img
+              src={profile}
+              alt="profile"
+              className="icon profile-icon"
+              style={{ cursor: "pointer" }}
+            />
+          </div>
           )}
         </div>
       </nav>
-      <div className="user-dropdown">{isUserDropdown && <AdminDropdown closeDropdown={() => setUserDropdown(false)}/>}</div>
+      <div className="user-dropdown">
+        {isUserDropdown && (
+          <AdminDropdown closeDropdown={() => setUserDropdown(false)} />
+        )}
+      </div>
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
       {isProductDropdown && (
