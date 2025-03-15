@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import "./style.css";
 import mobiles from "../../../assets/mobiles.svg";
@@ -9,8 +9,15 @@ import device from "../../../assets/ps53.svg";
 import Modal from "../../Modals/modal";
 import tick from "../../../assets/tick.svg";
 import {motion, useScroll} from 'motion/react'
+import Aos from "aos";
 
 const Banner = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 800, 
+      once: true, 
+    });
+  }, []);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const {scrollYProgress} = useScroll();
 
@@ -20,7 +27,7 @@ const Banner = () => {
         <div className="banner-main">
           <Row>
             <Col className="col-lg-8 col-md-12 col-sm-12">
-              <div className="banner-left">
+              <div className="banner-left"  data-aos="fade-right">
                 <div style={{ display: "flex" }}>
                   <div>
                     <img src={ellipse} alt="ellipse" className="ellipse1" />
@@ -69,7 +76,7 @@ const Banner = () => {
               </div>
             </Col>
             <Col className="col-lg-4 col-md-12 col-sm-12">
-              <div className="banner-right">
+              <div className="banner-right" data-aos="fade-left">
                 <img src={ellipse2} alt="ellipse" className="banner-ellipse4" />
                 <h3>Play Station 5</h3>
                 <img src={ellipse3} alt="ellipse" className="banner-ellipse5" />

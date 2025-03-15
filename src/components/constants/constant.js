@@ -608,3 +608,23 @@ export const TECHNICAL_DETAILS = [
 export const PRODUCT_THUMBNAILS = [frame1, frame2, frame3, frame4, frame3];
 
 export const installmentOptions = ["3 Months", "6 Months", "12 Months", "18 Months"];
+
+export const navLinks = [
+  {
+    name: "Home",
+    path: "/"
+  },
+  {
+    name: "Products",
+    path: "/products",
+    activePaths: ["/products", "/productDetails", "/cartDetails", "/compare-products"]
+  },
+  {
+    name: "FAQ",
+    path: "/FAQ"
+  },
+  {
+    name: "Contact Us",
+    path: "/contact"
+  }
+]
