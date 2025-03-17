@@ -27,8 +27,8 @@ const FAQ = () => {
         <div className="navigation">
           <Link to="/" style={{ color: "#717171" }}>
             Home
-          </Link>{" "}
-          &gt;{" "}
+          </Link>
+          &gt;
           <Link className="active" to="/FAQ">
             FAQ
           </Link>
