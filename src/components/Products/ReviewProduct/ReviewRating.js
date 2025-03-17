@@ -140,7 +140,7 @@ const ReviewRating = ({ product }) => {
         onHide={() => setIsReviewModal(false)}
         centered
       >
-        <div style={{ width: "29rem", height: "27rem" }}>
+        <div>
           <div className="review-modal-title">
             <h4>Write Review</h4>
           </div>

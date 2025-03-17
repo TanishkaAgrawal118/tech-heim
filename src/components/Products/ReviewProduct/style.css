@@ -11,7 +11,10 @@
   color: #f45e0c;
   transform: scale(1.2);
 }
-
+.modal-content {
+  width: auto;
+  height: auto;  
+}
 .reviews-section {
   padding: 31px;
   border-radius: 8px;
@@ -214,7 +217,7 @@
 
 .review-modal-text Button {
   width: 34%;
-  margin: 73px auto;
+  margin: 1rem auto;
   padding: 9px;
   background-color: #f45e0c;
   color: white;
@@ -239,6 +242,7 @@
   justify-content: center;
   font-size: 1.4rem;
   font-weight: 600;
+  width: 28rem;
 }
 @media (max-width: 991px) {
   .reviews-section {
@@ -250,7 +254,7 @@
     width: 32.4rem;
   }
 }
-@media (max-width: 550px) {
+@media (max-width: 530px) {
   .reviews-section {
     width: 20.4rem !important;
     margin: auto;
@@ -269,4 +273,35 @@
   .current-price {
     font-size: 20px;
   }
+  .modal-content {
+    width: 100% !important;
+    margin: auto;
+  }
+  .review-modal-text textarea {
+    width: 22rem !important;
+  }
+  .review-modal-title {
+    width: 23rem;
+  }
+}
+@media (max-width: 390px) {
+  .review-modal-title {
+    width: 18rem !important;
+  }
+  .review-modal-top img {
+    width: 56px;
+    height: 68px;
+  }
+  .review-modal-top p {
+    font-size: 13px;
+  }
+  .review-modal-text textarea {
+    width: 19rem !important;
+  } 
+  .modal-content {
+    height: auto !important;
+  }
+  .review-modal-text Button {
+    margin: 5rem 5rem auto;
+}
 }
