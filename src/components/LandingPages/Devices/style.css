@@ -8,7 +8,6 @@
 
 .devices {
   display: flex;
-  cursor: pointer;
   gap: 6rem;
   padding: 20px 0;
   flex-wrap: nowrap;  
@@ -24,6 +23,7 @@
   min-width: 9rem;
   height: 9rem;
   border-radius: 5px;
+  margin: 0 0 0px 49px;
   background-color: #fff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   white-space: normal; 
@@ -32,7 +32,6 @@
 
 .device-container img {
   max-width: 80px; 
-  height: auto;
   margin-bottom: 5px;
 }
 
@@ -68,6 +67,7 @@
   .device-container {
     min-width: 6rem;
     height: 7rem;
+    margin:10px 0 0 40px;
 }
 .device-container img {
   max-width: 66px;

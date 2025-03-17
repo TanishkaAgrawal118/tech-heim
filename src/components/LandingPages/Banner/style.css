@@ -38,9 +38,9 @@ p {
   margin-bottom: 4rem;
 }
 .banner-countdown {
-  flex-wrap:nowrap;
+  flex-wrap: nowrap;
   display: flex;
-  gap:0.2rem;
+  gap: 0.2rem;
   justify-content: space-evenly;
   margin: 0rem 0rem 3rem -1rem;
 }
@@ -126,6 +126,12 @@ p {
   .ellipse3 {
     margin: -47px -4rem -3rem 11rem;
   }
+  .banner-right {
+    height: 33rem;
+  }
+  .banner-ellipse5 {
+    margin: 5rem -17rem -20rem -3rem !important;
+}
 }
 
 @media (max-width: 1238px) {
@@ -137,13 +143,13 @@ p {
     padding: 1rem;
   }
   .banner-right {
-    height: 29.6rem;
+    height: 28.6rem;
     width: 24rem;
     margin: 2rem 1rem 1rem -4rem !important;
   }
   .banner-right p {
-    margin: 2rem 0rem 0rem 2rem !important;
-  }
+    margin: 5rem 0rem 0rem 2rem !important;
+}
   .banner-countdown {
     margin: 8px 46px 64px -103px !important;
     font-size: 0.7rem;
@@ -165,7 +171,11 @@ p {
     width: 8rem !important;
     margin: -8rem -9rem -8rem 11rem !important;
   }
-
+  .banner-device {
+    height: 12rem;
+    width: 49%;
+    margin: -13rem -12rem -1rem 10rem;
+}
   .banner-title {
     margin-bottom: 0;
   }
@@ -173,6 +183,9 @@ p {
     margin: 5px 0px 32px -123px;
     font-size: 1.2rem;
   }
+  .banner-ellipse5 {
+    margin: 6rem -16rem -20rem -4rem !important;
+}
 }
 
 @media (max-width: 991px) {
@@ -211,6 +224,15 @@ p {
     height: 28rem !important;
     width: 42rem;
   }
+  .banner-device {
+    height: 11rem;
+    width: 14rem !important;
+    margin: -7rem 0rem 0rem 12rem;
+  }
+  .banner-right p {
+    margin: -2rem 0rem 0rem 2rem !important;
+    font-size: 19px;
+  }
 }
 
 @media (max-width: 770px) {
@@ -235,7 +257,7 @@ p {
     margin: 4rem 0rem -5rem -1rem !important;
   }
   .banner-left {
-    width: 37rem !important;
+    width: 39rem !important;
     padding: 2rem;
     padding-bottom: 2rem;
     height: 23rem !important;
@@ -245,7 +267,9 @@ p {
     width: 32.7rem;
   }
   .banner-device {
-    margin: -15rem 2rem 0rem 19rem;
+    width: 15rem;
+    height: 11rem;
+    margin: -14rem 2rem 0rem 19rem;
   }
   .ellipse3 {
     margin: 0px !important;
@@ -254,7 +278,7 @@ p {
 
 @media (max-width: 767px) {
   .banner-right {
-    width: 32rem !important;
+    width: 33rem !important;
   }
 }
 
@@ -293,13 +317,16 @@ p {
     width: 40rem;
   }
   .banner-device {
-    margin: 0rem -2rem -2rem -4rem !important;
-    height: 10rem !important;
-    width: 10rem !important;
-  }
+    margin: -6rem 0rem -3rem -4rem !important;
+    height: 8rem !important;
+    width: 8rem !important;
+}
   .ellipse3 {
     margin: 0px !important;
   }
+  .banner-right p {
+    font-size: 16px;
+}
 }
 
 /* Modal */

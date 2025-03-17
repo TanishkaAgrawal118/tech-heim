@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import NavBar from "../LandingPages/Navbar/NavBar";
 import Footer from "../LandingPages/Footer";
 import "./contact.css";
@@ -8,8 +8,15 @@ import contact2 from "../../../src/assets/contact2.svg";
 import contact3 from "../../../src/assets/contact3.svg";
 import { Link } from "react-router";
 import Modal from "../Modals/modal";
+import Aos from "aos";
 
 const Contact = () => {
+   useEffect(() => {
+      Aos.init({
+        duration: 800, 
+        once: true, 
+      });
+    }, []);
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
 
@@ -49,7 +56,7 @@ const Contact = () => {
           </div>
 
           <div className="contact-form">
-            <div className="contact-message">
+            <div className="contact-message" data-aos="fade-right">
               <h2>Message us</h2>
               <p>
                 We're here to assist you every step of the way. Whether you have
@@ -58,7 +65,7 @@ const Contact = () => {
                 prompt assistance.
               </p>
             </div>
-            <div className="contact-form1">
+            <div className="contact-form1" data-aos="fade-left">
               <form>
                 <input type="text" placeholder="Your Name *" required />
                 <input type="email" placeholder="Email *" required />

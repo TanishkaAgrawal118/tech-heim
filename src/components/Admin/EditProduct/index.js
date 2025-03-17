@@ -12,6 +12,10 @@ import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import edit from "../../../assets/edit.svg";
 import deleteIcon from "../../../assets/trash btn.svg";
+import {
+  PRODUCT_FIELDS,
+  PRODUCT_PRICING_FIELDS,
+} from "../../constants/constant";
 
 const EditProduct = () => {
   const [descriptionData, setDescriptionData] = useState({
@@ -116,6 +120,7 @@ const EditProduct = () => {
   const handleClosePreview = () => {
     setIsPreviewOpen(false);
   };
+  
 
   return (
     <>
@@ -132,171 +137,21 @@ const EditProduct = () => {
                   <h5>Product Information</h5>
                   <form>
                     <Row>
-                      <Col>
-                        <label>Name</label>
-                        <input
-                          type="text"
-                          value={formData.name}
-                          name="name"
-                          placeholder="Name of Product"
-                          className="edit-input"
-                          onFocus={() => {
-                            console.log("focused");
-                          }}
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Stock</label>
-                        <input
-                          type="text"
-                          name="stock"
-                          value={formData.stock}
-                          placeholder="Active/Inactive"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Rating</label>
-                        <input
-                          type="text"
-                          name="rating"
-                          value={formData.rating}
-                          placeholder="Rating"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>Quantity</label>
-
-                        <input
-                          type="number"
-                          name="quantity"
-                          className="edit-input"
-                          value={formData.quantity}
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Brand</label>
-                        <input
-                          type="text"
-                          name="brand"
-                          value={formData.brand}
-                          placeholder="Brand"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Model</label>
-                        <input
-                          type="text"
-                          name="model"
-                          value={formData.model}
-                          placeholder="Model"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>HardDisk Size</label>
-                        <input
-                          type="text"
-                          name="hardDiskSize"
-                          value={formData.hardDiskSize}
-                          placeholder="HardDisk Size"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Processor</label>
-                        <input
-                          type="text"
-                          name="processor"
-                          value={formData.processor}
-                          placeholder="Processor"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Graphics</label>
-                        <input
-                          type="text"
-                          name="graphics"
-                          value={formData.graphics}
-                          placeholder="Graphics"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>Display</label>
-                        <input
-                          type="text"
-                          name="display"
-                          value={formData.display}
-                          placeholder="Display"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Battery Life</label>
-                        <input
-                          type="text"
-                          name="batteryLife"
-                          value={formData.batteryLife}
-                          placeholder="Battery Life"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Weight</label>
-                        <input
-                          type="text"
-                          name="weight"
-                          value={formData.weight}
-                          placeholder="Weight"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>Color</label>
-                        <input
-                          type="text"
-                          name="color"
-                          value={formData.color}
-                          placeholder="Color"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Included Items</label>
-                        <input
-                          type="text"
-                          name="includedItems"
-                          value={formData.includedItems}
-                          placeholder="Included Items"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
+                      {PRODUCT_FIELDS.map(
+                        ({ label, name, placeholder, type }) => (
+                          <Col key={name} md={4}>
+                            <label>{label}</label>
+                            <input
+                              type={type}
+                              name={name}
+                              value={formData[name] || ""}
+                              placeholder={placeholder}
+                              className="edit-input"
+                              onChange={handleChange}
+                            />
+                          </Col>
+                        )
+                      )}
                     </Row>
                   </form>
                 </Paper>
@@ -306,52 +161,21 @@ const EditProduct = () => {
                   <Paper elevation={0}>
                     <h5>Product Pricing</h5>
                     <Row>
-                      <Col>
-                        <label>Original Price</label>
-                        <input
-                          type="number"
-                          name="originalPrice"
-                          value={formData.originalPrice}
-                          placeholder="Original Price"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Discount Price</label>
-                        <input
-                          type="number"
-                          name="discountPrice"
-                          value={formData.discountPrice}
-                          placeholder="Discounted Price"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col>
-                        <label>Shipment Cost</label>
-                        <input
-                          type="number"
-                          name="shipmentCost"
-                          value={formData.shipmentCost}
-                          placeholder="Shipment Cost"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
-                      <Col>
-                        <label>Discount</label>
-                        <input
-                          type="number"
-                          name="discount"
-                          value={formData.discount}
-                          placeholder="Discount"
-                          className="edit-input"
-                          onChange={handleChange}
-                        />
-                      </Col>
+                      {PRODUCT_PRICING_FIELDS.map(
+                        ({ label, name, placeholder, type }) => (
+                          <Col key={name} md={6}>
+                            <label>{label}</label>
+                            <input
+                              type={type}
+                              name={name}
+                              value={formData[name] || ""}
+                              placeholder={placeholder}
+                              className="edit-input"
+                              onChange={handleChange}
+                            />
+                          </Col>
+                        )
+                      )}
                     </Row>
                   </Paper>
                 </div>
