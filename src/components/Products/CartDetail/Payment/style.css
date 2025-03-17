@@ -84,3 +84,32 @@
 .order-section {
     width: 35%;
 }
+.line.right.payment-line {
+    background-color: #007bff;
+    width: 6.89rem;
+    transition: background-color 0.5s ease, width 0.5s ease;
+    height: 3px;
+    left: 6.4rem;
+}
+.line.left.checkout-line {
+    width: 6.99rem;
+    left: 104px;
+}
+@media(max-width: 1050px){
+    .payment-container {
+        flex-direction: column;
+    }
+    .payment-section {
+        width: 100%;
+    }
+}
+@media(max-width:469px){
+    .line.right.payment-line {
+        width: 2.89rem;
+        left: 4rem;
+    }
+    .line {
+        left: 65px;
+        width: 0;
+    }
+}

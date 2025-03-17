@@ -85,3 +85,20 @@
 .checkoutButton:hover {
     background-color: #0056b3;
 }
+
+@media (max-width: 460px){
+    .yourOrder {
+        width: 21rem !important;
+        margin: auto;
+    }
+}
+@media(max-width:380px){
+    .yourOrder {
+        width: 18rem !important;
+    }
+}
+@media (max-width: 370px) {
+    .yourOrder {
+        width: 17rem !important;
+    }
+}
