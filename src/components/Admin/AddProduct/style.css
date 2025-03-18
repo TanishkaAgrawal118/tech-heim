@@ -1,13 +1,11 @@
-.whole-product-management{
-    display: flex;
-}
+
 .table-wrapper {
     overflow-x: auto;
     width: 100%;
 }
 .product-List-container {
     overflow: hidden;
-    padding: 51px 20px;
+    padding: 17px 20px;
     font-family: Arial, sans-serif;
 }
 .add-product-form {

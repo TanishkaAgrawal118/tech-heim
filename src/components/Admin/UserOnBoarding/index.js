@@ -127,13 +127,13 @@ const UserOnBoard = () => {
               </Row>
 
               <Row>
-                <Col md={6}>
+              <Col xs={12} sm={6} md={4}>
                   <label>Preferred Language</label>
                   <select name="preferredLanguage" {...formik.getFieldProps("preferredLanguage")}>
                     {LANGUAGES.map(({ value, label }) => <option key={value} value={value}>{label}</option>)}
                   </select>
                 </Col>
-                <Col md={6}>
+                <Col xs={12} sm={6} md={4}>
                   <label>Profile Picture</label>
                   <input type="file" name="profilePicture" onChange={handleFileChange} />
                 </Col>
