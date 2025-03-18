@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import { fetchProducts, updateProductStatus } from "../../../redux/actions/productAction";
+import { fetchProducts, removeProduct, updateProductStatus } from "../../../redux/actions/productAction";
 import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../LandingPages/Navbar/NavBar";
 import { Container } from "react-bootstrap";
@@ -9,6 +9,7 @@ import { Switch } from "@mui/material";
 import edit from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/trash btn.svg'
 import { useNavigate } from "react-router";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -43,9 +44,13 @@ const AddProduct = () => {
 const handleEdit = (product) =>{
   navigate(`/edit-product/${product.id}`);
 }
-const handleAddProduct = () =>{
-  navigate('/edit-product');
-}
+const handleDelete = (id) => {
+  if (window.confirm("Are you sure you want to delete this product?")) {
+    dispatch(removeProduct(id));
+    dispatch(fetchProducts());
+    toast.success("Product deleted", { position: "top-right" });
+  }
+};
   return (
     <>
       <NavBar />
@@ -100,7 +105,7 @@ const handleAddProduct = () =>{
                         <td>
                           <div className="product-actions">
                             <img src={edit} alt="edit" className="product-edit-btn" onClick={() => {handleEdit(product)}}/>
-                            <img src={deleteIcon} alt="delete" className="product-delete-btn"/>
+                            <img src={deleteIcon} alt="delete" className="product-delete-btn"  onClick={() => handleDelete(product.id)} />
                           </div>
                         </td>
                       </tr>
@@ -131,6 +136,7 @@ const handleAddProduct = () =>{
           </div>
         </div>
       </Container>
+      <ToastContainer/>
     </>
   );
 };

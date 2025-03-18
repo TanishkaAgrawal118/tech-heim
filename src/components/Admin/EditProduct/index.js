@@ -8,7 +8,7 @@ import ReactQuill from "react-quill-new";
 import "quill/dist/quill.snow.css";
 import { useParams } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProductByIdThunk } from "../../../redux/actions/productAction";
+import { fetchProductByIdThunk, updateProduct } from "../../../redux/actions/productAction";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import edit from "../../../assets/edit.svg";
 import deleteIcon from "../../../assets/trash btn.svg";
@@ -120,8 +120,34 @@ const EditProduct = () => {
   const handleClosePreview = () => {
     setIsPreviewOpen(false);
   };
-  
-
+  const handleSave = async () => {
+    if (!formData.name || !formData.originalPrice) {
+      alert("Product name and price are required");
+      return;
+    }
+    const productData = {
+      ...formData,
+      details: {
+        brand: formData.brand,
+        model: formData.model,
+        hardDiskSize: formData.hardDiskSize,
+        processor: formData.processor,
+        graphics: formData.graphics,
+        display: formData.display,
+        batteryLife: formData.batteryLife,
+        weight: formData.weight,
+        color: formData.color,
+        includedItems: formData.includedItems,
+      },
+    };
+    try {
+      dispatch(updateProduct(id, productData));
+      alert("Product updated successfully!");
+    } catch (error) {
+      console.error("Failed to update product:", error);
+      alert("Failed to update product");
+    }
+  };
   return (
     <>
       <NavBar />
@@ -230,7 +256,7 @@ const EditProduct = () => {
 
         <div className="edit-btn">
           <button className="discard-edit">Discard</button>
-          <button className="save-edit">Save</button>
+          <button className="save-edit" onClick={handleSave}>Save</button>
         </div>
       </Container>
     </>

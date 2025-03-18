@@ -52,12 +52,7 @@ const AdminDashboard = () => {
               <p>User Onboarding</p>
               
             </div>
-
-            <div className="admin-dashboard-2" onClick={handleAdmin}>
-              <img src={productEdit} alt="product-edit" />
-              <p>Add Admin</p>
-            </div>
-
+            
             <div className="admin-dashboard-2" onClick={handleContact}>
               <img src={contactUs} alt="contact-us" />
               <p>Contact Us</p>

@@ -89,3 +89,30 @@ export const updateProductStatus = (productId, status) => ({
     type: UPDATE_PRODUCT_STATUS,
     payload: { productId, status }
 });
+
+export const updateProduct = (id, productData) => async (dispatch) => {
+    try {
+      dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
+  
+      const response = await fetch(`${API_BASE_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update product");
+      }
+  
+      const data = await response.json();
+  
+      dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "UPDATE_PRODUCT_FAIL",
+        payload: error.message || "Failed to update product",
+      });
+    }
+  };
