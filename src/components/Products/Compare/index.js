@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { Container, Table } from "react-bootstrap";
@@ -16,6 +16,11 @@ const CompareProducts = () => {
   const compareList = useSelector((state) => state.compare.compareList);
   const showToastMessage = () =>
     toast.success("Product added to cart!", { position: "top-right" });
+  useEffect(() => {
+    if (compareList.length === 1) {
+      navigate("/products");
+    }
+  }, [compareList, navigate]);  
   const handleRemoveFromCompare = (id) => dispatch(removeFromCompare(id));
   const handleBuyNow = (product) => navigate(`/cartDetails/${product.id}`);
   const handleAddToCart = (product) => {

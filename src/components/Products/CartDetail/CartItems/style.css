@@ -165,6 +165,7 @@
 @media (max-width: 469px) {
     .line {
         left: 65px;
+        width: 90%;
     }
     .discountBox input {
         width: 10rem;
