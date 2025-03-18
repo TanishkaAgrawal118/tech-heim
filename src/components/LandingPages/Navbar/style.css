@@ -215,6 +215,9 @@
   .navbar-collapse {
     z-index: 20 !important;
   }
+  .nav-content{
+    margin: 0;
+  }
 }
 
 @media (max-width: 470px) {

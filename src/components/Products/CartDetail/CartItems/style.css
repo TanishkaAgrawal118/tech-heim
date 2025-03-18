@@ -162,6 +162,14 @@
         padding: 8px;
     }
 }
+@media (max-width: 469px) {
+    .line {
+        left: 65px;
+    }
+    .discountBox input {
+        width: 10rem;
+    }
+}
 @media (max-width: 396px) {
     .paymentDetails {
         width: 20.7rem;
