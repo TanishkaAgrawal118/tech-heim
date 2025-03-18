@@ -1,3 +1,4 @@
+import { API_BASE_URL } from "../../components/config/apiConfig";
 export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const FETCH_PRODUCT_BY_ID_REQUEST = 'FETCH_PRODUCT_BY_ID_REQUEST';
 export const FETCH_PRODUCT_BY_ID_SUCCESS = 'FETCH_PRODUCT_BY_ID_SUCCESS';
@@ -9,7 +10,7 @@ export const UPDATE_PRODUCT_STATUS = "products/updateProductStatus";
 export const fetchProducts = () => {
     return async (dispatch) => {
         try {
-            const response = await fetch("http://localhost:5000/products");
+            const response = await fetch(`${API_BASE_URL}`);
             const data = await response.json();
             dispatch({
                 type: FETCH_PRODUCTS,
@@ -24,9 +25,8 @@ export const fetchProducts = () => {
 export const fetchProductByIdThunk = (id) => {
     return async (dispatch) => {
         dispatch({ type: FETCH_PRODUCT_BY_ID_REQUEST });
-
         try {
-            const response = await fetch(`http://localhost:5000/products/${id}`);
+            const response = await fetch(`${API_BASE_URL}/${id}`);
             const product = await response.json();
 
             dispatch({
@@ -45,7 +45,7 @@ export const fetchProductByIdThunk = (id) => {
 export const addProduct = (newProduct) => {
     return async (dispatch) => {
         try {
-            const response = await fetch("http://localhost:5000/products", {
+            const response = await fetch(`${API_BASE_URL}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(newProduct),
@@ -68,7 +68,7 @@ export const addProduct = (newProduct) => {
 export const removeProduct = (id) => {
     return async (dispatch) => {
         try {
-            await fetch(`http://localhost:5000/products/${id}`, {
+            await fetch(`${API_BASE_URL}/${id}`,{
                 method: "DELETE",
             });
 
@@ -89,3 +89,30 @@ export const updateProductStatus = (productId, status) => ({
     type: UPDATE_PRODUCT_STATUS,
     payload: { productId, status }
 });
+
+export const updateProduct = (id, productData) => async (dispatch) => {
+    try {
+      dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
+  
+      const response = await fetch(`${API_BASE_URL}/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(productData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("Failed to update product");
+      }
+  
+      const data = await response.json();
+  
+      dispatch({ type: "UPDATE_PRODUCT_SUCCESS", payload: data });
+    } catch (error) {
+      dispatch({
+        type: "UPDATE_PRODUCT_FAIL",
+        payload: error.message || "Failed to update product",
+      });
+    }
+  };

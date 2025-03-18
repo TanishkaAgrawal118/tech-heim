@@ -21,7 +21,7 @@ import {
   installmentOptions,
   PRODUCT_THUMBNAILS,
   shareSocialLinks,
-  TECHNICAL_DETAILS,
+  TECHNICAL_DETAILS, 
 } from "../../constants/constant";
 
 const ProductDetail = () => {
@@ -75,9 +75,7 @@ const ProductDetail = () => {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(currentUrl);
-    toast.success("Product Link Copied !", {
-      position: "top-right",
-    });
+    alert("Link copied");
   };
   const shareSocialLinks = {
     facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
@@ -261,11 +259,11 @@ const ProductDetail = () => {
             </div>
           </div>
         </Modal>
-      </Container>
+        </Container>
 
-      <ToastContainer />
-      <Footer />
-    </>
+        <ToastContainer />
+        <Footer />
+      </>
   );
 };
 export default ProductDetail;

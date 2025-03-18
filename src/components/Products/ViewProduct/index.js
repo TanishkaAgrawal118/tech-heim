@@ -107,16 +107,16 @@ const ViewProduct = ({ selectedFilters }) => {
                 <div className="slider-price-detail">
                   <div className="price">
                     <p className="original-price">
-                      ${product.originalPrice.toFixed(2)}
+                      ${product.originalPrice}
                     </p>
                     <p className="product-price">
-                      ${product.discountedPrice.toFixed(2)}
+                      ${product.discountedPrice}
                     </p>
                   </div>
 
                   <div className="rating">
                     <img src={star} alt="star" />
-                    <p>{product.rating.toFixed(1)}</p>
+                    <p>{product.rating}</p>
                   </div>
                 </div>
               </div>

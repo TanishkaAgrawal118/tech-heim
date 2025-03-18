@@ -60,9 +60,30 @@
     text-decoration: none;
     font-size: 14px;
 }
-
+.line.left.checkout-line {
+    width: 6.89rem;
+    left: 104px;
+}
 @media (max-width:1000px){
     .checkout{
         flex-direction: column;
+    }
+}
+@media (max-width:470px){
+    .line.left.checkout-line {
+        width: 3rem !important;
+        left: 64px !important;
+    }
+    .line {
+        left: 69px;
+    }
+    .checkoutDetails {
+        width: 23rem;
+        margin: auto;
+    }
+}
+@media(max-width:388px){
+    .checkoutDetails {
+        width: 20rem;
     }
 }
