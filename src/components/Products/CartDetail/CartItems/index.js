@@ -19,11 +19,20 @@ const CartItems = () => {
   const navigate = useNavigate();
   const { id } = useParams();
   const dispatch = useDispatch();
+
   const [cartListItems, setCartListItems] = useState([]);
+
   const { product } = useSelector((state) => state.products);
   const { cartItems } = useSelector((state) => state.cart);
+
   const cartProduct = cartItems.find((item) => item.id === id);
-  const displayProduct = cartProduct || { ...product, quantity: 1 };
+  const displayProduct = cartProduct || {
+    ...product,
+    quantity: 1,
+    originalPrice: Number(product?.originalPrice) || 0,
+    discountedPrice: Number(product?.discountedPrice) || 0,
+    shipmentCost: Number(product?.shipmentCost) || 0,
+  };
 
   useEffect(() => {
     const savedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
@@ -33,70 +42,74 @@ const CartItems = () => {
   useEffect(() => {
     dispatch(fetchProductByIdThunk(id));
   }, [dispatch, id]);
+
   const updateCart = (updatedCart) => {
     setCartListItems(updatedCart);
     localStorage.setItem("cartItems", JSON.stringify(updatedCart));
   };
+
   if (!displayProduct) {
     return <p>No product found in cart.</p>;
   }
-
   const calculateTotal = () => {
     let subtotal = 0;
     let discount = 0;
     let shipmentCost = 0;
 
     cartListItems.forEach((product) => {
-      subtotal += product.discountedPrice * product.quantity;
-      discount +=
-        (product.originalPrice - product.discountedPrice) * product.quantity;
-      shipmentCost += product.shipmentCost || 0;
+      const discountedPrice = Number(product.discountedPrice) || 0;
+      const originalPrice = Number(product.originalPrice) || 0;
+      const productShipmentCost = Number(product.shipmentCost) || 0;
+      subtotal += discountedPrice * product.quantity;
+      discount += (originalPrice - discountedPrice) * product.quantity;
+      shipmentCost += productShipmentCost;
     });
 
     const grandTotal = subtotal + shipmentCost;
 
     return { subtotal, discount, shipmentCost, grandTotal };
   };
-  const { subtotal, discount, shipmentCost, grandTotal } = calculateTotal();
 
+  const { subtotal, discount, shipmentCost, grandTotal } = calculateTotal();
   const handleCheckout = () => {
     navigate(`/cartDetails/${displayProduct.id}/checkout`);
   };
-
   const handleRemoveFromCart = (id) => {
     const updatedCart = cartListItems.filter((item) => item.id !== id);
     updateCart(updatedCart);
     dispatch(removeFromCart(id));
   };
+
   const handleIncreaseQuantity = (id) => {
     const updatedCart = cartListItems.map((item) =>
-      item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      item.id === id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
     );
     updateCart(updatedCart);
+    dispatch(addToCart({ id, quantity: 1 }));
   };
-
   const handleDecreaseQuantity = (id) => {
     const product = cartListItems.find((item) => item.id === id);
-  
     if (product.quantity === 1) {
-      const updatedCart = cartListItems.filter((item) => item.id !== id);
-      updateCart(updatedCart);
-      dispatch(removeFromCart(id)); 
+      handleRemoveFromCart(id);
     } else {
       const updatedCart = cartListItems.map((item) =>
-        item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        item.id === id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
       );
       updateCart(updatedCart);
-      dispatch(decreaseItem({ ...product, quantity: product.quantity - 1 })); 
+      dispatch(decreaseItem({ ...product, quantity: product.quantity - 1 }));
     }
   };
-  
+
   return (
     <>
       <Container>
         <div className="cartDetails">
           <div className="selectedCartItems">
-          {cartListItems.length === 0 ? (
+            {cartListItems.length === 0 ? (
               <p>Your cart is empty.</p>
             ) : (
               cartListItems.map((product) => (
@@ -115,8 +128,12 @@ const CartItems = () => {
                       <strong>{product.guarantee}</strong>
                     </p>
                     <p>
-                      <del>${product.originalPrice?.toFixed(2)}</del>&nbsp;
-                      <strong>${product.discountedPrice?.toFixed(2)}</strong>
+                      <del>
+                        ${Number(product.originalPrice).toFixed(2)}
+                      </del>&nbsp;
+                      <strong>
+                        ${Number(product.discountedPrice).toFixed(2)}
+                      </strong>
                     </p>
                   </div>
 

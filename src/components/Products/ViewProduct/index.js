@@ -130,8 +130,6 @@ const ViewProduct = ({ selectedFilters }) => {
                     />
                     <p>Add to compare</p>
               </div>
-
-
             </Paper>
           ))}
         </div>

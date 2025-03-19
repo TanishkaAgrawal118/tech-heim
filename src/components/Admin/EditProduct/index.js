@@ -154,9 +154,9 @@ const EditProduct = () => {
       <Container>
         <div className="product-edit-page">
           <div>
+          <div>
             <AdminDashboard />
           </div>
-          <div>
             <div className="edit-product-detail">
               <div className="edit-product-info">
                 <Paper elevation={0}>
