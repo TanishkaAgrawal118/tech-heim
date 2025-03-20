@@ -18,9 +18,11 @@ const CompareProducts = () => {
     toast.success("Product added to cart!", { position: "top-right" });
   useEffect(() => {
     if (compareList.length === 1) {
-      navigate("/products");
+      toast.warning("Select at least two products to compare!", {
+        position: "top-right",
+      });
     }
-  }, [compareList, navigate]);  
+  }, [compareList]);
   const handleRemoveFromCompare = (id) => dispatch(removeFromCompare(id));
   const handleBuyNow = (product) => navigate(`/cartDetails/${product.id}`);
   const handleAddToCart = (product) => {
