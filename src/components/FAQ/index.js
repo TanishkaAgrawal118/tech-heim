@@ -7,6 +7,7 @@ import Footer from "../LandingPages/Footer";
 import "./faq.css";
 import { faqs } from "../constants/constant";
 import arrowUp from "../../../src/assets/arrow-up.svg";
+import arrowDown from "../../../src/assets/arrow-down.svg"; 
 import Aos from "aos";
 
 const FAQ = () => {
@@ -16,10 +17,13 @@ const FAQ = () => {
       once: true,
     });
   }, []);
+
   const [openQuestion, setOpenQuestion] = useState(null);
+
   const toggleFAQ = (index) => {
-    setOpenQuestion(openQuestion === index ? null : index);
+    setOpenQuestion((prevIndex) => (prevIndex === index ? null : index));
   };
+
   return (
     <>
       <NavBar />
@@ -46,23 +50,21 @@ const FAQ = () => {
                 key={index}
                 className={`faq-item ${openQuestion === index ? "open" : ""}`}
               >
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between align-items-center">
                   <h4 onClick={() => toggleFAQ(index)}>{faq.question}</h4>
                   <img
-                    src={arrowUp}
-                    alt="arrow-up"
+                    src={openQuestion === index ? arrowDown : arrowUp}
+                    alt={openQuestion === index ? "arrow-down" : "arrow-up"}
                     onClick={() => toggleFAQ(index)}
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", transition: "transform 0.3s" }}
                   />
                 </div>
-
-                <p>{faq.answer}</p>
+                {openQuestion === index && <p>{faq.answer}</p>}
               </div>
             ))}
           </div>
         </div>
       </Container>
-
       <Footer />
     </>
   );
