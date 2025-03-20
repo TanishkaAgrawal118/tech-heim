@@ -47,10 +47,6 @@ const ReviewRating = ({ product }) => {
     setIsReviewModal(false);
   };
 
-  const averageRating =
-    reviews.reduce((sum, review) => sum + review.rating, 0) /
-    (reviews.length || 1);
-
   return (
     <>
       <Paper className="reviews-section">

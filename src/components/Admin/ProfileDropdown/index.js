@@ -5,9 +5,6 @@ import { useNavigate } from "react-router";
 
 const ProfileDropdown = () => {
   const navigate = useNavigate();
-  const handleProfile = () => {
-    navigate("/profile");
-  };
   const handleAdminDashboard = () =>{
     navigate("/product-management");
   }
@@ -15,7 +12,7 @@ const ProfileDropdown = () => {
   return (
     <>
       <div className="userDropdownMain">
-        <div className="userDropdown-1" onClick={handleProfile}>
+        <div className="userDropdown-1">
           <div>
             <img src={profile} alt="profile" />
           </div>

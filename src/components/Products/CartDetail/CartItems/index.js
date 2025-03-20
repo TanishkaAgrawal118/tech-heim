@@ -72,7 +72,15 @@ const CartItems = () => {
 
   const { subtotal, discount, shipmentCost, grandTotal } = calculateTotal();
   const handleCheckout = () => {
-    navigate(`/cartDetails/${displayProduct.id}/checkout`);
+    navigate(`/cartDetails/${displayProduct.id}/checkout`, {
+      state: {
+        product: displayProduct,
+        subtotal,
+        discount,
+        shipmentCost,
+        grandTotal,
+      },
+    });
   };
   const handleRemoveFromCart = (id) => {
     const updatedCart = cartListItems.filter((item) => item.id !== id);

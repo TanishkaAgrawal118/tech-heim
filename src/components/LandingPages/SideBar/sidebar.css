@@ -56,7 +56,10 @@
   font-size: 16px;
   padding: 5px 0;
 }
-
+.submenu img {
+  margin-right: 13px;
+  width: 1.7rem;
+}
 @media (max-width: 400px) {
   .product-image img {
     width: 10rem;

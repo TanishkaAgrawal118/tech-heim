@@ -86,7 +86,7 @@
 }
 @media (max-width: 1206px) {
   .product-card {
-    height: 17rem;
+    height: 20rem;
     width: 92% !important;
   }
 }
