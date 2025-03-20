@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 import NavBar from "../LandingPages/Navbar/NavBar";
 import Footer from "../LandingPages/Footer";
 import "./contact.css";
@@ -11,14 +12,38 @@ import Modal from "../Modals/modal";
 import Aos from "aos";
 
 const Contact = () => {
-   useEffect(() => {
-      Aos.init({
-        duration: 800, 
-        once: true, 
-      });
-    }, []);
+  useEffect(() => {
+    Aos.init({ duration: 800, once: true });
+  }, []);
+
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
+
+  const formRef = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_bpfrj9r",
+        "template_exja65e",
+        formRef.current,
+        "icdpaTWsfTitABDwn"
+      )
+      .then(
+        (result) => {
+          console.log("SUCCESS!", result.text);
+          alert("Message sent successfully!");
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          alert("Failed to send message. Please try again later.");
+        }
+      );
+
+    e.target.reset();
+  };
 
   return (
     <>
@@ -66,10 +91,24 @@ const Contact = () => {
               </p>
             </div>
             <div className="contact-form1" data-aos="fade-left">
-              <form>
-                <input type="text" placeholder="Your Name *" required />
-                <input type="email" placeholder="Email *" required />
-                <textarea placeholder="Message"></textarea>
+              <form ref={formRef} onSubmit={sendEmail}>
+                <input
+                  type="text"
+                  name="user_name"
+                  placeholder="Your Name *"
+                  required
+                />
+                <input
+                  type="email"
+                  name="user_email"
+                  placeholder="Email *"
+                  required
+                />
+                <textarea
+                  name="message"
+                  placeholder="Message"
+                  required
+                ></textarea>
                 <button type="submit">Submit</button>
               </form>
             </div>
@@ -79,7 +118,6 @@ const Contact = () => {
 
       <Footer />
 
-      
       <Modal isOpen={isLoginOpen} onClose={() => setLoginOpen(false)}>
         <div className="login-modal">
           <div className="modal-tabs">
@@ -127,9 +165,23 @@ const Contact = () => {
               <h2>Create an Account</h2>
               <form>
                 <div className="login-input">
-                  <input type="text" placeholder="Full Name" required />
-                  <input type="email" placeholder="E-mail" required />
-                  <input type="password" placeholder="Password" required />
+                  <input
+                    type="text"
+                    name="user_name"
+                    placeholder="Your Name *"
+                    required
+                  />
+                  <input
+                    type="email"
+                    name="from_email"
+                    placeholder="Email *"
+                    required
+                  />
+                  <textarea
+                    name="message"
+                    placeholder="Message"
+                    required
+                  ></textarea>
                   <input
                     type="password"
                     placeholder="Confirm Password"
