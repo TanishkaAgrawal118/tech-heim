@@ -3,8 +3,10 @@ import laptop from "../../../assets/laptop-home.svg";
 import "./style.css";
 import { Container } from "react-bootstrap";
 import { motion } from "motion/react";
+import { useNavigate } from "react-router";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   const [cursorPos, setCursorPos] = React.useState({ x: 0, y: 0 });
   const handleMouseMove = (event) => {
     setCursorPos({
@@ -12,7 +14,9 @@ const HeroSection = () => {
       y: event.clientY,
     });
   };
-
+  const handleExplore = () => {
+    navigate('/products');
+  }
   return (
     <>
       <Container>
@@ -36,7 +40,7 @@ const HeroSection = () => {
               }}
             ></div>
 
-            <button>Explore More</button>
+            <button onClick={handleExplore}>Explore More</button>
           </div>
 
           <motion.div
