@@ -40,7 +40,8 @@ const AddProduct = () => {
   const handleToggle = (product) => {
     const newStatus = product.status === "active" ? "inactive" : "active";
     dispatch(updateProductStatus(product.id, newStatus));
-};
+  };
+
 const handleEdit = (product) =>{
   navigate(`/edit-product/${product.id}`);
 }

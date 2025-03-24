@@ -10,6 +10,7 @@ import {
 
 const initialState = {
   products: [],
+  searchResults: [],
   selectedProduct: null,
   product: null,
   loading: false,

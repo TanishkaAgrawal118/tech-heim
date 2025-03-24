@@ -6,6 +6,7 @@ export const FETCH_PRODUCT_BY_ID_FAILURE = 'FETCH_PRODUCT_BY_ID_FAILURE';
 export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
 export const REMOVE_PRODUCT_SUCCESS = 'REMOVE_PRODUCT_SUCCESS';
 export const UPDATE_PRODUCT_STATUS = "products/updateProductStatus";
+export const SET_SEARCH_RESULTS = "SET_SEARCH_RESULTS";
 
 export const fetchProducts = () => {
     return async (dispatch) => {
@@ -85,11 +86,30 @@ export const removeProduct = (id) => {
 };
 
 
-export const updateProductStatus = (productId, status) => ({
-    type: UPDATE_PRODUCT_STATUS,
-    payload: { productId, status }
-});
+export const updateProductStatus = (productId, status) => async (dispatch) => {
+  try {
+    const response = await fetch(`${API_BASE_URL}/${productId}`, 
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status }),
+      }
+    );
 
+    if (!response.ok) {
+      throw new Error("Failed to update product status");
+    }
+
+    dispatch({
+      type: UPDATE_PRODUCT_STATUS,
+      payload: { productId, status },
+    });
+  } catch (error) {
+    console.error("Error updating product status:", error);
+  }
+};
 export const updateProduct = (id, productData) => async (dispatch) => {
     try {
       dispatch({ type: "UPDATE_PRODUCT_REQUEST" });
@@ -116,3 +136,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
       });
     }
   };
+  export const setSearchResults = (results) => ({
+    type: SET_SEARCH_RESULTS,
+    payload: results,
+  });

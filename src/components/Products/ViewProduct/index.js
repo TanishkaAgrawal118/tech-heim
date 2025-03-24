@@ -32,8 +32,10 @@ const ViewProduct = ({ selectedFilters }) => {
     return (
       (brand.length === 0 || brand.includes(productDetails.brand)) &&
       (ram.length === 0 || ram.includes(productDetails.ram)) &&
-      (screenSize.length === 0 ||
-        screenSize.includes(productDetails.screenSize)) &&
+      (screenSize.length === 0 || 
+        screenSize.includes(
+          productDetails.screenSize.replace(/(\d+)/g, '$1"')
+        )) &&
       (processor.length === 0 ||
         processor.includes(productDetails.processor)) &&
       (gpu.length === 0 ||
@@ -87,7 +89,7 @@ const ViewProduct = ({ selectedFilters }) => {
           <button onClick={handleShowCompare}>Compare</button>
         </div>
         <div className="product-containers">
-          {displayedProducts.map((product) => (
+          {displayedProducts.filter((product) => product.status === "active").map((product) => (
             <Paper
               key={product.id}
               elevation={0}
