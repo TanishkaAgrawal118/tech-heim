@@ -14,13 +14,21 @@ import { navLinks } from "../../constants/constant";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
   const [isUserDropdown, setUserDropdown] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
-  
+
+  const { cartItems } = useSelector((state) => state.cart);
+  const { products } = useSelector((state) => state.products);
+
+  const cartQuantity = cartItems.length;
+
   const isContactPage = location.pathname === "/contact";
+
   const isActive = (path, activePaths) => {
     if (activePaths) {
       return activePaths.some((activePath) =>
@@ -30,23 +38,29 @@ const NavBar = ({ onLoginClick }) => {
     return location.pathname === path;
   };
 
-  const { cartItems } = useSelector((state) => state.cart);
-  const cartQuantity = cartItems.length;
-
   const handleCart = () => {
     if (cartItems.length > 0) {
       const firstCartItemId = cartItems[0]?.id;
       navigate(`/cartDetails/${firstCartItemId}`);
     }
   };
-  const handleHome = () =>{
-    navigate('/');
-  }
+
+  const handleHome = () => {
+    navigate("/");
+  };
+
+  const filteredProducts = products
+    .filter((product) =>
+      product.name.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .slice(0, 3);
+    const handleProductClick = (id) => {
+      navigate(`/productDetails/${id}`);
+    };
+    
   return (
     <>
-      <nav
-        className="navbar navbar-expand-lg navbar-light"
-      >
+      <nav className="navbar navbar-expand-lg navbar-light">
         <a className="navbar-brand d-none d-lg-block" href="#">
           <img
             src={logo}
@@ -84,7 +98,9 @@ const NavBar = ({ onLoginClick }) => {
           </ul>
         </div>
 
-        <p className="d-block d-lg-none tech-heim" onClick={handleHome}>Tech Heim</p>
+        <p className="d-block d-lg-none tech-heim" onClick={handleHome}>
+          Tech Heim
+        </p>
         <div className="d-flex navbar-images">
           <img
             src={search}
@@ -107,38 +123,36 @@ const NavBar = ({ onLoginClick }) => {
             </Link>
           ) : (
             <div
-            className="profile-wrapper"
-            onClick={(e) => {
-              e.stopPropagation(); 
-              setUserDropdown((prev) => !prev);
-            }}
-          >
-            <img
-              src={profile}
-              alt="profile"
-              className="icon profile-icon"
-              style={{ cursor: "pointer" }}
-            />
-          </div>
+              className="profile-wrapper"
+              onClick={(e) => {
+                e.stopPropagation();
+                setUserDropdown((prev) => !prev);
+              }}
+            >
+              <img
+                src={profile}
+                alt="profile"
+                className="icon profile-icon"
+                style={{ cursor: "pointer" }}
+              />
+            </div>
           )}
         </div>
       </nav>
-      <div className="user-dropdown">
-        {isUserDropdown && (
-          <AdminDropdown closeDropdown={() => setUserDropdown(false)} />
-        )}
-      </div>
+      {isUserDropdown && (
+        <AdminDropdown closeDropdown={() => setUserDropdown(false)} />
+      )}
       <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
-
       {isProductDropdown && (
         <ProductDropdown setIsProductDropdown={setIsProductDropdown} />
       )}
-
       <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)}>
         <div className="search-modal">
           <input
             type="text"
             placeholder="What can we help you to find?"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             style={{
               padding: "10px",
               borderRadius: "5px",
@@ -148,38 +162,16 @@ const NavBar = ({ onLoginClick }) => {
 
           <div style={{ display: "flex", gap: "3rem" }}>
             <div>
-              <h3>The Most Searched Items</h3>
               <div className="search-row">
-                <div className="search-col">
-                  <p>MacBook Pro</p>
-                  <p>AirPods Pro</p>
-                  <p>Samsung S9</p>
-                  <p>Tablet</p>
-                </div>
-                <div className="search-col">
-                  <p>Xiami</p>
-                  <p>JBL Speaker</p>
-                  <p>Canon</p>
-                  <p>AirPods Max</p>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h3>Most Used Keywords</h3>
-              <div className="search-row">
-                <div className="search-col">
-                  <p>Asus</p>
-                  <p>MagSafe</p>
-                  <p>Samsung S9</p>
-                  <p>Tablet</p>
-                </div>
-                <div className="search-col">
-                  <p>MacBook Pro</p>
-                  <p>AirPods Pro</p>
-                  <p>Phone Cases</p>
-                  <p>Smart Watch</p>
-                </div>
+                {filteredProducts.length > 0 ? (
+                  filteredProducts.map((product) => (
+                    <p key={product.id}  onClick={() => handleProductClick(product.id)}>
+                      {product.name}
+                    </p>
+                  ))
+                ) : (
+                  <p>No matching products found.</p>
+                )}
               </div>
             </div>
           </div>
