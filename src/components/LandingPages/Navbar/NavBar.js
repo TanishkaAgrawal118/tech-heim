@@ -11,10 +11,12 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useSelector } from "react-redux";
 import AdminDropdown from "../../Admin/ProfileDropdown";
 import { navLinks } from "../../constants/constant";
+import { CiMicrophoneOn } from "react-icons/ci";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isListening, setIsListening] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
   const [isUserDropdown, setUserDropdown] = useState(false);
@@ -54,10 +56,35 @@ const NavBar = ({ onLoginClick }) => {
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .slice(0, 3);
-    const handleProductClick = (id) => {
-      navigate(`/productDetails/${id}`);
-    };
-    
+
+  const handleProductClick = (id) => {
+    navigate(`/productDetails/${id}`);
+  };
+
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recognition = SpeechRecognition ? new SpeechRecognition() : null;
+
+  const startListening = () => {
+    if (recognition) {
+      recognition.start();
+      setIsListening(true);
+      recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        setSearchQuery(transcript);
+      };
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+      recognition.onerror = (event) => {
+        console.error("Speech recognition error:", event.error);
+        setIsListening(false);
+      };
+    } else {
+      alert("Your browser does not support Speech Recognition");
+    }
+  };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -139,6 +166,7 @@ const NavBar = ({ onLoginClick }) => {
           )}
         </div>
       </nav>
+
       {isUserDropdown && (
         <AdminDropdown closeDropdown={() => setUserDropdown(false)} />
       )}
@@ -146,6 +174,8 @@ const NavBar = ({ onLoginClick }) => {
       {isProductDropdown && (
         <ProductDropdown setIsProductDropdown={setIsProductDropdown} />
       )}
+
+      {/* Search Modal */}
       <Modal isOpen={isSearchOpen} onClose={() => setIsSearchOpen(false)}>
         <div className="search-modal">
           <input
@@ -157,23 +187,25 @@ const NavBar = ({ onLoginClick }) => {
               padding: "10px",
               borderRadius: "5px",
               marginBottom: "30px",
+              width: "80%",
             }}
           />
 
-          <div style={{ display: "flex", gap: "3rem" }}>
-            <div>
-              <div className="search-row">
-                {filteredProducts.length > 0 ? (
-                  filteredProducts.map((product) => (
-                    <p key={product.id}  onClick={() => handleProductClick(product.id)}>
-                      {product.name}
-                    </p>
-                  ))
-                ) : (
-                  <p>No matching products found.</p>
-                )}
-              </div>
-            </div>
+          <CiMicrophoneOn  className="voice-icon"
+            onClick={startListening}/>
+
+          {isListening && <span className="listen">Listening...</span>}
+
+          <div className="search-row">
+            {filteredProducts.length > 0 ? (
+              filteredProducts.map((product) => (
+                <p key={product.id} onClick={() => handleProductClick(product.id)}>
+                  {product.name}
+                </p>
+              ))
+            ) : (
+              <p>No matching products found.</p>
+            )}
           </div>
         </div>
       </Modal>
