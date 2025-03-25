@@ -7,9 +7,16 @@ import { Container } from "react-bootstrap";
 import contact1 from "../../../src/assets/contact1.svg";
 import contact2 from "../../../src/assets/contact2.svg";
 import contact3 from "../../../src/assets/contact3.svg";
-import { Link } from "react-router";
+import { Link } from "react-router-dom"; // Fixed import for Link
 import Modal from "../Modals/modal";
 import Aos from "aos";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { setDoc, doc, getDoc } from "firebase/firestore";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "../firebase/firebase";
+import { fetchSignInMethodsForEmail } from "firebase/auth";
+import { setUser } from "../../redux/slice/authSlice";
+import { useDispatch } from "react-redux";
 
 const Contact = () => {
   useEffect(() => {
@@ -18,9 +25,8 @@ const Contact = () => {
 
   const [isLoginOpen, setLoginOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("login");
-
   const formRef = useRef();
-
+  const dispatch = useDispatch();
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -45,6 +51,68 @@ const Contact = () => {
     e.target.reset();
   };
 
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+  
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log("Logged in user:", user); // Debug here
+  
+      if (!user) {
+        console.error("No user returned from signInWithEmailAndPassword");
+        alert("Login failed. No user found.");
+        return;
+      }
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        dispatch(setUser(userDoc.data()));
+      } else {
+        console.log("No user document found in Firestore.");
+        alert("No user data found.");
+      }
+  
+      alert("Login successful!");
+      setLoginOpen(false);
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Invalid email or password.");
+    }
+  };
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();
+    const name = e.target.user_name.value;
+    const email = e.target.from_email.value;
+    const password = e.target.password.value;
+    const confirmPassword = e.target.confirm_password.value;
+    const role = 'user';
+    if (password !== confirmPassword) {
+      alert("Passwords do not match.");
+      return;
+    }
+    try {
+      const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+      if (signInMethods.length > 0) {
+        alert("Email already in use. Please log in.");
+        return;
+      }
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        role
+      });
+      alert("Account created successfully!");
+      setActiveTab("login");
+    } catch (error) {
+      console.error("Error signing up:", error);
+      alert(error.message);
+    }
+  };
   return (
     <>
       <NavBar onLoginClick={() => setLoginOpen(true)} />
@@ -135,14 +203,13 @@ const Contact = () => {
             </button>
           </div>
           <hr />
-
           {activeTab === "login" ? (
             <div className="login">
               <h2>Log in to Tech Heim</h2>
-              <form>
+              <form onSubmit={handleLogin}>
                 <div className="login-input">
-                  <input type="email" placeholder="E-mail" required />
-                  <input type="password" placeholder="Password" required />
+                  <input type="email" name="email" placeholder="E-mail" required />
+                  <input type="password" name="password" placeholder="Password" required />
                 </div>
 
                 <div className="login-info">
@@ -163,31 +230,14 @@ const Contact = () => {
           ) : (
             <div className="login">
               <h2>Create an Account</h2>
-              <form>
+              <form onSubmit={handleSignUp}>
                 <div className="login-input">
-                  <input
-                    type="text"
-                    name="user_name"
-                    placeholder="Your Name *"
-                    required
-                  />
-                  <input
-                    type="email"
-                    name="from_email"
-                    placeholder="Email *"
-                    required
-                  />
-                  <textarea
-                    name="message"
-                    placeholder="Message"
-                    required
-                  ></textarea>
-                  <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    required
-                  />
+                  <input type="text" name="user_name" placeholder="Your Name *" required />
+                  <input type="email" name="from_email" placeholder="Email *" required />
+                  <input type="password" name="password" placeholder="Password *" required />
+                  <input type="password" name="confirm_password" placeholder="Confirm Password *" required />
                 </div>
+
                 <div className="login-info">
                   <div className="remember-forgot">
                     <label>

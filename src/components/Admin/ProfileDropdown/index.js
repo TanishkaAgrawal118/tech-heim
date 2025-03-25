@@ -2,13 +2,15 @@ import React from "react";
 import profile from "../../../assets/profile-circle.svg";
 import "./style.css";
 import { useNavigate } from "react-router";
+import { useSelector } from "react-redux";
 
 const ProfileDropdown = () => {
   const navigate = useNavigate();
   const handleAdminDashboard = () =>{
     navigate("/product-management");
   }
- 
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
   return (
     <>
       <div className="userDropdownMain">
@@ -22,9 +24,11 @@ const ProfileDropdown = () => {
           </div>
         </div>
         <hr/>
+        {user && (
         <div className="userDropdown-2" onClick={handleAdminDashboard}>
-          <h6>Admin dashboard</h6>
+          <h6>Admin Dashboard</h6>
         </div>
+      )}
       </div>
     </>
   );

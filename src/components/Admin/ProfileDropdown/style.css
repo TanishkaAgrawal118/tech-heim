@@ -23,4 +23,5 @@
   display: flex;
   justify-content: left;
   margin: 0 0 5px 5px;
+  cursor: pointer;
 }

@@ -10,18 +10,31 @@ import edit from '../../../assets/edit.svg';
 import deleteIcon from '../../../assets/trash btn.svg'
 import { useNavigate } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { products = [] } = useSelector((state) => state.products);
-
+  
   const [currentPage, setCurrentPage] = useState(1);
+  const [user, setUser] = useState(null);
+
   const pageSize = 10;
 
   useEffect(() => {
-    dispatch(fetchProducts());
-  }, [dispatch]);
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+        dispatch(fetchProducts());
+      } else {
+        navigate('/contact'); 
+      }
+    });
+
+    return () => unsubscribe();
+  }, [dispatch, navigate]);
 
   const totalPages = Math.ceil(products.length / pageSize);
 
@@ -37,21 +50,27 @@ const AddProduct = () => {
   const handleNext = () => {
     if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
+
   const handleToggle = (product) => {
     const newStatus = product.status === "active" ? "inactive" : "active";
     dispatch(updateProductStatus(product.id, newStatus));
   };
 
-const handleEdit = (product) =>{
-  navigate(`/edit-product/${product.id}`);
-}
-const handleDelete = (id) => {
-  if (window.confirm("Are you sure you want to delete this product?")) {
-    dispatch(removeProduct(id));
-    dispatch(fetchProducts());
-    toast.success("Product deleted", { position: "top-right" });
-  }
-};
+  const handleEdit = (product) => {
+    navigate(`/edit-product/${product.id}`);
+  };
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      dispatch(removeProduct(id));
+      dispatch(fetchProducts());
+      toast.success("Product deleted", { position: "top-right" });
+    }
+  };
+
+  // ✅ If user is not logged in, return `null` to prevent rendering
+  if (!user) return null;
+
   return (
     <>
       <NavBar />
@@ -63,7 +82,6 @@ const handleDelete = (id) => {
 
           <div className="product-List-container">
             <h2>Product Management</h2>
-          {/* <button onClick={handleAddProduct}>Add Product</button> */}
             <div className="table-wrapper">
               <table className="product-table">
                 <thead>
@@ -82,7 +100,7 @@ const handleDelete = (id) => {
                   {paginatedProducts.length > 0 ? (
                     paginatedProducts.map((product) => (
                       <tr key={product.id}>
-                        <td className="add-product-name" onClick={() => {handleEdit(product)}}>
+                        <td className="add-product-name" onClick={() => handleEdit(product)}>
                           <img
                             src={product.image}
                             alt={product.name}
@@ -92,9 +110,8 @@ const handleDelete = (id) => {
                         </td>
                         <td>${product.originalPrice}</td>
                         <td>
-                          {" "}
                           <Switch
-                           checked={product.status === "active"}
+                            checked={product.status === "active"}
                             onChange={() => handleToggle(product)}
                             color="primary"
                           />
@@ -105,8 +122,18 @@ const handleDelete = (id) => {
                         <td>{product.details?.color || "-"}</td>
                         <td>
                           <div className="product-actions">
-                            <img src={edit} alt="edit" className="product-edit-btn" onClick={() => {handleEdit(product)}}/>
-                            <img src={deleteIcon} alt="delete" className="product-delete-btn"  onClick={() => handleDelete(product.id)} />
+                            <img 
+                              src={edit} 
+                              alt="edit" 
+                              className="product-edit-btn" 
+                              onClick={() => handleEdit(product)}
+                            />
+                            <img 
+                              src={deleteIcon} 
+                              alt="delete" 
+                              className="product-delete-btn" 
+                              onClick={() => handleDelete(product.id)} 
+                            />
                           </div>
                         </td>
                       </tr>
@@ -127,17 +154,14 @@ const handleDelete = (id) => {
               <span>
                 Page {currentPage} of {totalPages}
               </span>
-              <button
-                onClick={handleNext}
-                disabled={currentPage === totalPages}
-              >
+              <button onClick={handleNext} disabled={currentPage === totalPages}>
                 Next
               </button>
             </div>
           </div>
         </div>
       </Container>
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 };
