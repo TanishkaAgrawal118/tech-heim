@@ -3,7 +3,7 @@ import productReducer from "./reducers/productReducer";
 import cartReducer from "./reducers/cartReducer";
 import { thunk } from "redux-thunk";
 import compareReducer from "./reducers/compareReducer";
-import authReducer from './slice/authSlice';
+import authReducer from "./slice/authSlice";
 
 const rootReducer = combineReducers({
   products: productReducer,

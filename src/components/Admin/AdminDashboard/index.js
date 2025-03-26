@@ -7,6 +7,8 @@ import productEdit from '../../../assets/product-edit.svg';
 import contactUs from '../../../assets/24-support.svg';
 import logout from '../../../assets/logout.svg';
 import close from "../../../assets/sidebar-close.svg";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../../redux/slice/authSlice";
 
 const AdminDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,13 +39,18 @@ const AdminDashboard = () => {
 
   const handleUserOnBoard = () => navigate('/user-onBoard');
 
+  const auth = getAuth();
+  const dispatch = useDispatch();
   const handleLogout = async () => {
-    const auth = getAuth();
     try {
       await signOut(auth);
-      navigate('/contact'); 
+      dispatch(logoutUser());
+      console.log("User logged out:", user);
+      alert('Logged out successfully!');
+      navigate('/contact');
     } catch (error) {
-      console.error("Logout failed", error);
+      console.error("Logout failed:", error.message);
+      alert('Failed to log out.');
     }
   };
 

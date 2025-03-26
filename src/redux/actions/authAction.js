@@ -1,45 +1,72 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth } from '../firebase';
-import { setLoading, setUser, setError, logout } from './authSlice';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '../../components/firebase/firebase';
+import {
+  loginSuccess,
+  signupSuccess,
+  loginFailure,
+  signupFailure,
+  logoutUser,
+} from '../slice/authSlice';
 
-export const signup = (email, password) => async (dispatch) => {
-  dispatch(setLoading(true));
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    await setDoc(doc(db, "users", user.uid), {
-      email: user.email,
-      name: user.displayName || "New User",
-      isAdmin: false,
-    });
-
-    dispatch(setUser(user));
-  } catch (error) {
-    dispatch(setError(error.message));
-  }
-};
-
-export const login = (email, password) => async (dispatch) => {
-  dispatch(setLoading(true));
+export const loginUser = (email, password) => async (dispatch) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    const userDoc = await getDoc(doc(db, "users", user.uid));
-    if (userDoc.exists()) {
-      dispatch(setUser(userDoc.data()));
-    } else {
-      dispatch(setUser(user));
+
+    if (user) {
+      const userDoc = await getDoc(doc(db, 'users', user.uid));
+      console.log("Fetched user data:", userDoc.data());
+      if (userDoc.exists()) {
+        dispatch(loginSuccess(userDoc.data())); 
+        alert('Login successful!');
+      } else {
+        alert('No user data found.');
+        dispatch(loginFailure('No user data found.'));
+      }
     }
   } catch (error) {
-    dispatch(setError(error.message));
+    console.error('Login error:', error.message);
+    dispatch(loginFailure(error.message));
+    alert('Invalid email or password.');
   }
 };
 
-export const logoutUser = () => async (dispatch) => {
+export const registerUser = (name, email, password, confirmPassword) => async (dispatch) => {
+  if (password !== confirmPassword) {
+    alert('Passwords do not match.');
+    return;
+  }
+
+  try {
+    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const user = userCredential.user;
+
+    if (user) {
+      await setDoc(doc(db, 'users', user.uid), {
+        name,
+        email,
+        role: 'admin',
+      });
+
+      dispatch(signupSuccess({ name, email, role: 'user' })); 
+      alert('Account created successfully!');
+    }
+  } catch (error) {
+    console.error('Signup error:', error.message);
+    dispatch(signupFailure(error.message));
+    alert(error.message);
+  }
+};
+
+export const logout = () => async (dispatch) => {
   try {
     await signOut(auth);
-    dispatch(logout());
+    dispatch(logoutUser());
+    console.log("Logged out successfully");
+    alert('Logged out successfully!');
   } catch (error) {
-    dispatch(setError(error.message));
+    console.error('Logout error:', error.message);
+    alert('Failed to log out.');
   }
 };

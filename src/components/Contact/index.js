@@ -10,10 +10,10 @@ import contact3 from "../../../src/assets/contact3.svg";
 import { Link } from "react-router-dom"; // Fixed import for Link
 import Modal from "../Modals/modal";
 import Aos from "aos";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { setDoc, doc, getDoc } from "firebase/firestore";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth, db } from "../firebase/firebase";
+import { auth, db, googleProvider } from "../firebase/firebase";
 import { fetchSignInMethodsForEmail } from "firebase/auth";
 import { setUser } from "../../redux/slice/authSlice";
 import { useDispatch } from "react-redux";
@@ -59,7 +59,7 @@ const Contact = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-      console.log("Logged in user:", user); // Debug here
+      console.log("Logged in user:", user); 
   
       if (!user) {
         console.error("No user returned from signInWithEmailAndPassword");
@@ -111,6 +111,31 @@ const Contact = () => {
     } catch (error) {
       console.error("Error signing up:", error);
       alert(error.message);
+    }
+  };
+  const handleGoogleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (!userDoc.exists()) {
+        await setDoc(doc(db, "users", user.uid), {
+          name: user.displayName,
+          email: user.email,
+          role: "user",
+        });
+      }
+      dispatch(setUser({
+        name: user.displayName,
+        email: user.email,
+        role: userDoc.exists() ? userDoc.data().role : "user"
+      }));
+  
+      alert("Login successful!");
+      setLoginOpen(false);
+    } catch (error) {
+      console.error("Google login error:", error);
+      alert("Google login failed.");
     }
   };
   return (
@@ -214,14 +239,7 @@ const Contact = () => {
 
                 <div className="login-info">
                   <Link to="/forgot-password">Forgot Password?</Link>
-
-                  <div className="remember-forgot">
-                    <label>
-                      <input type="checkbox" /> Keep me logged in
-                    </label>
-                  </div>
-
-                  <button type="submit" className="login-btn">
+                  <button type="submit" className="login-btn mt-3">
                     Log In
                   </button>
                 </div>
@@ -239,14 +257,7 @@ const Contact = () => {
                 </div>
 
                 <div className="login-info">
-                  <div className="remember-forgot">
-                    <label>
-                      <input type="checkbox" /> I agree to all{" "}
-                      <Link>Terms and conditions</Link>
-                    </label>
-                  </div>
-
-                  <button type="submit" className="login-btn">
+                  <button type="submit" className="login-btn mt-3">
                     Create Account
                   </button>
                 </div>
@@ -258,7 +269,7 @@ const Contact = () => {
             <p>Or {activeTab === "login" ? "Log In" : "Sign Up"} with</p>
           </div>
           <div className="social-login">
-            <button className="google-btn">Google</button>
+            <button className="google-btn" onClick={handleGoogleLogin}>Google</button>
             <button className="facebook-btn">Facebook</button>
           </div>
 
