@@ -1,41 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import "./style.css";
 import profile from '../../../assets/adminProfile.svg';
 import productEdit from '../../../assets/product-edit.svg';
 import contactUs from '../../../assets/24-support.svg';
 import logout from '../../../assets/logout.svg';
 import close from "../../../assets/sidebar-close.svg";
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../../../redux/slice/authSlice";
 
 const AdminDashboard = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        navigate('/contact'); 
+      }
+    });
+
+    return () => unsubscribe(); 
+  }, [navigate]);
 
   const handleToggleDashboard = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleProduct = () => {
-    navigate('/product-management');
-  };
+  const handleProduct = () => navigate('/product-management');
 
-  const handleContact = () => {
-    navigate('/contact');
-  };
+  const handleContact = () => navigate('/contact');
 
-  const handleUserOnBoard = () => {
-    navigate('/user-onBoard');
+  const handleUserOnBoard = () => navigate('/user-onBoard');
+
+  const auth = getAuth();
+  const dispatch = useDispatch();
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      dispatch(logoutUser());
+      console.log("User logged out:", user);
+      alert('Logged out successfully!');
+      navigate('/contact');
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+      alert('Failed to log out.');
+    }
   };
 
   const isActive = (pathname) => location.pathname.startsWith(pathname);
-
+  if (!user) return null;
   return (
     <>
       <div className="navigation">
         <Link to="/" style={{ color: "#717171" }}>Home</Link> &gt;
         <Link to="/admin-dashboard">Admin Dashboard</Link>
       </div>
+
       <div className="admin-dashboard-1" onClick={handleToggleDashboard}>
         <img src={profile} alt="profile" className="admin-profile" />
         <p>Admin Dashboard</p>
@@ -65,7 +92,7 @@ const AdminDashboard = () => {
           <p>Contact Us</p>
         </div>
 
-        <div className="admin-dashboard-2">
+        <div className="admin-dashboard-2" onClick={handleLogout}>
           <img src={logout} alt="logout" />
           <p style={{ color: "#C91433" }}>Log out</p>
         </div>

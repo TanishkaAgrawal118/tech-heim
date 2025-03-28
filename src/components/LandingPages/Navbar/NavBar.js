@@ -8,9 +8,12 @@ import Sidebar from "../SideBar/Sidebar";
 import ProductDropdown from "../../Products/ProductsDropdown";
 import { Link, useLocation, useNavigate } from "react-router";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AdminDropdown from "../../Admin/ProfileDropdown";
 import { navLinks } from "../../constants/constant";
+import { signOut } from "firebase/auth";
+import { logoutUser } from "../../../redux/slice/authSlice";
+import { auth } from "../../firebase/firebase";
 
 const NavBar = ({ onLoginClick }) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -18,10 +21,11 @@ const NavBar = ({ onLoginClick }) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isProductDropdown, setIsProductDropdown] = useState(false);
   const [isUserDropdown, setUserDropdown] = useState(false);
-
+  const user = useSelector((state) => state.auth.user);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const { cartItems } = useSelector((state) => state.cart);
   const { products } = useSelector((state) => state.products);
 
@@ -54,10 +58,19 @@ const NavBar = ({ onLoginClick }) => {
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
     .slice(0, 3);
-    const handleProductClick = (id) => {
-      navigate(`/productDetails/${id}`);
-    };
-    
+  const handleProductClick = (id) => {
+    navigate(`/productDetails/${id}`);
+  };
+  const onLogoutClick = async () => {
+    try {
+      await signOut(auth);
+      dispatch(logoutUser());
+      alert('Logged out successfully!');
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+      alert('Failed to log out.');
+    }
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light">
@@ -115,12 +128,21 @@ const NavBar = ({ onLoginClick }) => {
             )}
           </div>
           {isContactPage ? (
-            <Link
+            !isAuthenticated ? (
+              <Link
+                className="btn btn-primary login-signup-btn"
+                onClick={onLoginClick}
+              >
+                Login / Sign Up
+              </Link>
+            ) : (
+              <Link
               className="btn btn-primary login-signup-btn"
-              onClick={onLoginClick}
+              onClick={onLogoutClick}
             >
-              Login / Sign Up
+              Logout
             </Link>
+            )
           ) : (
             <div
               className="profile-wrapper"
@@ -165,7 +187,10 @@ const NavBar = ({ onLoginClick }) => {
               <div className="search-row">
                 {filteredProducts.length > 0 ? (
                   filteredProducts.map((product) => (
-                    <p key={product.id}  onClick={() => handleProductClick(product.id)}>
+                    <p
+                      key={product.id}
+                      onClick={() => handleProductClick(product.id)}
+                    >
                       {product.name}
                     </p>
                   ))
